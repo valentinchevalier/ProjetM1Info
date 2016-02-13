@@ -1,1 +1,24 @@
-<h1>Bonjour {{nom}}</h1>
+
+<div class="header">
+    <div class="half"><div class="parameters"><i class="fa fa-cog fa-2x"></i></div></div>
+    <div class="half"><div class="account">Connexion</div></div>
+
+</div>
+<div class="workspace">
+    <div class="widget "></div>
+
+</div>
+
+
+<div class="menu_container" ng-class="{'visible': isMenuVisible}">
+    <div class="menu_btn_add">
+        <a class="btn-floating" ng-click="toggleMenu()"><i class="material-icons fa {{buttonIcon}}"></i></a>
+    </div>
+    <div class="menu_widgets">
+        <div class="container_widgets">
+            <div class="menu_widget" ng-repeat="widget in availableWidgets">
+                {{widget.title}}
+            </div>
+        </div>
+    </div>
+</div>
