@@ -76,6 +76,10 @@ body {
     display:inline-block;
     margin:10px;
     border:1px solid white;
+<<<<<<< HEAD
+    background-color: red;
+=======
+>>>>>>> test/master
 }
 
 .btn-floating {
@@ -124,7 +128,11 @@ body {
 
     padding: 10px;
 
+<<<<<<< HEAD
+
+=======
     background-color: gray;
+>>>>>>> test/master
 
     white-space: nowrap;
     overflow-y: hidden;
@@ -133,4 +141,8 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+<<<<<<< HEAD
+
+=======
+>>>>>>> test/master
 }
