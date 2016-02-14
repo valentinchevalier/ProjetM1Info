@@ -1,7 +1,13 @@
 app.controller("WorkspaceCtrl", function($scope){
     $scope.nom = "Les 4 Développeurs";
-    $scope.isMenuVisible = false;
+    $scope.isMenuVisible = true;
     $scope.buttonIcon = "fa-plus";
+    id = 1;
+
+    // Widgets présent dans le workspace
+    $scope.widgets = [];
+
+    // Widgets disponible à l'ajout
     $scope.availableWidgets = [
         {
             title:"Widget 1",
@@ -22,9 +28,17 @@ app.controller("WorkspaceCtrl", function($scope){
             $scope.buttonIcon = "fa-plus";
         }
     }
-<<<<<<< HEAD
 
-    $scope.centerAnchor = true;
+    $scope.onDropComplete=function(data,evt){
+        // Ajout du widget dans les widgets
+        $scope.widgets.push({
+            'widgetName' : data.title,
+            'id':id++,
+        });
+    }
+
+
+    /*$scope.centerAnchor = true;
         $scope.toggleCenterAnchor = function () {$scope.centerAnchor = !$scope.centerAnchor}
         $scope.draggableObjects = $scope.availableWidgets;
         $scope.droppedObjects1 = [];
@@ -55,10 +69,6 @@ app.controller("WorkspaceCtrl", function($scope){
         }
         var inArray = function(array, obj) {
             var index = array.indexOf(obj);
-        }
+        }*/
 
 });
-
-=======
-});
->>>>>>> test/master

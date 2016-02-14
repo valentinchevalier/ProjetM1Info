@@ -4,9 +4,10 @@
     <div class="half"><div class="account">Connexion</div></div>
 
 </div>
-<div class="workspace">
-    <div class="widget "></div>
-
+<div class="workspace" ng-drop="true" ng-drop-success="onDropComplete($data,$event)">
+    <div class="widget" ng-repeat="widget in widgets">
+        {{widget.widgetName}}
+    </div>
 </div>
 
 
@@ -17,11 +18,7 @@
 
     <div class="menu_widgets">
         <div class="container_widgets">
-<<<<<<< HEAD
-            <div ng-app="DragDrop" class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-data="widget" data-allow-transform="true">
-=======
-            <div class="menu_widget" ng-repeat="widget in availableWidgets">
->>>>>>> test/master
+            <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-data="widget">
                 {{widget.title}}
             </div>
         </div>
