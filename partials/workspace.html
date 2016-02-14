@@ -1,0 +1,24 @@
+
+<div class="header">
+    <div class="half"><div class="parameters"><i class="fa fa-cog fa-2x"></i></div></div>
+    <div class="half"><div class="account">Connexion</div></div>
+
+</div>
+<div class="workspace">
+    <div class="widget "></div>
+
+</div>
+
+
+<div class="menu_container" ng-class="{'visible': isMenuVisible}">
+    <div class="menu_btn_add">
+        <a class="btn-floating" ng-click="toggleMenu()"><i class="material-icons fa {{buttonIcon}}"></i></a>
+    </div>
+    <div class="menu_widgets">
+        <div class="container_widgets">
+            <div ng-app="DragDrop" class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-data="widget" data-allow-transform="true">
+                {{widget.title}}
+            </div>
+        </div>
+    </div>
+</div>
