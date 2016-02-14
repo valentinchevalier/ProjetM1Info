@@ -5,7 +5,10 @@
 
 </div>
 <div class="workspace">
-    <div class="widget "></div>
+    <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="widget" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
+              {{widget.title}}
+    </div>
+    <div class="widget"></div>
 
 </div>
 
@@ -16,13 +19,14 @@
     </div>
     <div class="menu_widgets">
         <div class="container_widgets">
-<<<<<<< HEAD
-            <div ng-app="DragDrop" class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-data="widget" data-allow-transform="true">
-=======
-            <div class="menu_widget" ng-repeat="widget in availableWidgets">
->>>>>>> test/master
+            <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-data="widget" data-allow-transform="true">
                 {{widget.title}}
             </div>
         </div>
     </div>
 </div>
+
+<div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+
+
+      </div>

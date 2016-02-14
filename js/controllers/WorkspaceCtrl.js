@@ -22,7 +22,7 @@ app.controller("WorkspaceCtrl", function($scope){
             $scope.buttonIcon = "fa-plus";
         }
     }
-<<<<<<< HEAD
+
 
     $scope.centerAnchor = true;
         $scope.toggleCenterAnchor = function () {$scope.centerAnchor = !$scope.centerAnchor}
@@ -58,7 +58,3 @@ app.controller("WorkspaceCtrl", function($scope){
         }
 
 });
-
-=======
-});
->>>>>>> test/master
