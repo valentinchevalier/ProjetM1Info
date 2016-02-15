@@ -1,4 +1,9 @@
 app.controller("WorkspaceCtrl", function($scope){
+    var NB_ROW = 4;
+    var NB_COLUMN = 3;
+    $scope.column_width;
+    $scope.row_height;
+
     $scope.nom = "Les 4 Développeurs";
     $scope.isMenuVisible = true;
     $scope.buttonIcon = "fa-plus";
@@ -6,6 +11,26 @@ app.controller("WorkspaceCtrl", function($scope){
 
     // Widgets présent dans le workspace
     $scope.widgets = [];
+
+
+    initWorkspace = function(){
+        for (var i = 0; i < NB_ROW; i++){
+            $scope.widgets[i] = [];
+            for (var j = 0; j < NB_COLUMN; j++){
+                var widget = {
+                    x:i,
+                    y:j,
+                    data:{},
+                    isEmpty:true,
+                }
+                $scope.widgets[i].push(widget);
+            }
+        }
+        $scope.column_width = (100/NB_COLUMN)-2;
+        $scope.row_height = (100/NB_ROW)-2;
+    }
+    initWorkspace();
+
 
     // Widgets disponible à l'ajout
     $scope.availableWidgets = [
@@ -20,6 +45,11 @@ app.controller("WorkspaceCtrl", function($scope){
         },
     ];
 
+    $scope.options = {
+      placeholder: "placeholder",
+      connectWith: ".lists",
+    };
+
     $scope.toggleMenu = function(){
         $scope.isMenuVisible = !$scope.isMenuVisible;
         if ($scope.isMenuVisible){
@@ -29,12 +59,12 @@ app.controller("WorkspaceCtrl", function($scope){
         }
     }
 
-    $scope.onDropComplete=function(data,evt){
+    $scope.onDropComplete=function(data,evt,x,y){
+        console.log(data);
+        console.log(x,y);
         // Ajout du widget dans les widgets
-        $scope.widgets.push({
-            'widgetName' : data.title,
-            'id':id++,
-        });
+        $scope.widgets[x][y].data = data;
+        $scope.widgets[x][y].isEmpty = false;
     }
 
 

@@ -2,12 +2,13 @@
 
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Lato';
-  font-weight: 300;
-  color: #606060;
-  background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato';
+    font-weight: 300;
+    color: #606060;
+    background-color: #ffffff;
+    min-height:100%;
 }
 
 
@@ -57,10 +58,11 @@ body {
     -moz-transform: translateY(250px);
     -o-transform: translateY(250px);
     -ms-transform: translateY(250px);
+    background-color:gray;
 }
 
 .menu_container.visible .menu_btn_add {
-    bottom:200px;
+    bottom:185px;
 }
 .menu_container.visible .menu_widgets {
     transform: translateY(0px);
@@ -112,12 +114,11 @@ body {
 }
 
 .workspace {
-    position:fixed;
-    top:50px;
-    bottom:0px;
-    left:0px;
-    right:0px;
+    position:absolute;
+    margin-top:50px;
     z-index:99;
+    height:100%;
+    width:100%;
 }
 
 .container_widgets {
@@ -136,4 +137,32 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.draggable_container {
+    border: 1px solid blue;
+}
+
+.thumbnail {
+    border:2px solid red;
+}
+
+.widget_container {
+    display:inline-block;
+    margin: 0 1%;
+    height:100%;
+    padding:10px;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color:#eee;
+}
+
+.row {
+    margin:1%;
+}
+
+html {
+    height:100%;
 }

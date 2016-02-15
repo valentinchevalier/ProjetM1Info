@@ -4,3 +4,6 @@ app.config(function($routeProvider){
         .when('/', {templateUrl: 'partials/workspace.html', controller: 'WorkspaceCtrl'})
         .otherwise({redirectTo: '/'});
 });
+
+
+

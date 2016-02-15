@@ -4,9 +4,19 @@
     <div class="half"><div class="account">Connexion</div></div>
 
 </div>
-<div class="workspace" ng-drop="true" ng-drop-success="onDropComplete($data,$event)">
-    <div class="widget" ng-repeat="widget in widgets">
-        {{widget.widgetName}}
+<div class="workspace">
+    <style>
+        .widget_container {
+            width : {{column_width}}% !important;
+        }
+        .row {
+            height: {{row_height}}% !important;
+        }
+    </style>
+    <div class='row' ng-repeat="row in widgets">
+        <div class="widget_container" ng-repeat="widget in row" ng-drop="true" ng-drop-success="onDropComplete($data,$event,widget.x,widget.y)">
+            <p>{{widget.data}}</p>
+        </div>
     </div>
 </div>
 
@@ -17,10 +27,9 @@
     </div>
 
     <div class="menu_widgets">
-        <div class="container_widgets">
-            <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-data="widget">
-                {{widget.title}}
-            </div>
+        <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-data="widget" ng-center-anchor="true">
+            {{widget.title}}
         </div>
     </div>
 </div>
+
