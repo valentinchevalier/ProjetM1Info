@@ -17,6 +17,7 @@ body {
     color:white;
     position:fixed;
     top:0; left:0; right:0;
+    z-index: 150;
 }
 .parameters {
     float:left;
@@ -50,36 +51,29 @@ body {
 }
 .menu_widgets {
     position:fixed;
-    bottom:0; left: 0; right:0;
+    bottom:-250px; left: 0; right:0;
     z-index:100;
-
-    transform: translateY(250px);
-    -webkit-transform: translateY(250px);
-    -moz-transform: translateY(250px);
-    -o-transform: translateY(250px);
-    -ms-transform: translateY(250px);
     background-color:gray;
+    padding:5px;
 }
 
 .menu_container.visible .menu_btn_add {
     bottom:185px;
 }
 .menu_container.visible .menu_widgets {
-    transform: translateY(0px);
-    -webkit-transform: translateY(0px);
-    -moz-transform: translateY(0px);
-    -o-transform: translateY(0px);
-    -ms-transform: translateY(0px);
+    bottom:0;
 }
 
 .menu_widget {
     width:180px;
     height:180px;
-    display:inline-block;
-    margin:10px;
-    border:1px solid white;
-    background-color: red;
+    margin:5px;
+    border:5px solid white;
+    background-color: #00C4DC;
+    text-align:center;
     z-index:100;
+    cursor:pointer;
+    float:left;
 }
 
 .btn-floating {
@@ -115,10 +109,15 @@ body {
 
 .workspace {
     position:absolute;
-    margin-top:50px;
+    padding-top:50px;
     z-index:99;
     height:100%;
     width:100%;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color:white;
 }
 
 .container_widgets {
@@ -149,6 +148,7 @@ body {
 
 .widget_container {
     display:inline-block;
+    vertical-align:middle;
     margin: 0 1%;
     height:100%;
     padding:10px;
@@ -165,4 +165,19 @@ body {
 
 html {
     height:100%;
+}
+
+.menu_widget.dragging {
+    -webkit-box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.2);
+    box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.2);
+    transform: translateY(-250px);
+    -webkit-transform: translateY(-250px);
+    -moz-transform: translateY(-250px);
+    -o-transform: translateY(-250px);
+    -ms-transform: translateY(-250px);
+}
+
+.menu_widgets.hide {
+    z-index:-1;
 }

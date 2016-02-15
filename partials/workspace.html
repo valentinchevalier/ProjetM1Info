@@ -2,8 +2,8 @@
 <div class="header">
     <div class="half"><div class="parameters"><i class="fa fa-cog fa-2x"></i></div></div>
     <div class="half"><div class="account">Connexion</div></div>
-
 </div>
+
 <div class="workspace">
     <style>
         .widget_container {
@@ -13,9 +13,9 @@
             height: {{row_height}}% !important;
         }
     </style>
-    <div class='row' ng-repeat="row in widgets">
-        <div class="widget_container" ng-repeat="widget in row" ng-drop="true" ng-drop-success="onDropComplete($data,$event,widget.x,widget.y)">
-            <p>{{widget.data}}</p>
+    <div class='row' ng-repeat="row in emplacements">
+        <div class="widget_container" ng-repeat="widget in row" ng-drop="true" ng-drop-success="onDrop($data,$event,widget.x,widget.y)">
+            <p>{{widget.data.title}}</p>
         </div>
     </div>
 </div>
@@ -26,9 +26,9 @@
         <a class="btn-floating" ng-click="toggleMenu()"><i class="material-icons fa {{buttonIcon}}"></i></a>
     </div>
 
-    <div class="menu_widgets">
-        <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-data="widget" ng-center-anchor="true">
-            {{widget.title}}
+    <div class="menu_widgets" >
+        <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-start="dragging()" ng-drag-stop="unDragging()" ng-drag-data="widget">
+            <p>{{widget.title}}</p>
         </div>
     </div>
 </div>

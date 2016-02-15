@@ -203,7 +203,11 @@ angular.module("ngDraggable", [])
                         _ty = _my - _mry - _dragOffset.top;
                     }
 
-                    moveElement(_tx, _ty);
+                    var bottomOffset = parseInt(element.parent().css('bottom'), 10);
+                    var leftOffset = parseInt(element.parent().css('left'), 10);
+
+                    moveElement(_tx + leftOffset, _ty + bottomOffset);
+
 
                     $rootScope.$broadcast('draggable:move', { x: _mx, y: _my, tx: _tx, ty: _ty, event: evt, element: element, data: _data, uid: _myid, dragOffset: _dragOffset });
                 };
