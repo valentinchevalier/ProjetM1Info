@@ -6,6 +6,7 @@ app.controller("WorkspaceCtrl", function($scope){
     $scope.row_height;
 
     $scope.isMenuVisible = true;
+    $scope.isDragging = false;
     $scope.buttonIcon = "fa-plus";
 
     // Widgets présent dans le workspace
@@ -15,12 +16,15 @@ app.controller("WorkspaceCtrl", function($scope){
     $scope.availableWidgets = [
         {
             title:"Tisseo",
+            color: "#00C4DC",
         },
         {
             title:"Météo",
+            color: "#33cc99",
         },
         {
             title:"Événements culturels",
+            color: "#cc3366",
         },
     ];
 
@@ -66,11 +70,13 @@ app.controller("WorkspaceCtrl", function($scope){
 
 
     $scope.dragging = function(){
+        $scope.isDragging = true;
         $scope.isMenuVisible = false;
         $scope.buttonIcon = "fa-trash";
     }
 
     $scope.unDragging = function(){
+        $scope.isDragging = false;
         $scope.isMenuVisible = true;
         setBtnIcon();
     }

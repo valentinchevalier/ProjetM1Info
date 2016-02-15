@@ -4,7 +4,7 @@
     <div class="half"><div class="account">Connexion</div></div>
 </div>
 
-<div class="workspace">
+<div class="workspace" ng-class="{drag_in_progress:isDragging}">
     <style>
         .widget_container {
             width : {{column_width}}% !important;
@@ -14,8 +14,10 @@
         }
     </style>
     <div class='row' ng-repeat="row in emplacements">
-        <div class="widget_container" ng-repeat="widget in row" ng-drop="true" ng-drop-success="onDrop($data,$event,widget.x,widget.y)">
-            <p>{{widget.data.title}}</p>
+        <div class="widget_container" ng-repeat="widget in row" ng-drop="widget.isEmpty" ng-drop-success="onDrop($data,$event,widget.x,widget.y)">
+            <div class="widget" ng-hide="widget.isEmpty" style="background-color:{{widget.data.color}}">
+                <p>{{widget.data.title}}</p>
+            </div>
         </div>
     </div>
 </div>
@@ -26,10 +28,11 @@
         <a class="btn-floating" ng-click="toggleMenu()"><i class="material-icons fa {{buttonIcon}}"></i></a>
     </div>
 
-    <div class="menu_widgets" >
-        <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-start="dragging()" ng-drag-stop="unDragging()" ng-drag-data="widget">
+    <div class="menu_widgets">
+        <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-start="dragging()" ng-drag-stop="unDragging()" ng-drag-data="widget" style="background-color:{{widget.color}}">
             <p>{{widget.title}}</p>
         </div>
     </div>
 </div>
+Reapy13
 
