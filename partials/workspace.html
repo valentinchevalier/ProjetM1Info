@@ -1,7 +1,8 @@
 
 <div class="header">
-    <div class="half"><div class="parameters"><i class="fa fa-cog fa-2x"></i></div></div>
-    <div class="half"><div class="account">Connexion</div></div>
+    <div class="half"><div class="parameters"><i class="fa fa-cog fa-2x"></i>
+        <div>{{currentDraggingIndex}} {{availableWidgets[currentDraggingIndex]}}</div></div></div>
+    <div class="half"><div class="account"><ng-include src="UserService.templateUrl"></ng-include></div></div>
 </div>
 
 <div class="workspace" ng-class="{drag_in_progress:isDragging}">
@@ -24,12 +25,20 @@
 
 
 <div class="menu_container" ng-class="{'visible': isMenuVisible}">
-    <div class="menu_btn_add">
+    <div class="menu_btn" ng-drop="isDragging" ng-drop-success="onDeleteDrop($data,$event)" ng-mousemove="onBtnMouseover()">
         <a class="btn-floating" ng-click="toggleMenu()"><i class="material-icons fa {{buttonIcon}}"></i></a>
     </div>
 
     <div class="menu_widgets">
-        <div class="menu_widget" ng-repeat="widget in availableWidgets" ng-drag="true" ng-drag-start="dragging()" ng-drag-stop="unDragging()" ng-drag-data="widget" style="background-color:{{widget.color}}">
+        <div class="menu_widget"
+           ng-repeat="widget in availableWidgets"
+           ng-drag="true"
+           ng-drag-start="startDragging($index)"
+           ng-drag-move="dragging()"
+           ng-drag-stop="stopDragging()"
+           ng-drag-data="widget"
+           ng-class="{deletion:widget.deletion}"
+           style="background-color:{{widget.color}}" >
             <p>{{widget.title}}</p>
         </div>
     </div>

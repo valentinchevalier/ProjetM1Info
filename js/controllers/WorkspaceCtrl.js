@@ -1,13 +1,16 @@
-app.controller("WorkspaceCtrl", function($scope){
+app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService) {
 
-    var NB_ROW = 5;
-    var NB_COLUMN = 4;
-    $scope.column_width;
-    $scope.row_height;
+    var NB_ROW = 3;
+    var NB_COLUMN = 2;
+    $scope.column_width = 0;
+    $scope.row_height = 0;
 
     $scope.isMenuVisible = true;
     $scope.isDragging = false;
     $scope.buttonIcon = "fa-plus";
+
+    $scope.UserService = UserService;
+
 
     // Widgets présent dans le workspace
     $scope.emplacements = [];
@@ -15,32 +18,35 @@ app.controller("WorkspaceCtrl", function($scope){
      // Widgets disponibles à l'ajout
     $scope.availableWidgets = [
         {
-            title:"Tisseo",
+            title: "Tisseo",
             color: "#00C4DC",
+            deletion: false,
         },
         {
-            title:"Météo",
+            title: "Météo",
             color: "#33cc99",
+            deletion: false,
         },
         {
-            title:"Événements culturels",
+            title: "Événements culturels",
             color: "#cc3366",
+            deletion: false,
         },
     ];
 
 
-    setBtnIcon = function(){
-        if ($scope.isMenuVisible){
+    var setBtnIcon = function() {
+        if ($scope.isMenuVisible) {
             $scope.buttonIcon = "fa-arrow-down";
         } else {
             $scope.buttonIcon = "fa-plus";
         }
-    }
+    };
 
-    initializeWorkspace = function(){
-        for (var i = 0; i < NB_ROW; i++){
+    var initializeWorkspace = function() {
+        for (var i = 0; i < NB_ROW; i++) {
             $scope.emplacements[i] = [];
-            for (var j = 0; j < NB_COLUMN; j++){
+            for (var j = 0; j < NB_COLUMN; j++) {
                 var emplacement = {
                     x:i,
                     y:j,
@@ -52,38 +58,61 @@ app.controller("WorkspaceCtrl", function($scope){
         }
         $scope.column_width = (100/NB_COLUMN)-2;
         $scope.row_height = (100/NB_ROW)-2;
-    }
+    };
 
 
-    initialize = function(){
+    initialize = function () {
         initializeWorkspace();
         setBtnIcon();
-    }
+    };
 
     initialize();
 
 
-    $scope.toggleMenu = function(){
+    $scope.toggleMenu = function () {
         $scope.isMenuVisible = !$scope.isMenuVisible;
         setBtnIcon();
-    }
+    };
 
 
-    $scope.dragging = function(){
+    $scope.startDragging = function (index) {
         $scope.isDragging = true;
         $scope.isMenuVisible = false;
+        $scope.currentDraggingIndex = index;
         $scope.buttonIcon = "fa-trash";
+    };
+    $scope.deletion = true;
+    $rootScope.$on("draggable:move", function() {
+        console.log("coucou");
+        if ($('.menu_btn.drag-enter').length!=0){
+            $scope.availableWidgets[$scope.currentDraggingIndex].deletion = true;
+            $scope.$apply();
+        } else {
+            $scope.availableWidgets[$scope.currentDraggingIndex].deletion = false;
+            $scope.$apply();
+        }
+    });
+
+    $scope.dragging = function(){
+        console.log("dragging");
     }
 
-    $scope.unDragging = function(){
+    $scope.stopDragging = function () {
         $scope.isDragging = false;
         $scope.isMenuVisible = true;
+        $scope.availableWidgets[$scope.currentDraggingIndex].deletion = false;
+        //$scope.currentDraggingIndex = null;
         setBtnIcon();
-    }
+    };
 
-    $scope.onDrop = function(data,evt,x,y){
+    $scope.onDrop = function (data,evt,x,y) {
         // Ajout du widget dans les widgets
         $scope.emplacements[x][y].data = data;
         $scope.emplacements[x][y].isEmpty = false;
-    }
+    };
+
+    $scope.onDeleteDrop = function (data,evt) {
+        console.log("delete");
+    };
+
 });
