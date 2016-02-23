@@ -18,18 +18,21 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService) {
      // Widgets disponibles à l'ajout
     $scope.availableWidgets = [
         {
-            title: "Tisseo",
-            color: "#00C4DC",
+            name: "Tisseo",
+            color: "#0C226B",
+            img_url: "img/Tisseo_logo.png",
             deletion: false,
         },
         {
-            title: "Météo",
+            name: "Météo",
             color: "#33cc99",
+            img_url: null,
             deletion: false,
         },
         {
-            title: "Événements culturels",
+            name: "Agenda Culturel",
             color: "#cc3366",
+            img_url: null,
             deletion: false,
         },
     ];
