@@ -1,4 +1,4 @@
-app.service('UserService', function () {
+app.service('UserService', function (SettingsService) {
     var that = this;
 
     that.templateUrl = "partials/user_account.html";
@@ -13,11 +13,13 @@ app.service('UserService', function () {
     that.login = function () {
         console.log("connexion");
         that.loginData.isLogged = true;
+        SettingsService.enable();
     };
 
     that.logout = function () {
         console.log("deconnexion");
         that.loginData.isLogged = false;
+        SettingsService.disable();
     };
 
     that.onButtonClick = function () {
@@ -27,4 +29,6 @@ app.service('UserService', function () {
             that.login();
         }
     };
+
+    //that.login();
 });

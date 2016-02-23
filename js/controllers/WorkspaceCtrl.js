@@ -1,4 +1,4 @@
-app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService) {
+app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, SettingsService) {
 
     var NB_ROW = 3;
     var NB_COLUMN = 2;
@@ -10,6 +10,7 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService) {
     $scope.buttonIcon = "fa-plus";
 
     $scope.UserService = UserService;
+    $scope.SettingsService = SettingsService;
 
 
     // Widgets présent dans le workspace

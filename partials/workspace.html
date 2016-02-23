@@ -1,7 +1,7 @@
 
 <div class="header">
-    <div class="half"><div class="parameters"><i class="fa fa-cog fa-2x"></i></div></div>
-    <div class="half"><div class="account"><ng-include src="UserService.templateUrl"></ng-include></div></div>
+    <div class="half"><ng-include src="SettingsService.templateUrl"></ng-include></div>
+    <div class="half"><ng-include src="UserService.templateUrl"></ng-include></div>
 </div>
 
 <div class="workspace" ng-class="{drag_in_progress:isDragging}">
@@ -40,10 +40,8 @@
            style="background-color:{{widget.color}}" >
             <p>
                 <span ng-if="widget.img_url == null">{{widget.name}}</span>
-                <img ng-if="widget.img_url != null" src="{{widget.img_url}}"/>
+                <span ng-if="widget.img_url != null"><img src="{{widget.img_url}}"/></span>
             </p>
         </div>
     </div>
 </div>
-Reapy13
-
