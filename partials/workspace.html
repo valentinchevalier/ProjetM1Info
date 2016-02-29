@@ -14,9 +14,25 @@
         }
     </style>
     <div class='row' ng-repeat="row in emplacements">
-        <div class="widget_container" ng-repeat="widget in row" ng-drop="widget.isEmpty" ng-drop-success="onDrop($data,$event,widget.x,widget.y)">
-            <div class="widget" ng-hide="widget.isEmpty" style="background-color:{{widget.data.color}}">
+        <div class="widget_container" ng-repeat="widget in row" ng-drop="widget.isEmpty" ng-drop-success="onWorkspaceDrop(widget.x,widget.y,$data)">
+            <div class="widget"
+                ng-class="{deletion:widget.deletion}"
+                ng-hide="widget.isEmpty"
+                ng-drag="!widget.isEmpty"
+                ng-drag-start="startDragging(widget)"
+                ng-drag-move="dragging()"
+                ng-drag-stop="stopDragging()"
+                ng-drag-data="{from:'workspace',xFrom:widget.x,yFrom:widget.y}"
+                ng-drag-succes="removeWidget(widget.x,widget.y)"
+                style="background-color:{{widget.data.color}}">
+
+                <div class="drag_handle" ng-drag-handle>
+                    <div class="handle_icon">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
                 <p>{{widget.data.name}}</p>
+
             </div>
         </div>
     </div>
@@ -31,13 +47,13 @@
     <div class="menu_widgets">
         <div class="menu_widget"
            ng-repeat="widget in availableWidgets"
+           ng-class="{deletion:widget.deletion}"
+           style="background-color:{{widget.color}}"
            ng-drag="true"
-           ng-drag-start="startDragging($index)"
+           ng-drag-start="startDragging(widget)"
            ng-drag-move="dragging()"
            ng-drag-stop="stopDragging()"
-           ng-drag-data="widget"
-           ng-class="{deletion:widget.deletion}"
-           style="background-color:{{widget.color}}" >
+           ng-drag-data="{from:'menu',data:widget}" >
             <p>
                 <span ng-if="widget.img_url == null">{{widget.name}}</span>
                 <span ng-if="widget.img_url != null"><img src="{{widget.img_url}}"/></span>

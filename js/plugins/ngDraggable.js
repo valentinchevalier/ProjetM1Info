@@ -205,6 +205,10 @@ angular.module("ngDraggable", [])
 
                     var bottomOffset = parseInt(element.parent().css('bottom'), 10);
                     var leftOffset = parseInt(element.parent().css('left'), 10);
+                    if (!bottomOffset)
+                        bottomOffset = 0;
+                    if (!leftOffset)
+                        leftOffset = 0;
 
                     moveElement(_tx + leftOffset, _ty + bottomOffset);
 
@@ -470,6 +474,7 @@ angular.module("ngDraggable", [])
                     element.css({left:0,top:0, position:'fixed', 'z-index':-1, visibility:'hidden'});
                 };
                 var moveElement = function(x,y) {
+                    console.log('matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, '+x+', '+y+', 0, 1)');
                     element.css({
                         transform: 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, '+x+', '+y+', 0, 1)', 'z-index': 99999, 'visibility': 'visible',
                         '-webkit-transform': 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, '+x+', '+y+', 0, 1)',

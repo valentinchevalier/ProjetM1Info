@@ -12,6 +12,7 @@ body {
     color: #606060;
     background-color: #ffffff;
     min-height:100%;
+    overflow: hidden;
 }
 
 
@@ -31,6 +32,7 @@ body {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .settings_btn_container {
     cursor: pointer;
 }
@@ -238,10 +240,13 @@ body {
 
 .widget {
     position: absolute;
-    height:100%;
-    width:100%;
+    top:0;
+    bottom:0;
+    right: 0;
+    left:0;
     color: white;
     text-align: center;
+    border-radius: 5px;
 }
 
 .menu_widget p {
@@ -277,7 +282,7 @@ body {
     line-height: 70px;
 }
 
-.menu_widget.deletion {
+.deletion {
     opacity: 0.4;
 }
 
@@ -286,4 +291,49 @@ body {
     vertical-align:middle;
 }
 
+
+
+.drag_handle {
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 26px;
+    padding: 10px;
+    opacity: 0.8;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.drag_handle:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.handle_icon {
+    position:relative;
+    height:100%;
+    width:100%;
+}
+
+.handle_icon span {
+    display: block;
+    //position: absolute;
+    height: 1px;
+    width: 100%;
+    margin-bottom:4px;
+    background-color:white;
+}
+
+.handle_icon span:nth-child(1){
+    //top: 0px;
+}
+.handle_icon span:nth-child(2){
+    //top: 5px;
+}
+.handle_icon span:last-child(){
+    margin-bottom:0;
+}
 

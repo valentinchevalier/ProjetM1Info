@@ -79,20 +79,20 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
     };
 
 
-    $scope.startDragging = function (index) {
+    $scope.startDragging = function (currentDraggingWidget) {
         $scope.isDragging = true;
         $scope.isMenuVisible = false;
-        $scope.currentDraggingIndex = index;
+        $scope.currentDraggingWidget = currentDraggingWidget;
         $scope.buttonIcon = "fa-trash";
     };
     $scope.deletion = true;
+
     $rootScope.$on("draggable:move", function() {
-        console.log("coucou");
         if ($('.menu_btn.drag-enter').length!=0){
-            $scope.availableWidgets[$scope.currentDraggingIndex].deletion = true;
+            $scope.currentDraggingWidget.deletion = true;
             $scope.$apply();
         } else {
-            $scope.availableWidgets[$scope.currentDraggingIndex].deletion = false;
+            $scope.currentDraggingWidget.deletion = false;
             $scope.$apply();
         }
     });
@@ -104,19 +104,54 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
     $scope.stopDragging = function () {
         $scope.isDragging = false;
         $scope.isMenuVisible = true;
-        $scope.availableWidgets[$scope.currentDraggingIndex].deletion = false;
+        $scope.currentDraggingWidget.deletion = false;
         //$scope.currentDraggingIndex = null;
         setBtnIcon();
     };
 
-    $scope.onDrop = function (data,evt,x,y) {
-        // Ajout du widget dans les widgets
-        $scope.emplacements[x][y].data = data;
-        $scope.emplacements[x][y].isEmpty = false;
+
+    $scope.onWorkspaceDrop = function (x, y, data) {
+        switch (data.from){
+            case "menu" :
+                $scope.addNewWidget(x,y,data);
+                break;
+            case "workspace" :
+                $scope.moveWidget(data.xFrom,data.yFrom,x,y);
+                break;
+        }
     };
 
     $scope.onDeleteDrop = function (data,evt) {
-        console.log("delete");
+        switch (data.from){
+            case "menu" :
+                // Rien
+                break;
+            case "workspace" :
+                $scope.removeWidget(data.xFrom,data.yFrom);
+                break;
+        }
     };
+
+    $scope.moveWidget = function (xFrom,yFrom,xTo,yTo){
+        $scope.emplacements[xFrom][yFrom].isEmpty = true;
+        $scope.emplacements[xTo][yTo].isEmpty = false;
+        $scope.emplacements[xTo][yTo].data = $scope.emplacements[xFrom][yFrom].data;
+        $scope.emplacements[xFrom][yFrom].data = {};
+    };
+
+
+    // TODO À modifier pour recuperer le type du widget ajouté
+    $scope.addNewWidget = function(x, y, data){
+        // Ajout du widget dans les widgets
+        $scope.emplacements[x][y].data = data.data;
+        $scope.emplacements[x][y].isEmpty = false;
+    }
+
+    // TODO À modifier pour recuperer le type du widget ajouté
+    $scope.removeWidget = function(x, y){
+        // Ajout du widget dans les widgets
+        $scope.emplacements[x][y].data = {};
+        $scope.emplacements[x][y].isEmpty = true;
+    }
 
 });
