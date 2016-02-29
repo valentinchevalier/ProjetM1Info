@@ -1,7 +1,7 @@
 app.service('UserService', function (SettingsService) {
     var that = this;
 
-    that.templateUrl = "/partials/user_account.html";
+    that.templateUrl = "partials/user_account.html";
 
     that.loginData = {
         isLogged : false,
