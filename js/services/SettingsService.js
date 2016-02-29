@@ -1,7 +1,7 @@
 app.service('SettingsService', function () {
     var that = this;
 
-    that.templateUrl = "partials/settings.html";
+    that.templateUrl = "/partials/settings.html";
 
     that.settingsData = {
         isEnable : false,
