@@ -4,39 +4,67 @@
     <div class="half" ng-include="UserService.templateUrl"></div>
 </div>
 
-<div class="workspace" ng-class="{drag_in_progress:isDragging}">
-    <style>
-        .widget_container {
-            width : {{column_width}}% !important;
-        }
-        .row {
-            height: {{row_height}}% !important;
-        }
-    </style>
-    <div class='row' ng-repeat="row in emplacements">
-        <div class="widget_container" ng-repeat="widget in row" ng-drop="widget.isEmpty" ng-drop-success="onWorkspaceDrop(widget.x,widget.y,$data)">
-            <div class="widget"
-                ng-class="{deletion:widget.deletion}"
-                ng-hide="widget.isEmpty"
-                ng-drag="!widget.isEmpty"
-                ng-drag-start="startDragging(widget)"
-                ng-drag-move="dragging()"
-                ng-drag-stop="stopDragging()"
-                ng-drag-data="{from:'workspace',xFrom:widget.x,yFrom:widget.y}"
-                ng-drag-succes="removeWidget(widget.x,widget.y)"
-                style="background-color:{{widget.data.color}}">
 
-                <div class="drag_handle" ng-drag-handle>
-                    <div class="handle_icon">
-                        <span></span><span></span><span></span>
+<div ng-controller="TabsCtrl">
+    <div class="global_container">
+        <div class="tabs">
+            <div class="tab" ng-repeat="workspace in workspaces" ng-click="switchWorkspace(workspace)" ng-class="{active: workspace == selectedWorkspace}">
+                <div class="title">{{workspace.title}}</div>
+                <div class="delete" ng-click="deleteWorkspace($index)"><div class="cross"><span></span><span></span></div></div>
+            </div>
+            <div class="tab add_tab" ng-click="showWorkspaceCreator()">
+                <div class="title">+</div>
+            </div>
+        </div>
+        <div class="workspace" ng-class="{drag_in_progress:isDragging}">
+            <style>
+                .widget_container {
+                    width : {{selectedWorkspace.column_width}}% !important;
+                }
+                .row {
+                    height: {{selectedWorkspace.row_height}}% !important;
+                }
+            </style>
+            <div class='row' ng-repeat="row in selectedWorkspace.emplacements">
+                <div class="widget_container" ng-repeat="widget in row" ng-drop="widget.isEmpty" ng-drop-success="onWorkspaceDrop(widget.x,widget.y,$data)">
+                    <div class="widget"
+                        ng-class="{deletion:widget.deletion}"
+                        ng-hide="widget.isEmpty"
+                        ng-drag="!widget.isEmpty"
+                        ng-drag-start="startDragging(widget)"
+                        ng-drag-move="dragging()"
+                        ng-drag-stop="stopDragging()"
+                        ng-drag-data="{from:'workspace',xFrom:widget.x,yFrom:widget.y}"
+                        ng-drag-succes="removeWidget(widget.x,widget.y)"
+                        style="background-color:{{widget.data.color}}">
+
+                        <div class="drag_handle" ng-drag-handle>
+                            <div class="handle_icon">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <p>{{widget.data.name}}</p>
+
                     </div>
                 </div>
-                <p>{{widget.data.name}}</p>
+            </div>
+        </div>
 
+
+    </div>
+    <div class="workspace_creator_container" ng-show="isWorkspaceCreatorVisible" ng-click="hideWorkspaceCreator($event)">
+        <div class="workspace_creator" ng-click="">
+            <h4>Nouveau workspace</h4>
+            <p><label for="">Titre</label><input type="text" ng-model="newWorkspace.title"></p>
+            <p><label for="">Nombre de colonnes</label><input type="number" ng-model="newWorkspace.nb_column"></p>
+            <p><label for="">Nombre de lignes</label><input type="number" ng-model="newWorkspace.nb_row"></p>
+            <div class="btn_create" ng-click="createWorkspace()">
+                Créer
             </div>
         </div>
     </div>
 </div>
+
 
 
 <div class="menu_container" ng-class="{'visible': isMenuVisible}">

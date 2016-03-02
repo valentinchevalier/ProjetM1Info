@@ -1,9 +1,5 @@
 app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, SettingsService) {
 
-    var NB_ROW = 3;
-    var NB_COLUMN = 2;
-    $scope.column_width = 0;
-    $scope.row_height = 0;
 
     $scope.isMenuVisible = true;
     $scope.isDragging = false;
@@ -12,9 +8,6 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
     $scope.UserService = UserService;
     $scope.SettingsService = SettingsService;
 
-
-    // Widgets présent dans le workspace
-    $scope.emplacements = [];
 
      // Widgets disponibles à l'ajout
     $scope.availableWidgets = [
@@ -47,29 +40,11 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
         }
     };
 
-    var initializeWorkspace = function() {
-        for (var i = 0; i < NB_ROW; i++) {
-            $scope.emplacements[i] = [];
-            for (var j = 0; j < NB_COLUMN; j++) {
-                var emplacement = {
-                    x:i,
-                    y:j,
-                    data:{},
-                    isEmpty:true,
-                }
-                $scope.emplacements[i].push(emplacement);
-            }
-        }
-        $scope.column_width = (100/NB_COLUMN)-2;
-        $scope.row_height = (100/NB_ROW)-2;
-    };
 
 
     initialize = function () {
-        initializeWorkspace();
         setBtnIcon();
     };
-
     initialize();
 
 
@@ -110,17 +85,6 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
     };
 
 
-    $scope.onWorkspaceDrop = function (x, y, data) {
-        switch (data.from){
-            case "menu" :
-                $scope.addNewWidget(x,y,data);
-                break;
-            case "workspace" :
-                $scope.moveWidget(data.xFrom,data.yFrom,x,y);
-                break;
-        }
-    };
-
     $scope.onDeleteDrop = function (data,evt) {
         switch (data.from){
             case "menu" :
@@ -132,26 +96,5 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
         }
     };
 
-    $scope.moveWidget = function (xFrom,yFrom,xTo,yTo){
-        $scope.emplacements[xFrom][yFrom].isEmpty = true;
-        $scope.emplacements[xTo][yTo].isEmpty = false;
-        $scope.emplacements[xTo][yTo].data = $scope.emplacements[xFrom][yFrom].data;
-        $scope.emplacements[xFrom][yFrom].data = {};
-    };
-
-
-    // TODO À modifier pour recuperer le type du widget ajouté
-    $scope.addNewWidget = function(x, y, data){
-        // Ajout du widget dans les widgets
-        $scope.emplacements[x][y].data = data.data;
-        $scope.emplacements[x][y].isEmpty = false;
-    }
-
-    // TODO À modifier pour recuperer le type du widget ajouté
-    $scope.removeWidget = function(x, y){
-        // Ajout du widget dans les widgets
-        $scope.emplacements[x][y].data = {};
-        $scope.emplacements[x][y].isEmpty = true;
-    }
 
 });
