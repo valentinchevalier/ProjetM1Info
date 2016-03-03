@@ -1,15 +1,19 @@
-app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, SettingsService) {
+// Controleur principal
+app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService) {
 
-
-    $scope.isMenuVisible = true;
+    // Variables d'état
+    $scope.isMenuVisible = false;
     $scope.isDragging = false;
     $scope.buttonIcon = "fa-plus";
 
+    $scope.currentDraggingWidget = {};
+
+    // Recopie des Services dans le $scope pour y accéder dans la vue
     $scope.UserService = UserService;
     $scope.SettingsService = SettingsService;
 
 
-     // Widgets disponibles à l'ajout
+    // Widgets disponibles à l'ajout
     $scope.availableWidgets = [
         {
             name: "Tisseo",
@@ -32,7 +36,17 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
     ];
 
 
-    var setBtnIcon = function() {
+    /**
+     * fonction d'initialisation du controleur
+     */
+    initialize = function () {
+        $scope.setBtnIcon();
+    };
+
+    /**
+     * Défini l'icone du bouton selon l'état du menu
+     */
+    $scope.setBtnIcon = function() {
         if ($scope.isMenuVisible) {
             $scope.buttonIcon = "fa-arrow-down";
         } else {
@@ -40,17 +54,12 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
         }
     };
 
-
-
-    initialize = function () {
-        setBtnIcon();
-    };
-    initialize();
-
-
+    /**
+     * Toggle l'affichage du menu
+     */
     $scope.toggleMenu = function () {
         $scope.isMenuVisible = !$scope.isMenuVisible;
-        setBtnIcon();
+        $scope.setBtnIcon();
     };
 
 
@@ -60,17 +69,6 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
         $scope.currentDraggingWidget = currentDraggingWidget;
         $scope.buttonIcon = "fa-trash";
     };
-    $scope.deletion = true;
-
-    $rootScope.$on("draggable:move", function() {
-        if ($('.menu_btn.drag-enter').length!=0){
-            $scope.currentDraggingWidget.deletion = true;
-            $scope.$apply();
-        } else {
-            $scope.currentDraggingWidget.deletion = false;
-            $scope.$apply();
-        }
-    });
 
     $scope.dragging = function(){
         console.log("dragging");
@@ -80,12 +78,30 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
         $scope.isDragging = false;
         $scope.isMenuVisible = true;
         $scope.currentDraggingWidget.deletion = false;
-        //$scope.currentDraggingIndex = null;
-        setBtnIcon();
+        $scope.setBtnIcon();
     };
 
+    // Surcharge sur le draggable:move généré par le drag
+    // Permet
+    $rootScope.$on("draggable:move", function() {
+        // Si le bouton du menu est survolé
+        if ($('.menu_btn.drag-enter').length!=0){
+            // Activation de la suppression (widget trnasparent)
+            $scope.currentDraggingWidget.deletion = true;
+            $scope.$apply();
+        } else {
+            // Désactivation de la suppression
+            $scope.currentDraggingWidget.deletion = false;
+            $scope.$apply();
+        }
+    });
 
-    $scope.onDeleteDrop = function (data,evt) {
+
+    /**
+     * Fonction appelé lors du drop sur la corbeille
+     * @param {object} data Données reçu par le drop
+     */
+    $scope.onDeleteDrop = function (data) {
         switch (data.from){
             case "menu" :
                 // Rien
@@ -96,5 +112,7 @@ app.controller("WorkspaceCtrl", function ($scope, $rootScope, UserService, Setti
         }
     };
 
+
+    initialize();
 
 });
