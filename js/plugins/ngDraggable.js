@@ -205,6 +205,10 @@ angular.module("ngDraggable", [])
 
                     var bottomOffset = parseInt(element.parent().css('bottom'), 10);
                     var leftOffset = parseInt(element.parent().css('left'), 10);
+                    if (!bottomOffset)
+                        bottomOffset = 0;
+                    if (!leftOffset)
+                        leftOffset = 0;
 
                     moveElement(_tx + leftOffset, _ty + bottomOffset);
 
@@ -383,10 +387,17 @@ angular.module("ngDraggable", [])
                     var bounds = element[0].getBoundingClientRect();// ngDraggable.getPrivOffset(element);
                     x -= $document[0].body.scrollLeft + $document[0].documentElement.scrollLeft;
                     y -= $document[0].body.scrollTop + $document[0].documentElement.scrollTop;
+
+                    var draggingElmt = document.getElementsByClassName("dragging")[0];
+                    var display = draggingElmt.style.display;
+                    draggingElmt.style.display = 'none';
+                    var isTopElement = document.elementFromPoint(x, y) == element[0] || element[0].contains( document.elementFromPoint(x, y) );
+                    draggingElmt.style.display = display;
+
                     return  x >= bounds.left
                         && x <= bounds.right
                         && y <= bounds.bottom
-                        && y >= bounds.top;
+                        && y >= bounds.top && isTopElement;
                 };
 
                 initialize();
@@ -463,6 +474,7 @@ angular.module("ngDraggable", [])
                     element.css({left:0,top:0, position:'fixed', 'z-index':-1, visibility:'hidden'});
                 };
                 var moveElement = function(x,y) {
+                    console.log('matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, '+x+', '+y+', 0, 1)');
                     element.css({
                         transform: 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, '+x+', '+y+', 0, 1)', 'z-index': 99999, 'visibility': 'visible',
                         '-webkit-transform': 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, '+x+', '+y+', 0, 1)',

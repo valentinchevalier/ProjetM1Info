@@ -1,0 +1,8 @@
+<div class="account">
+    <div class="hello" ng-show='UserService.loginData.isLogged'>
+        Bonjour {{UserService.loginData.loggedUser.username}}
+    </div>
+    <div class="btn " ng-class="{'btn-red': UserService.loginData.isLogged}" ng-click="UserService.onButtonClick()">
+        {{UserService.loginData.isLogged ? 'Deconnexion' : 'Connexion'}}
+    </div>
+</div>

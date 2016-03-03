@@ -1,6 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,300italic,400italic,700italic);
 
 
+html {
+    height:100%;
+}
 body {
     margin: 0;
     padding: 0;
@@ -9,6 +12,7 @@ body {
     color: #606060;
     background-color: #ffffff;
     min-height:100%;
+    overflow: hidden;
 }
 
 
@@ -18,19 +22,64 @@ body {
     position:fixed;
     top:0; left:0; right:0;
     z-index: 150;
+    height:46px;
 }
-.parameters {
+.settings {
     float:left;
-    padding:7px;
+    height: 46px;
     margin-left:10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.settings_btn_container {
     cursor: pointer;
 }
+.settings_btn_img, .settings_btn_text {
+    display:inline-block;
+    vertical-align: middle;
+}
+.settings_btn_img {
+    padding:7px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.settings_btn_text {
+    margin:0;
+    opacity:0;
+    transition: all .2s ease-out;
+}
+.settings_btn_text.visible {
+    opacity:1;
+}
+
+
+.settings_menu {
+    position:absolute;
+    top:56px;
+    left:-250px;
+    z-index:150;
+    width:200px;
+    background-color:#555;
+    min-height:50px;
+    min-width:50px;
+    padding:20px;
+    transition: all .5s ease-out;
+}
+.settings_menu.visible {
+    left:10px;
+}
+
+
+
 .account {
     float:right;
-    margin-right:30px;
+    margin-right:0px;
 }
 .half {
-    width:49%;
+    width:49.8%;
     display:inline-block;
     vertical-align:middle;
 }
@@ -40,14 +89,15 @@ body {
 .menu_container {
     color:white;
 }
-.menu_btn_add, .menu_widgets {
+.menu_btn, .menu_widgets {
     transition: all .5s ease-out;
 }
-.menu_btn_add {
+.menu_btn {
     position:fixed;
-    bottom:30px;
-    right:30px;
-    z-index:101;
+    bottom:10px;
+    right:10px;
+    padding:20px;
+    z-index:99;
 }
 .menu_widgets {
     position:fixed;
@@ -57,8 +107,9 @@ body {
     padding:5px;
 }
 
-.menu_container.visible .menu_btn_add {
-    bottom:185px;
+.menu_container.visible .menu_btn {
+    bottom:165px;
+    z-index:101;
 }
 .menu_container.visible .menu_widgets {
     bottom:0;
@@ -68,11 +119,16 @@ body {
     width:180px;
     height:180px;
     margin:5px;
+    padding:10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     background-color: white;
     text-align:center;
     z-index:100;
     cursor:pointer;
     float:left;
+    border-radius:5px;
 }
 
 .btn-floating {
@@ -108,10 +164,11 @@ body {
 
 .workspace {
     position:absolute;
-    padding-top:50px;
     z-index:99;
-    height:100%;
-    width:100%;
+    left:0;
+    right:0;
+    top:40px;
+    bottom:0;
 
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -162,14 +219,12 @@ body {
     margin:1%;
 }
 
-html {
-    height:100%;
-}
 
 .menu_widget.dragging {
     -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
 }
 
 .menu_widgets.hide {
@@ -186,13 +241,249 @@ html {
 
 .widget {
     position: absolute;
-    height:100%;
-    width:100%;
+    top:0;
+    bottom:0;
+    right: 0;
+    left:0;
     color: white;
     text-align: center;
+    border-radius: 5px;
 }
 
 .menu_widget p {
     margin:0;
-    line-height:180px;
+    line-height:160px;
 }
+
+.hello {
+    display:inline-block;
+}
+
+.account .btn {
+    display:inline-block;
+    width:100px;
+}
+
+.btn {
+    background-color: #33cc99;
+    padding:7px 15px;
+    margin:0 20px;
+    border-radius:3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-red {
+    background-color: #F44336;
+}
+
+.menu_btn.drag-enter .btn-floating {
+    width:70px;
+    height:70px;
+    line-height: 70px;
+}
+
+.deletion {
+    opacity: 0.4;
+}
+
+.menu_widget img {
+    max-width:100%;
+    vertical-align:middle;
+}
+
+
+
+.drag_handle {
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 26px;
+    padding: 10px;
+    opacity: 0.8;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.drag_handle:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.handle_icon {
+    position:relative;
+    height:100%;
+    width:100%;
+}
+
+.handle_icon span {
+    display: block;
+    //position: absolute;
+    height: 1px;
+    width: 100%;
+    margin-bottom:4px;
+    background-color:white;
+}
+
+.handle_icon span:nth-child(1){
+    //top: 0px;
+}
+.handle_icon span:nth-child(2){
+    //top: 5px;
+}
+.handle_icon span:last-child(){
+    margin-bottom:0;
+}
+
+
+.global_container {
+    position : fixed;
+    top: 46px;
+    bottom : 0;
+    left: 0;
+    right : 0;
+    margin: 10px;
+}
+
+.tab {
+    position:relative;
+    display: inline-block;
+    background-color: lightgrey;
+    margin : 0px 10px;
+    padding: 10px 15px;
+    width: 180px;
+    height: 100%;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    text-align: left;
+    color: #999;
+}
+
+.add_tab {
+    width: 50px;
+    text-align: center;
+}
+
+.tabs {
+    height: 40px;
+}
+
+.tab.active {
+    background-color:#eeeeee;
+}
+
+.workspace_creator_container {
+    position: fixed;
+    top:0;
+    right :0;
+    bottom:0;
+    left:0;
+    z-index: 99999;
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.btn_create {
+    padding: 10px 20px;
+    background-color: #33cc99;
+    border : 2px solid #33cc99;
+    color: white;
+    margin: auto;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.workspace_creator {
+    background-color: white;
+    padding: 20px;
+    display:inline-block;
+    margin-top: 20%;
+    text-align: left;
+}
+
+.workspace_creator label {
+    width:180px;
+    display:inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.workspace_creator input {
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.workspace_creator h4 {
+    text-align: center;
+    margin: 0;
+}
+
+input {
+    padding:5px;
+}
+
+.workspace_creator input[type=number] {
+    width: 50px;
+}
+
+.btn_create:hover {
+    background-color: white;
+    color: #33cc99;
+}
+
+
+
+.delete {
+    position:absolute;
+    right:0;
+    top:0;
+    padding:15px;
+}
+
+
+
+.cross {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    position:relative;
+}
+.cross span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #999;
+    -moz-transform-origin: left center;
+    -ms-transform-origin: left center;
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+}
+.cross span:nth-child(1) {
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top:1px;
+    left: 1px;
+}
+
+.cross span:nth-child(2) {
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: 8px;
+    left: 1px;
+}
+
+

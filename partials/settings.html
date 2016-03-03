@@ -1,0 +1,13 @@
+<div class="settings" >
+   <div class="settings_btn_container"
+       ng-show="SettingsService.settingsData.isEnable"
+       ng-click="SettingsService.settingsBtnClick()"
+       ng-mouseenter="mouseOver=true" ng-mouseleave="mouseOver=false">
+
+        <i class="settings_btn_img fa fa-cog fa-2x" ></i>
+        <span class="settings_btn_text" ng-class="{visible:mouseOver||SettingsService.settingsData.isMenuVisible}">Paramètres</span>
+    </div>
+</div>
+<div class="settings_menu" ng-class="{visible:SettingsService.settingsData.isMenuVisible}" ng-show="SettingsService.settingsData.isEnable" >
+
+</div>
