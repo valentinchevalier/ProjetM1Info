@@ -9,9 +9,14 @@
 <div ng-controller="WorkspacesCtrl">
     <div class="global_container">
         <div class="tabs">
-            <div class="tab" ng-repeat="workspace in workspaces" ng-click="switchWorkspace(workspace)" ng-class="{active: workspace == currentWorkspace}">
+            <div class="tab"
+               ng-repeat="workspace in WorkspacesService.workspaces"
+               ng-click="WorkspacesService.switchWorkspace(workspace)"
+               ng-class="{active: workspace == WorkspacesService.currentWorkspace}"
+               ng-drop="workspace != WorkspacesService.currentWorkspace"
+               >
                 <div class="title">{{workspace.title}}</div>
-                <div class="delete" ng-click="deleteWorkspace($index)"><div class="cross"><span></span><span></span></div></div>
+                <div class="delete" ng-click="WorkspacesService.deleteWorkspace($index)"><div class="cross"><span></span><span></span></div></div>
             </div>
             <div class="tab add_tab" ng-click="showWorkspaceCreator()">
                 <div class="title">+</div>
@@ -20,14 +25,17 @@
         <div class="workspace" ng-class="{drag_in_progress:isDragging}">
             <style>
                 .widget_container {
-                    width : {{currentWorkspace.column_width}}% !important;
+                    width : {{WorkspacesService.currentWorkspace.column_width}}% !important;
                 }
                 .row {
-                    height: {{currentWorkspace.row_height}}% !important;
+                    height: {{WorkspacesService.currentWorkspace.row_height}}% !important;
                 }
             </style>
-            <div class='row' ng-repeat="row in currentWorkspace.emplacements">
-                <div class="widget_container" ng-repeat="widget in row" ng-drop="widget.isEmpty" ng-drop-success="onWorkspaceDrop(widget.x,widget.y,$data)">
+            <div class='row' ng-repeat="row in WorkspacesService.currentWorkspace.emplacements">
+                <div class="widget_container"
+                   ng-repeat="widget in row"
+                   ng-drop="widget.isEmpty"
+                   ng-drop-success="onWorkspaceDrop(widget.x,widget.y,$data)">
                     <div class="widget"
                         ng-class="{deletion:widget.deletion}"
                         ng-hide="widget.isEmpty"
@@ -36,7 +44,6 @@
                         ng-drag-move="dragging()"
                         ng-drag-stop="stopDragging()"
                         ng-drag-data="{from:'workspace',xFrom:widget.x,yFrom:widget.y}"
-                        ng-drag-succes="removeWidget(widget.x,widget.y)"
                         style="background-color:{{widget.data.color}}">
 
                         <div class="drag_handle" ng-drag-handle>

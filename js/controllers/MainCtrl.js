@@ -1,5 +1,5 @@
 // Controleur principal
-app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService) {
+app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService, WorkspacesService) {
 
     // Variables d'état
     $scope.isMenuVisible = false;
@@ -107,7 +107,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
                 // Rien
                 break;
             case "workspace" :
-                $scope.removeWidget(data.xFrom,data.yFrom);
+                WorkspacesService.deleteWidget(data.xFrom,data.yFrom);
                 break;
         }
     };

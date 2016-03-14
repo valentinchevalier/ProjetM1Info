@@ -37,7 +37,7 @@ function Workspace(title, nb_row, nb_column){
      */
 Workspace.prototype.moveWidget = function (xFrom,yFrom,xTo,yTo){
     this.addNewWidget(xTo,yTo, this.emplacements[xFrom][yFrom].data);
-    this.removeWidget(xFrom, yFrom);
+    this.deleteWidget(xFrom, yFrom);
 };
 
 
@@ -59,7 +59,7 @@ Workspace.prototype.addNewWidget = function(x, y, data){
  * @param {number} x coordonnée x du widget
  * @param {number} y coordonnée y du widget
  */
-Workspace.prototype.removeWidget = function(x, y){
+Workspace.prototype.deleteWidget = function(x, y){
     // Ajout du widget dans les widgets
     this.emplacements[x][y].data = {};
     this.emplacements[x][y].isEmpty = true;
