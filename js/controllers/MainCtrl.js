@@ -1,22 +1,40 @@
 // Controleur principal
-app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService, WorkspacesService) {
+app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService, WorkspacesService, TisseoApiService) {
 
     // Variables d'état
-    $scope.isMenuVisible = false;
+    $scope.isMenuVisible = true;
     $scope.isDragging = false;
-    $scope.buttonIcon = "fa-plus";
+    $scope.buttonIcon = "plus";
 
     $scope.currentDraggingWidget = {};
 
     // Recopie des Services dans le $scope pour y accéder dans la vue
     $scope.UserService = UserService;
     $scope.SettingsService = SettingsService;
+    $scope.TisseoApiService = TisseoApiService;
+
+
+    $scope.searchArret = function(){
+        var term = $scope.stop.label;
+        console.log(term);
+        if (term.length < 3)
+            $scope.places = [];
+        else {
+            TisseoApiService.searchPlace(term).then(function(places){
+                console.log(places);
+                $scope.places = places;
+            }, function(msg){
+                alert(msg);
+            })
+        }
+    }
 
 
     // Widgets disponibles à l'ajout
     $scope.availableWidgets = [
         {
             name: "Tisseo",
+            type: "tisseo_prochains_passages",
             color: "#0C226B",
             img_url: "img/Tisseo_logo.png",
             deletion: false,

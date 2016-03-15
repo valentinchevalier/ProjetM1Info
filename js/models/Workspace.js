@@ -10,13 +10,14 @@ function Workspace(title, nb_row, nb_column){
     this.nb_column = nb_column;
 
     this.emplacements = [];
+
     for (var i = 0; i < this.nb_row; i++) {
         this.emplacements[i] = [];
         for (var j = 0; j < this.nb_column; j++) {
             var emplacement = {
                 x:i,
                 y:j,
-                data:{},
+                widget:null,
                 isEmpty:true,
             }
             this.emplacements[i].push(emplacement);
@@ -36,7 +37,7 @@ function Workspace(title, nb_row, nb_column){
      * @param {number} yTo   coordonnée y de destination
      */
 Workspace.prototype.moveWidget = function (xFrom,yFrom,xTo,yTo){
-    this.addNewWidget(xTo,yTo, this.emplacements[xFrom][yFrom].data);
+    this.addWidget(xTo, yTo, this.emplacements[xFrom][yFrom].widget);
     this.deleteWidget(xFrom, yFrom);
 };
 
@@ -50,7 +51,17 @@ Workspace.prototype.moveWidget = function (xFrom,yFrom,xTo,yTo){
  */
 Workspace.prototype.addNewWidget = function(x, y, data){
     // Ajout du widget dans les widgets
-    this.emplacements[x][y].data = data;
+
+    if (data.type == "tisseo_prochains_passages"){
+        this.emplacements[x][y].widget = new WidgetTisseo();
+    } else {
+        this.emplacements[x][y].widget = new Widget(data.name, data.color, "/partials/widgets/widget_base.html");
+    }
+    this.emplacements[x][y].isEmpty = false;
+};
+
+Workspace.prototype.addWidget = function(x, y, widget){
+    this.emplacements[x][y].widget =  widget;
     this.emplacements[x][y].isEmpty = false;
 };
 
@@ -61,6 +72,6 @@ Workspace.prototype.addNewWidget = function(x, y, data){
  */
 Workspace.prototype.deleteWidget = function(x, y){
     // Ajout du widget dans les widgets
-    this.emplacements[x][y].data = {};
+    this.emplacements[x][y].widget = {};
     this.emplacements[x][y].isEmpty = true;
 };

@@ -1,4 +1,4 @@
-app.controller("WorkspacesCtrl", function ($scope, WorkspacesService) {
+app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog, $mdMedia) {
 
     $scope.WorkspacesService = WorkspacesService;
 
@@ -14,40 +14,39 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService) {
     /**
      * Affiche la fenetre de création d'onglet
      */
-    $scope.showWorkspaceCreator = function(){
-        $scope.isWorkspaceCreatorVisible = true;
+    $scope.showWorkspaceCreator = function(ev){
+        //$scope.isWorkspaceCreatorVisible = true;
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'partials/workspace_creator.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+        })
+        .then(function(answer) {
+            $scope.status = 'You said the information was "' + answer + '".';
+            WorkspacesService.createNewWorkspace(answer.title, answer.nb_row, answer.nb_column);
+        }, function() {
+
+        });
     }
 
-    /**
-     * Masque la fenetre de création d'onglet
-     */
-    $scope.hideWorkspaceCreator = function(){
-        $scope.isWorkspaceCreatorVisible = false;
-    }
-
-    /**
-     * Handler de click sur le Workspace Creator
-     * @param {object} $event Event de click
-     */
-    $scope.onWorkspaceCreatorClick = function($event){
-        // Si le click est sur le container
-        if ($event.target.className == 'workspace_creator_container'){
-            // Masquage du Workspace Creator
-            $scope.hideWorkspaceCreator();
-        }
-    }
-
-
-    /**
-     * Crée un nouveau workspace
-     */
-    $scope.createNewWorkspace = function(){
-        WorkspacesService.createNewWorkspace(
-            $scope.workspaceCreator.title,
-            $scope.workspaceCreator.nb_row,
-            $scope.workspaceCreator.nb_column);
-
-        $scope.isWorkspaceCreatorVisible = false;
+    function DialogController($scope, $mdDialog) {
+        $scope.data = {
+            title : "Nouvel onglet",
+            nb_column : 2,
+            nb_row : 3,
+        };
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
     }
 
     /**
@@ -57,6 +56,7 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService) {
      * @param {object} data données transmises lors du DragNDrop
      */
     $scope.onWorkspaceDrop = function (x, y, data) {
+        console.log(data);
         switch (data.from){
             case "menu" :
                 WorkspacesService.addWidget(x,y,data.data);

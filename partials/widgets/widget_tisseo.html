@@ -1,0 +1,19 @@
+
+<p>Tisséo - Prochains passages</p>
+
+<md-autocomplete
+    md-selected-item="emplacement.widget.arret"
+    md-search-text="emplacement.widget.searchValue"
+    md-items="item in TisseoApiService.searchPlace(emplacement.widget.searchValue)"
+    md-item-text="item.label"
+    md-min-length="3"
+    md-selected-item-change="emplacement.widget.getPassages(TisseoApiService)">
+    <md-item-template>
+        <span>{{item.label}}</span>
+    </md-item-template>
+    <md-not-found>
+        Aucuns résultats
+    </md-not-found>
+</md-autocomplete>
+
+<div ng-repeat="passage in emplacement.widget.passages">Ligne {{passage.line.shortName}} : {{passage.dateTime}} vers {{passage.destination[0].name}}</div>
