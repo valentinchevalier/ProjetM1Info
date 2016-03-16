@@ -40,12 +40,6 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
             deletion: false,
         },
         {
-            name: "Post It",
-            type: "post_it",
-            color: "#FFE100",
-            deletion: false,
-        },
-        {
             name: "Météo",
             color: "#33cc99",
             img_url: null,

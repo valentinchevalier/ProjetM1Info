@@ -17,38 +17,25 @@ function Widget (name, color, templateUrl) {
  */
 function WidgetTisseo () {
     Widget.call(this, "Tisseo - Prochain passages", "#0C226B", "/partials/widgets/widget_tisseo.html")
+
     this.searchPlaces = [];
 
     this.searchValue = "";
 
-    this.arret = null;
+    this.arret = {};
     this.passages = [];
 }
 
-
 WidgetTisseo.prototype.getPassages = function(tisseoApi){
+    console.log(this.arret);
     var that = this;
 
-    if (this.arret && this.arret.id){
+    if (this.arret.id){
         tisseoApi.getProchainPassages(this.arret.id).then(function(data){
             console.log(data);
             that.passages = data;
         }, function(msg){
             alert(msg);
         })
-    } else {
-        this.passages = [];
     }
-}
-
-WidgetTisseo.prototype.hasPassages = function(){
-    return this.passages.length == 0;
-}
-
-/**
- * Widget post it
- */
-function WidgetPostIt (){
-    Widget.call(this, "Post it", "#FFE100", "/partials/widgets/widget_postIt.html")
-    this.texte = "";
 }

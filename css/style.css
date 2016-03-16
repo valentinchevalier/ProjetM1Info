@@ -246,7 +246,9 @@ body {
     right: 0;
     left:0;
     color: white;
+    text-align: center;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .menu_widget p {
@@ -294,7 +296,9 @@ body {
 
 
 .drag_handle {
-    display:table-cell;
+    position: absolute;
+    top:0px;
+    left:0px;
     width: 26px;
     padding: 10px;
     opacity: 0.8;
@@ -451,27 +455,25 @@ md-dialog md-dialog-actions {
     top:0;
     padding:15px;
 }
-.widget .delete {
-    display: table-cell;
-    position: inherit;
-    width:10px;
-}
 
 .reduit {
-    height:45px;
+    height:40px;
 }
 
 .reduce {
-    display:table-cell;
-    width:10px;
+    position:absolute;
+    top:0;
+    right:40px;
     padding:15px;
 }
 
 .restore {
-    display:table-cell;
-    width:10px;
-    padding: 0px 15px;
+    position:absolute;
+    top:0;
+    right:40px;
+    padding:15px;
 }
+
 
 
 .cross {
@@ -509,77 +511,7 @@ md-dialog md-dialog-actions {
     left: 1px;
 }
 
-.widget .cross span {
-    background-color: white;
-}
 
-
-.widget-header {
-    display:table;
-    width:100%;
-    margin-top:3px;
-}
-
-.widget-title {
-    display: table-cell;
-    text-align: center;
-}
-
-.widget-content {
-    padding: 0px 10px 10px 10px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 50px;
-    overflow:auto;
-}
-
-.handle_icon span:last-of-type {
-    margin-bottom:0;
-}
-
-.md-avatar {
-    line-height: 40px;
-}
-
-.line-number {
-    display: inline-block;
-    width: 30px;
-    height:30px;
-    background-color:crimson;
-    border-radius: 10px;
-}
-
-.passage-list {
-    background-color: rgba(250,250,250,0.5);
-}
-
-.no_result {
-    text-align:center;
-}
-
-.passage-line {
-    padding-right: 20px;
-}
-
-.passage-info > *{
-    margin: 2px 0;
-}
-
-.passages {
-    overflow: auto;
-}
-
-.zoneTexe {
-    background-color: #FFF291;
-    position :absolute;
-    bottom :15px;
-    left : 15px;
-    right : 15px;
-    top : 0px;
-    border-radius: 3px;
-}
 
 .dash {
     width: 10px;
@@ -592,7 +524,7 @@ md-dialog md-dialog-actions {
     position: absolute;
     height: 2px;
     width: 100%;
-    background-color: white;
+    background-color: #999;
     -moz-transform-origin: left center;
     -ms-transform-origin: left center;
     -webkit-transform-origin: left center;
@@ -620,7 +552,7 @@ md-dialog md-dialog-actions {
     position: absolute;
     height: 2px;
     width: 100%;
-    background-color: white;
+    background-color: #999;
     -moz-transform-origin: left center;
     -ms-transform-origin: left center;
     -webkit-transform-origin: left center;
@@ -658,4 +590,3 @@ md-dialog md-dialog-actions {
     bottom:9px;
     left: 0px;
 }
-
