@@ -22,20 +22,25 @@ function WidgetTisseo () {
 
     this.searchValue = "";
 
-    this.arret = {};
+    this.arret = null;
     this.passages = [];
 }
 
 WidgetTisseo.prototype.getPassages = function(tisseoApi){
-    console.log(this.arret);
     var that = this;
 
-    if (this.arret.id){
+    if (this.arret && this.arret.id){
         tisseoApi.getProchainPassages(this.arret.id).then(function(data){
             console.log(data);
             that.passages = data;
         }, function(msg){
             alert(msg);
         })
+    } else {
+        this.passages = [];
     }
+}
+
+WidgetTisseo.prototype.hasPassages = function(){
+    return this.passages.length == 0;
 }

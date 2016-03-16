@@ -47,12 +47,15 @@
                         ng-drag-data="{from:'workspace',xFrom:emplacement.x,yFrom:emplacement.y}"
                         style="background-color:{{emplacement.widget.color}}">
 
-                        <div class="drag_handle" ng-drag-handle>
-                            <div class="handle_icon">
-                                <span></span><span></span><span></span>
+                        <div class="widget-header">
+                           <div class="drag_handle" ng-drag-handle>
+                                <div class="handle_icon">
+                                    <span></span><span></span><span></span>
+                                </div>
                             </div>
+                            <p class="widget-title">{{emplacement.widget.name}}</p>
                         </div>
-                        <ng-include src="emplacement.widget.templateUrl"></ng-include>
+                        <ng-include src="emplacement.widget.templateUrl" class="widget-content"></ng-include>
                     </div>
                 </div>
             </div>
