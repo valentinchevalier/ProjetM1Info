@@ -7,7 +7,9 @@
     md-items="item in TisseoApiService.searchPlace(emplacement.widget.searchValue)"
     md-item-text="item.label"
     md-min-length="3"
-    md-selected-item-change="emplacement.widget.getPassages(TisseoApiService)">
+    md-selected-item-change="emplacement.widget.getPassages(TisseoApiService)"
+    ng-hide="emplacement.isReduced"
+    ng-show="!emplacement.isReduced">
     <md-item-template>
         <span>{{item.label}}</span>
     </md-item-template>
