@@ -16,7 +16,7 @@ function Widget (name, color, templateUrl) {
  * Widget Tisséo - Prochains passages
  */
 function WidgetTisseo () {
-    Widget.call(this, "Tisseo - Prochain passages", "#0C226B", "/partials/widgets/widget_tisseo.html")
+    Widget.call(this, "Tisseo - Prochain passages", "#0C226B", "./partials/widgets/widget_tisseo.html")
     this.searchPlaces = [];
 
     this.searchValue = "";
@@ -49,6 +49,6 @@ WidgetTisseo.prototype.hasPassages = function(){
  * Widget post it
  */
 function WidgetPostIt (){
-    Widget.call(this, "Post it", "#FFE100", "/partials/widgets/widget_postIt.html")
+    Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html")
     this.texte = "";
 }
