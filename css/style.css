@@ -247,7 +247,6 @@ body {
     left:0;
     color: white;
     border-radius: 5px;
-    padding: 10px;
 }
 
 .menu_widget p {
@@ -452,25 +451,27 @@ md-dialog md-dialog-actions {
     top:0;
     padding:15px;
 }
+.widget .delete {
+    display: table-cell;
+    position: inherit;
+    width:10px;
+}
 
 .reduit {
-    height:40px;
+    height:45px;
 }
 
 .reduce {
-    position:absolute;
-    top:0;
-    right:40px;
+    display:table-cell;
+    width:10px;
     padding:15px;
 }
 
 .restore {
-    position:absolute;
-    top:0;
-    right:40px;
-    padding:15px;
+    display:table-cell;
+    width:10px;
+    padding: 0px 15px;
 }
-
 
 
 .cross {
@@ -508,11 +509,15 @@ md-dialog md-dialog-actions {
     left: 1px;
 }
 
+.widget .cross span {
+    background-color: white;
+}
 
 
 .widget-header {
     display:table;
     width:100%;
+    margin-top:3px;
 }
 
 .widget-title {
@@ -521,12 +526,12 @@ md-dialog md-dialog-actions {
 }
 
 .widget-content {
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    top: 35px;
+    top: 50px;
     overflow:auto;
 }
 
@@ -572,7 +577,7 @@ md-dialog md-dialog-actions {
     bottom :15px;
     left : 15px;
     right : 15px;
-    top : 60px;
+    top : 0px;
     border-radius: 3px;
 }
 
@@ -587,7 +592,7 @@ md-dialog md-dialog-actions {
     position: absolute;
     height: 2px;
     width: 100%;
-    background-color: #999;
+    background-color: white;
     -moz-transform-origin: left center;
     -ms-transform-origin: left center;
     -webkit-transform-origin: left center;
@@ -615,7 +620,7 @@ md-dialog md-dialog-actions {
     position: absolute;
     height: 2px;
     width: 100%;
-    background-color: #999;
+    background-color: white;
     -moz-transform-origin: left center;
     -ms-transform-origin: left center;
     -webkit-transform-origin: left center;

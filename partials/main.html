@@ -60,7 +60,7 @@
 
                             <div class="delete" ng-click="WorkspacesService.deleteWidget(emplacement.x,emplacement.y)"><div class="cross"><span></span><span></span></div></div>
                         </div>
-                        <ng-include src="emplacement.widget.templateUrl" class="widget-content"></ng-include>
+                        <div ng-if="!emplacement.isReduced" ng-include="emplacement.widget.templateUrl" class="widget-content"></div>
                     </div>
                 </div>
             </div>

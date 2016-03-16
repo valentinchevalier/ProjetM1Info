@@ -25,10 +25,6 @@ function WidgetTisseo () {
     this.passages = [];
 }
 
-function WidgetPostIt (){
-    Widget.call(this, "Bloc notes", "#FFE100", "/partials/widgets/widget_postIt.html")
-    this.texte = "";
-}
 
 WidgetTisseo.prototype.getPassages = function(tisseoApi){
     var that = this;
@@ -47,4 +43,12 @@ WidgetTisseo.prototype.getPassages = function(tisseoApi){
 
 WidgetTisseo.prototype.hasPassages = function(){
     return this.passages.length == 0;
+}
+
+/**
+ * Widget post it
+ */
+function WidgetPostIt (){
+    Widget.call(this, "Post it", "#FFE100", "/partials/widgets/widget_postIt.html")
+    this.texte = "";
 }

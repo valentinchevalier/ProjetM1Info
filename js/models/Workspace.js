@@ -55,15 +55,11 @@ Workspace.prototype.addNewWidget = function(x, y, data){
     if (data.type == "tisseo_prochains_passages"){
         this.emplacements[x][y].widget = new WidgetTisseo();
     } else {
-<<<<<<< HEAD
         if (data.type == "post_it"){
             this.emplacements[x][y].widget = new WidgetPostIt();
         }else{
             this.emplacements[x][y].widget = new Widget(data.name, data.color, "/partials/widgets/widget_base.html");
         }
-=======
-        this.emplacements[x][y].widget = new Widget(data.name, data.color, "/partials/widgets/widget_base.html");
->>>>>>> origin/Hugo
     }
     this.emplacements[x][y].isEmpty = false;
 };
