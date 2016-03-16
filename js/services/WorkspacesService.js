@@ -23,6 +23,17 @@ app.service('WorkspacesService', function () {
         that.currentWorkspace.deleteWidget(x, y);
     }
 
+<<<<<<< HEAD
+=======
+    that.reduceWidget = function(x, y){
+        that.currentWorkspace.reduceWidget(x, y);
+    }
+
+    that.restoreWidget = function(x, y){
+        that.currentWorkspace.restoreWidget(x, y);
+    }
+
+>>>>>>> origin/Hugo
     /**
      * Change le workspace courant
      * @param {Workspace} workspace nouveau workspace courant

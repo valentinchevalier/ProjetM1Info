@@ -55,11 +55,15 @@ Workspace.prototype.addNewWidget = function(x, y, data){
     if (data.type == "tisseo_prochains_passages"){
         this.emplacements[x][y].widget = new WidgetTisseo();
     } else {
+<<<<<<< HEAD
         if (data.type == "post_it"){
             this.emplacements[x][y].widget = new WidgetPostIt();
         }else{
             this.emplacements[x][y].widget = new Widget(data.name, data.color, "/partials/widgets/widget_base.html");
         }
+=======
+        this.emplacements[x][y].widget = new Widget(data.name, data.color, "/partials/widgets/widget_base.html");
+>>>>>>> origin/Hugo
     }
     this.emplacements[x][y].isEmpty = false;
 };
@@ -78,4 +82,25 @@ Workspace.prototype.deleteWidget = function(x, y){
     // Ajout du widget dans les widgets
     this.emplacements[x][y].widget = {};
     this.emplacements[x][y].isEmpty = true;
+    this.emplacements[x][y].isReduced = false;
+};
+
+/**
+ * Réduit un widget d'une position donnée
+ * @param {number} x coordonnée x du widget
+ * @param {number} y coordonnée y du widget
+ */
+Workspace.prototype.reduceWidget = function(x, y){
+    // Réduit le widget dans les widgets
+    this.emplacements[x][y].isReduced = true;
+};
+
+/**
+ * Restaure un widget d'une position donnée
+ * @param {number} x coordonnée x du widget
+ * @param {number} y coordonnée y du widget
+ */
+Workspace.prototype.restoreWidget = function(x, y){
+    // Restaure le widget dans les widgets
+    this.emplacements[x][y].isReduced = false;
 };
