@@ -405,6 +405,7 @@ body {
     display:inline-block;
     margin-top: 20%;
     text-align: left;
+    color: black;
 }
 
 .workspace_creator label {

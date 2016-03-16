@@ -49,6 +49,8 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
         };
     }
 
+
+
     /**
      * Fonction appelée lors d'un drop sur le workspace
      * @param {number} x    coordonnée x de la case droppée
