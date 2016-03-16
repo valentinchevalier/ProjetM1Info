@@ -494,3 +494,15 @@ md-dialog md-dialog-actions {
 }
 
 
+
+.zoneTexe {
+    background-color: #FFF291;
+    position :absolute;
+    bottom :15px;
+    left : 15px;
+    right : 15px;
+    top : 60px;
+    border-radius: 3px;
+}
+
+
