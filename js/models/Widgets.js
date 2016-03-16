@@ -17,13 +17,17 @@ function Widget (name, color, templateUrl) {
  */
 function WidgetTisseo () {
     Widget.call(this, "Tisseo - Prochain passages", "#0C226B", "/partials/widgets/widget_tisseo.html")
-
     this.searchPlaces = [];
 
     this.searchValue = "";
 
     this.arret = null;
     this.passages = [];
+}
+
+function WidgetPostIt (){
+    Widget.call(this, "Bloc notes", "#FFE100", "/partials/widgets/widget_postIt.html")
+    this.texte = "";
 }
 
 WidgetTisseo.prototype.getPassages = function(tisseoApi){
