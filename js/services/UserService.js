@@ -113,7 +113,7 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
             if ($scope.data.password != $scope.data.confirm_password){
                 $scope.data.message = "Les 2 mot de passe sont différents."
             } else {
-                UserService.loginAction($scope.data.login, $scope.data.password).then(function(user){
+                UserService.inscriptionAction($scope.data.login, $scope.data.password).then(function(user){
                     $scope.data.message = "";
                     UserService.login(user);
                     $mdDialog.hide();
