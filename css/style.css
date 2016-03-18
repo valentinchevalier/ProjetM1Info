@@ -660,3 +660,7 @@ md-dialog md-dialog-actions {
     left: 0px;
 }
 
+
+.error-msg {
+    color: rgb(221,44,0);
+}

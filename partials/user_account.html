@@ -3,21 +3,24 @@
         Bonjour {{UserService.loginData.loggedUser.username}}
     </div>
 
-    <div class="btn btn-red" ng-show="UserService.loginData.isLogged" ng-click="UserService.onButtonClick()">Deconnexion</div>
-    <div class="btn" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onButtonClick()">Connexion</div>
-    <div class="btn" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onButtonInscriptionClick()">Inscription</div>
+    <div class="btn btn-red" ng-show="UserService.loginData.isLogged" ng-click="UserService.onDeconnexionClick($event)">Deconnexion</div>
+    <div class="btn" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onConnexionClick($event)">Connexion</div>
+    <div class="btn" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onInscriptionClick($event)">Inscription</div>
 </div>
 
+
+
+
 <div class="workspace_creator_container" ng-show="UserService.loginData.isOnInscription" ng-click="UserService.onButtonInscriptionClick2($event)">
-        <div class="workspace_creator" ng-click="">
-            <h4>Inscription</h4>
-            <p><label for="">Login</label><input type="text" ng-model="UserService.loginData.login"></p>
-            <p><label for="">Mot de passe</label><input type="text" ng-model="UserService.loginData.mdp"></p>
-            <p><label for="">Confirmation Mot de passe</label><input type="text" ng-model="UserService.loginData.confirm_mdp"></p>
-            <div class="btn_create" ng-click="UserService.inscriptionUtilisateur()">
-                Je m'inscris
-            </div>
+    <div class="workspace_creator" ng-click="">
+        <h4>Inscription</h4>
+        <p><label for="">Login</label><input type="text" ng-model="UserService.loginData.login"></p>
+        <p><label for="">Mot de passe</label><input type="text" ng-model="UserService.loginData.mdp"></p>
+        <p><label for="">Confirmation Mot de passe</label><input type="text" ng-model="UserService.loginData.confirm_mdp"></p>
+        <div class="btn_create" ng-click="UserService.inscriptionUtilisateur()">
+            Je m'inscris
         </div>
+    </div>
 </div>
 
 

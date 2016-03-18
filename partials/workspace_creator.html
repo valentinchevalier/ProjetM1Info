@@ -9,22 +9,20 @@
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <md-input-container>
-                    <label>Titre</label>
-                    <input required type="text" ng-model="data.title">
-                </md-input-container>
-                <md-input-container>
-                    <label>Nombre de colonnes</label>
-                    <input required type="number" ng-model="data.nb_column">
-                </md-input-container>
-                <md-input-container>
-                    <label>Nombre de lignes</label>
-                    <input required type="number" ng-model="data.nb_row">
-                </md-input-container>
+        <md-dialog-content class="md-dialog-content">
+            <md-input-container class="md-block">
+                <label>Titre</label>
+                <input required type="text" ng-model="data.title">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Nombre de colonnes</label>
+                <input required type="number" ng-model="data.nb_column">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Nombre de lignes</label>
+                <input required type="number" ng-model="data.nb_row">
+            </md-input-container>
 
-            </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button ng-click="cancel()">

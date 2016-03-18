@@ -1,4 +1,4 @@
-var app = angular.module('MonAppli', ['ngMaterial', 'ngRoute', 'ngDraggable']);
+var app = angular.module('MonAppli', ['ngMaterial', 'ngRoute', 'ngDraggable', 'ngMessages']);
 
 app.config(function($routeProvider){
    $routeProvider

@@ -1,4 +1,4 @@
-app.service('UserService', function (SettingsService, $http) {
+app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
     var that = this;
 
     that.templateUrl = "./partials/user_account.html";
@@ -21,8 +21,8 @@ app.service('UserService', function (SettingsService, $http) {
     };
 
 
-    that.login = function () {
-        console.log("connexion");
+    that.login = function (user) {
+        that.loginData.loggedUser = user;
         that.loginData.isLogged = true;
         SettingsService.enable();
     };
@@ -33,79 +33,136 @@ app.service('UserService', function (SettingsService, $http) {
         SettingsService.disable();
     };
 
-    that.onButtonClick = function () {
+    that.onDeconnexionClick = function () {
+        that.logout();
+    };
 
-        if (that.loginData.isLogged) {
-            that.logout();
-        } else {
-            that.loginData.isOnConnexion = true;
-        }
-
+    that.onConnexionClick = function (ev){
+        console.log("coucou");
+        //$scope.isWorkspaceCreatorVisible = true;
+        $mdDialog.show({
+            controller: ConnexionController,
+            templateUrl: 'partials/dialog_connexion.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+        });
     };
 
 
-    that.onButtonInscriptionClick = function(){
-        that.loginData.isOnInscription = true;
+    that.onInscriptionClick = function(ev){
+        console.log("coucou");
+        //$scope.isWorkspaceCreatorVisible = true;
+        $mdDialog.show({
+            controller: InscriptionController,
+            templateUrl: 'partials/dialog_inscription.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: true,
+        });
     }
 
-    that.onButtonInscriptionClick2 = function($event){
-        // Si le click est sur le container
-        if ($event.target.className.indexOf('workspace_creator_container') != -1 ){
-            // Masquage du Workspace Creator
-            that.loginData.isOnInscription = false;
-            that.loginData.isOnConnexion = false;
+    function ConnexionController($scope, $mdDialog, UserService) {
+        $scope.data = {
+            login : "",
+            password : "",
+            message : ""
+        };
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
 
+        $scope.hasErrorMessage = function(){
+            return $scope.data.message.length > 0;
         }
+
+        $scope.connect = function() {
+            UserService.loginAction($scope.data.login, $scope.data.password).then(function(user){
+                $scope.data.message = "";
+                UserService.login(user);
+                $mdDialog.hide();
+            }, function(message){
+                $scope.data.message = message;
+            });
+        };
     }
 
-    that.inscriptionUtilisateur = function(){
+    function InscriptionController($scope, $mdDialog, UserService) {
+        $scope.data = {
+            login : "",
+            password : "",
+            confirm_password : "",
+            message : ""
+        };
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+        $scope.hasErrorMessage = function(){
+            return $scope.data.message.length > 0;
+        }
 
-        console.log("Inscription");
-        $http.post("inscription.php?param1="+that.loginData.login+"&param2="+that.loginData.mdp+"&param3="+that.loginData.confirm_mdp+"")
-            .then(function(response) {
-                console.log("post inscription ok");
-                if (response.data=="ok"){
-                    // mdp identiques
-                    that.loginData.isOnInscription=false;
-                    that.loginData.isOnInscriptionErreur=false;
-                    console.log("pas d'erreur");
-                    that.login();
-                    that.loginData.loggedUser.username=that.loginData.login;
-                }
-                else{
-                    //mdp differents
-                    that.loginData.isOnInscription=false;
-                    that.loginData.isOnInscriptionErreur=true;
-                    console.log("erreur mdp:"+that.loginData.mdp+" - "+that.loginData.confirm_mdp);
-                }
-            }, function(response) {
-               console.log("erreur lors du post inscription");
-         });
-
+        $scope.submit = function() {
+            if ($scope.data.password != $scope.data.confirm_password){
+                $scope.data.message = "Les 2 mot de passe sont différents."
+            } else {
+                UserService.loginAction($scope.data.login, $scope.data.password).then(function(user){
+                    $scope.data.message = "";
+                    UserService.login(user);
+                    $mdDialog.hide();
+                }, function(message){
+                    $scope.data.message = message;
+                });
+            }
+        };
     }
-    that.connexionUtilisateur = function(){
-        console.log("Connexion");
 
-            $http.post("connexion.php?param1="+that.loginData.login+"&param2="+that.loginData.mdp+"").then(function(response) {
-                    console.log("post connexion ok");      //document.getElementById("info").innerHTML = "Ca marche !"
-                    if (response.data=="ok"){
-                       //identifiants corrects
-                        console.log("id corrects");
-                        that.login();
-                        that.loginData.loggedUser.username=that.loginData.login;
-                        //quitter connexion
-                        that.loginData.isOnConnexion=false;
-                        that.loginData.isOnConnexionErreur=false;
-                    }
-                    else {
-                       //mauvais identifiants
-                        console.log("mauvais id");
-                        that.loginData.isOnConnexion=false;
-                        that.loginData.isOnConnexionErreur=true;
-                    }
-                }, function(response) {
-               console.log("erreur lors du post inscription");
-         });
+
+
+    that.inscriptionAction = function(login, password){
+        var deferred = $q.defer();
+
+        $http.post("./server/inscription.php", {
+            login : that.loginData.login,
+            password : that.loginData.mdp,
+        }).then(function(response) {
+            if (response.data.status == 1){
+                deferred.resolve(response.data.user);
+            } else {
+                deferred.reject(response.data.message);
+            }
+        }, function(response) {
+            deferred.reject("Erreur de connexion au serveur");
+        });
+
+        return deferred.promise;
+    }
+
+    that.loginAction = function(login, password){
+        var deferred = $q.defer();
+
+        $http.post("./server/connexion.php", {
+            login : login,
+            password : password
+        }).then(function(response) {
+            console.log(response);
+            if (response.data.status == 1){
+                deferred.resolve(response.data.user);
+            } else {
+                deferred.reject(response.data.message);
+            }
+        }, function(response) {
+            deferred.reject("Erreur de connexion au serveur");
+        });
+
+        return deferred.promise;
     }
 
 
