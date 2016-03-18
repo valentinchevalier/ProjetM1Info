@@ -1,63 +1,9 @@
 <div class="account">
     <div class="hello" ng-show='UserService.loginData.isLogged'>
-        Bonjour {{UserService.loginData.loggedUser.username}}
+        Bonjour {{UserService.loginData.loggedUser.login}}
     </div>
 
     <div class="btn btn-red" ng-show="UserService.loginData.isLogged" ng-click="UserService.onDeconnexionClick($event)">Deconnexion</div>
     <div class="btn" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onConnexionClick($event)">Connexion</div>
     <div class="btn" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onInscriptionClick($event)">Inscription</div>
-</div>
-
-
-
-
-<div class="workspace_creator_container" ng-show="UserService.loginData.isOnInscription" ng-click="UserService.onButtonInscriptionClick2($event)">
-    <div class="workspace_creator" ng-click="">
-        <h4>Inscription</h4>
-        <p><label for="">Login</label><input type="text" ng-model="UserService.loginData.login"></p>
-        <p><label for="">Mot de passe</label><input type="text" ng-model="UserService.loginData.mdp"></p>
-        <p><label for="">Confirmation Mot de passe</label><input type="text" ng-model="UserService.loginData.confirm_mdp"></p>
-        <div class="btn_create" ng-click="UserService.inscriptionUtilisateur()">
-            Je m'inscris
-        </div>
-    </div>
-</div>
-
-
-<div class="workspace_creator_container" ng-show="UserService.loginData.isOnConnexion" ng-click="UserService.onButtonInscriptionClick2($event)">
-        <div class="workspace_creator" ng-click="">
-            <h4>Identification</h4>
-            <p><label for="">Login</label><input type="text" ng-model="UserService.loginData.login"></p>
-            <p><label for="">Mot de passe</label><input type="text" ng-model="UserService.loginData.mdp"></p>
-            <div class="btn_create" ng-click="UserService.connexionUtilisateur()">
-                Connexion
-            </div>
-        </div>
-</div>
-
-<!--   ################################################################################         -->
-
-<div class="workspace_creator_container" ng-show="UserService.loginData.isOnConnexionErreur" ng-click="UserService.onButtonInscriptionClick2($event)">
-        <div class="workspace_creator" ng-click="">
-            <h4>Identification</h4>
-            <p><label for="">Login</label><input type="text" ng-model="UserService.loginData.login"></p>
-            <p><label for="">Mot de passe</label><input type="text" ng-model="UserService.loginData.mdp"></p>
-            <p><label for="">Login ou mot de passe incorrect</label> </p>
-            <div class="btn_create" ng-click="UserService.connexionUtilisateur()">
-                Connexion
-            </div>
-        </div>
-</div>
-
-<div class="workspace_creator_container" ng-show="UserService.loginData.isOnInscriptionErreur" ng-click="UserService.onButtonInscriptionClick2($event)">
-        <div class="workspace_creator" ng-click="">
-            <h4>Inscription</h4>
-            <p><label for="">Login</label><input type="text" ng-model="UserService.loginData.login"></p>
-            <p><label for="">Mot de passe</label><input type="text" ng-model="UserService.loginData.mdp"></p>
-            <p><label for="">Confirmation Mot de passe</label><input type="text" ng-model="UserService.loginData.confirm_mdp"></p>
-            <p> <label for="">Erreur de confirmation du mot de passe</label></p>
-            <div class="btn_create" ng-click="UserService.inscriptionUtilisateur()">
-                Je m'inscris
-            </div>
-        </div>
 </div>
