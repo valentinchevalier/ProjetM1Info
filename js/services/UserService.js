@@ -130,9 +130,10 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
         var deferred = $q.defer();
 
         $http.post("./server/inscription.php", {
-            login : that.loginData.login,
-            password : that.loginData.mdp,
+            login : login,
+            password : password,
         }).then(function(response) {
+            console.log(response);
             if (response.data.status == 1){
                 deferred.resolve(response.data.user);
             } else {
