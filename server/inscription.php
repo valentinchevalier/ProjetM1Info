@@ -11,6 +11,8 @@ if ($login == "" || $password == ""){
     $res = array(
         'status' => ERREUR,
         'message' => "Problème de paramètres d'inscription",
+        'login' => $login,
+        'password' => $password
     );
 
     echo json_encode($res);
@@ -19,6 +21,18 @@ if ($login == "" || $password == ""){
 
 try {
     $DB = new PDO('mysql:host=' . $db_host . ';dbname=' . $db_name, $db_user, $db_password);
+
+    $sql = "SELECT login, password FROM user WHERE login='".$login."'";
+
+    $req = $DB->query($sql);
+    while($user = $req->fetch()) {
+        $ret = array(
+            'status' => ERREUR,
+            'message' => "Nom d'utilisateur déja utilisé",
+        );
+        echo json_encode($ret);
+        exit;
+    }
 
     $sql = "INSERT INTO user(login, password) VALUES('".$login."', '".$password."')";
     $res_exec = $DB->exec($sql);
