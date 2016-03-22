@@ -4,8 +4,8 @@ app.directive("ngWidget", function(){
         templateUrl : "./partials/widgets/widget_container.html",
         scope : {
             widget: '=',
-            x: '=',
-            y: '=',
+            column: '=',
+            position: '=',
         },
         controller : "WidgetCtrl"
     }

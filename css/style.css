@@ -240,13 +240,10 @@ body {
 }
 
 .widget {
-    position: absolute;
-    top:0;
-    bottom:0;
-    right: 0;
-    left:0;
+    position: relative;
     color: white;
     border-radius: 5px;
+    margin: 5px 0;
 }
 
 .menu_widget p {
@@ -528,12 +525,8 @@ md-dialog md-dialog-actions {
 
 .widget-content {
     padding: 0px 10px 10px 10px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 50px;
     overflow:auto;
+    min-height: 100px;
 }
 
 .handle_icon span:last-of-type {
@@ -572,14 +565,12 @@ md-dialog md-dialog-actions {
     overflow: auto;
 }
 
-.zoneTexe {
+.zoneTexte {
     background-color: #FFF291;
-    position :absolute;
-    bottom :15px;
-    left : 15px;
-    right : 15px;
-    top : 0px;
+    margin:0;
+    width:100%;
     border-radius: 3px;
+    box-sizing: border-box;
 }
 
 .dash {
@@ -709,4 +700,27 @@ md-dialog md-dialog-actions {
 
 .no_result p {
     margin:0;
+}
+
+.column {
+    float:left;
+    min-height:100%;
+    box-sizing:border-box;
+    padding: 5px;
+}
+
+.emplacement {
+    height:45px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+
+.emplacement.drag-enter {
+    background-color: gray
+}
+
+ng-widget {
+    display:block
 }

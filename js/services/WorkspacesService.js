@@ -11,8 +11,8 @@ app.service('WorkspacesService', function () {
     that.currentWorkspace = that.workspaces[0];
 
 
-    that.addWidget = function(x, y, data) {
-        that.currentWorkspace.addNewWidget(x , y, data);
+    that.addWidget = function(column, position, data) {
+        that.currentWorkspace.addNewWidget(column, position, data);
     }
 
     that.moveWidget = function(xFrom, yFrom, xTo, yTo){
@@ -43,8 +43,8 @@ app.service('WorkspacesService', function () {
     /**
      * Crée un nouveau workspace
      */
-    that.createNewWorkspace = function(title, nb_row, nb_column){
-        var workspace = new Workspace(title, nb_row, nb_column);
+    that.createNewWorkspace = function(title, nb_column){
+        var workspace = new Workspace(title, nb_column);
         that.workspaces.push(workspace);
         that.currentWorkspace = workspace;
     }
