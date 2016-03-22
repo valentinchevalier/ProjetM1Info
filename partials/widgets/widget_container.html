@@ -1,0 +1,25 @@
+<div class="widget"
+    ng-class="{deletion:widget.deletion, reduit:widget.isReduced}"
+    ng-drag="true"
+    ng-drag-start="startDragging(emplacement)"
+    ng-drag-move="dragging()"
+    ng-drag-stop="stopDragging()"
+    ng-drag-data="{from:'workspace',xFrom:x,yFrom:y}"
+    style="background-color:{{widget.color}}">
+
+    <div class="widget-header">
+       <div class="drag_handle" ng-drag-handle>
+            <div class="handle_icon">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <p class="widget-title">{{widget.name}}</p>
+        <div class="restore" ng-show="widget.isReduced" ng-click="widget.restore()"><div class="square"><span></span><span></span><span></span><span></span></div></div>
+
+        <div class="reduce" ng-hide="widget.isReduced" ng-click="widget.reduce()"><div class="dash"><span></span></div></div>
+
+        <div class="delete" ng-click="WorkspacesService.deleteWidget(x,y)"><div class="cross"><span></span><span></span></div></div>
+    </div>
+    <div ng-if="!isReduced" ng-include="widget.templateUrl" class="widget-content" ng-hide="widget.isReduced"></div>
+</div>

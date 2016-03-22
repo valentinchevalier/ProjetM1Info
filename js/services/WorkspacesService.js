@@ -23,13 +23,6 @@ app.service('WorkspacesService', function () {
         that.currentWorkspace.deleteWidget(x, y);
     }
 
-    that.reduceWidget = function(x, y){
-        that.currentWorkspace.reduceWidget(x, y);
-    }
-
-    that.restoreWidget = function(x, y){
-        that.currentWorkspace.restoreWidget(x, y);
-    }
 
     /**
      * Change le workspace courant

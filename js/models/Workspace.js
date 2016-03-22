@@ -81,22 +81,3 @@ Workspace.prototype.deleteWidget = function(x, y){
     this.emplacements[x][y].isReduced = false;
 };
 
-/**
- * Réduit un widget d'une position donnée
- * @param {number} x coordonnée x du widget
- * @param {number} y coordonnée y du widget
- */
-Workspace.prototype.reduceWidget = function(x, y){
-    // Réduit le widget dans les widgets
-    this.emplacements[x][y].isReduced = true;
-};
-
-/**
- * Restaure un widget d'une position donnée
- * @param {number} x coordonnée x du widget
- * @param {number} y coordonnée y du widget
- */
-Workspace.prototype.restoreWidget = function(x, y){
-    // Restaure le widget dans les widgets
-    this.emplacements[x][y].isReduced = false;
-};

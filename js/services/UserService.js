@@ -129,7 +129,7 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
     that.inscriptionAction = function(login, password){
         var deferred = $q.defer();
 
-        $http.post("./server/inscription.php", {
+        $http.post("http://purplemultimedia.com/private/ProjetM1Info/server/inscription.php", {
             login : login,
             password : password,
         }).then(function(response) {
@@ -149,7 +149,7 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
     that.loginAction = function(login, password){
         var deferred = $q.defer();
 
-        $http.post("./server/connexion.php", {
+        $http.post("http://purplemultimedia.com/private/ProjetM1Info/server/connexion.php", {
             login : login,
             password : password
         }).then(function(response) {

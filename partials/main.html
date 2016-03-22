@@ -37,7 +37,9 @@
                    ng-drop="emplacement.isEmpty"
                    ng-drop-success="onWorkspaceDrop(emplacement.x,emplacement.y,$data)">
 
-                    <div class="widget"
+                    <ng-widget ng-if="!emplacement.isEmpty" widget="emplacement.widget" x="emplacement.x" y="emplacement.y"></ng-widget>
+
+                    <!--<div class="widget"
                         ng-class="{deletion:widget.deletion, reduit:emplacement.isReduced}"
                         ng-show="!emplacement.isEmpty"
                         ng-drag="!emplacement.isEmpty"
@@ -61,7 +63,7 @@
                             <div class="delete" ng-click="WorkspacesService.deleteWidget(emplacement.x,emplacement.y)"><div class="cross"><span></span><span></span></div></div>
                         </div>
                         <div ng-if="!emplacement.isReduced" ng-include="emplacement.widget.templateUrl" class="widget-content"></div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
