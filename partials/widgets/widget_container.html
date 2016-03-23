@@ -8,12 +8,13 @@
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <p class="widget-title">{{widget.name}}</p>
+        <p class="title">{{widget.name}}</p>
+
         <div class="restore" ng-show="widget.isReduced" ng-click="widget.restore()"><div class="square"><span></span><span></span><span></span><span></span></div></div>
 
         <div class="reduce" ng-hide="widget.isReduced" ng-click="widget.reduce()"><div class="dash"><span></span></div></div>
 
         <div class="delete" ng-click="WorkspacesService.deleteWidget(column, position)"><div class="cross"><span></span><span></span></div></div>
     </div>
-    <div class="widget-content" ng-if="!isReduced" ng-include="widget.templateUrl" ng-hide="widget.isReduced"></div>
+    <div class="widget-content" ng-include="widget.templateUrl" ng-hide="widget.isReduced"></div>
 </div>

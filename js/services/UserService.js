@@ -4,11 +4,6 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
     that.templateUrl = "./partials/user_account.html";
 
     that.loginData = {
-        isOnInscription : false,
-        isOnConnexion : false,
-        isOnConnexionErreur : false,
-        isOnInscriptionErreur : false,
-
         isLogged : false,
 
         login : "",
@@ -38,7 +33,6 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
     };
 
     that.onConnexionClick = function (ev){
-        console.log("coucou");
         //$scope.isWorkspaceCreatorVisible = true;
         $mdDialog.show({
             controller: ConnexionController,

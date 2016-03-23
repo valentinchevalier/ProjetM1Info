@@ -8,6 +8,10 @@ function Workspace(title, nb_column){
     this.title = title;
     this.nb_column = nb_column;
 
+    this.editing = false;
+    this.beforeEditing = "test";
+
+
     this.widgets = [];
 
     for (var i = 0; i < this.nb_column; i++) {
@@ -15,6 +19,18 @@ function Workspace(title, nb_column){
     }
     this.column_width = (100/this.nb_column);
 
+}
+
+Workspace.prototype.startEditing = function(){
+    this.beforeEditing = this.title;
+    this.editing = true;
+}
+Workspace.prototype.stopEditing = function(){
+    if (this.title == ""){
+        this.title = this.beforeEditing;
+        this.beforeEditing = "";
+    }
+    this.editing = false;
 }
 
 /**

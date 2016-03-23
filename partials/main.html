@@ -7,21 +7,33 @@
 
 
 <div ng-controller="WorkspacesCtrl">
+
     <div class="global_container">
         <div class="tabs">
-            <div class="tab"
-               ng-repeat="workspace in WorkspacesService.workspaces"
-               ng-click="WorkspacesService.switchWorkspace(workspace)"
-               ng-class="{active: workspace == WorkspacesService.currentWorkspace}"
-               ng-drop="workspace != WorkspacesService.currentWorkspace"
-               >
-                <div class="title">{{workspace.title}}</div>
+            <div
+                class="tab"
+                ng-repeat="workspace in WorkspacesService.workspaces"
+                ng-click="WorkspacesService.switchWorkspace(workspace)"
+                ng-dblclick="workspace.startEditing();"
+                ng-class="{active: workspace == WorkspacesService.currentWorkspace}"
+                ng-drop="workspace != WorkspacesService.currentWorkspace" >
+
+                <div class="title">
+                    <span ng-hide="workspace.editing">{{workspace.title}}</span>
+                    <form ng-submit="workspace.stopEditing()">
+                        <input ng-show="workspace.editing" ng-model="workspace.title" ng-blur="workspace.stopEditing()">
+                    </form>
+                </div>
+
                 <div class="delete" ng-click="WorkspacesService.deleteWorkspace($index)"><div class="cross"><span></span><span></span></div></div>
             </div>
+
             <div class="tab add_tab" ng-click="showWorkspaceCreator($event)">
                 <div class="title">+</div>
             </div>
-        </div>
+
+        </div><!-- End Tabs -->
+
         <div class="workspace" ng-class="{drag_in_progress:isDragging}">
             <style>
                 .column {
@@ -29,13 +41,13 @@
                 }
             </style>
 
-            <div class="column" ng-repeat="column in WorkspacesService.currentWorkspace.widgets">
-                <div ng-repeat="widget in column">
+            <div class="column" ng-repeat="column in WorkspacesService.currentWorkspace.widgets" >
+                <div ng-repeat="widget in column"
+                    ng-drop="true"
+                    ng-drop-success="onWorkspaceDrop($parent.$index,$index,$data)"
+                    class="column-item">
 
-                    <div class="emplacement"
-                        ng-show="isDragging"
-                        ng-drop="true"
-                        ng-drop-success="onWorkspaceDrop($parent.$index,$index,$data)">
+                    <div class="drop-zone">
                     </div>
 
                     <ng-widget widget="widget" column="$parent.$index" position="$index"
@@ -45,39 +57,28 @@
                         ng-drag-stop="stopDragging()"
                         ng-drag-data="{from:'workspace',columnFrom:$parent.$index,positionFrom:$index}"></ng-widget>
                 </div>
-                <div class="emplacement"
-                    ng-show="isDragging"
-                    ng-drop="true"
-                    ng-drop-success="onWorkspaceDrop($index, getLastPosition($index), $data)">
+
+                <div class="last-column-item" ng-drop="true" ng-drop-success="onWorkspaceDrop($index, getLastPosition($index), $data)">
+                    <div class="drop-zone" >
+                    </div>
                 </div>
+
+
             </div>
+        </div><!-- End Workspace -->
 
-        </div>
-
-
-    </div>
-    <div class="workspace_creator_container" ng-show="isWorkspaceCreatorVisible" ng-click="onWorkspaceCreatorClick($event)">
-        <div class="workspace_creator" ng-click="">
-            <h4>Nouveau workspace</h4>
-            <p><label for="">Titre</label><input type="text" ng-model="workspaceCreator.title"></p>
-            <p><label for="">Nombre de colonnes</label><input type="number" ng-model="workspaceCreator.nb_column"></p>
-            <p><label for="">Nombre de lignes</label><input type="number" ng-model="workspaceCreator.nb_row"></p>
-            <div class="btn_create" ng-click="createNewWorkspace()">
-                Créer
-            </div>
-        </div>
-    </div>
+    </div><!-- End Global container -->
 </div>
 
 
 <!-- Menu contenant les widgets disponibles -->
-<div class="menu_container" ng-class="{'visible': isMenuVisible}">
-    <div class="menu_btn" ng-drop="isDragging" ng-drop-success="onDeleteDrop($data)" ng-mousemove="onBtnMouseover()">
-        <a class="btn-floating" ng-click="toggleMenu()"><i class="fa {{buttonIcon}}"></i></a>
+<div class="bottom-menu" ng-class="{'visible': isMenuVisible}">
+    <div class="floating-btn" ng-drop="isDragging" ng-drop-success="onDeleteDrop($data)" ng-mousemove="onBtnMouseover()">
+        <a class="fab-btn" ng-click="toggleMenu()"><i class="fa {{buttonIcon}}"></i></a>
     </div>
 
-    <div class="menu_widgets">
-        <div class="menu_widget"
+    <div class="available-widgets">
+        <div class="available-widget"
            ng-repeat="widget in availableWidgets"
            ng-class="{deletion:widget.deletion}"
            style="background-color:{{widget.color}}"
