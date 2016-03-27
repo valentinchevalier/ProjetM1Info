@@ -26,7 +26,7 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
         })
         .then(function(answer) {
             $scope.status = 'You said the information was "' + answer + '".';
-            WorkspacesService.createNewWorkspace(answer.title, answer.nb_column);
+            WorkspacesService.createNewWorkspace(answer.title, answer.nb_row, answer.nb_column);
         }, function() {
 
         });
@@ -36,6 +36,7 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
         $scope.data = {
             title : "Nouvel onglet",
             nb_column : 2,
+            nb_row : 3,
         };
         $scope.hide = function() {
             $mdDialog.hide();
@@ -48,30 +49,23 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
         };
     }
 
-
-
     /**
      * Fonction appelée lors d'un drop sur le workspace
      * @param {number} x    coordonnée x de la case droppée
      * @param {number} y    coordonnée y de la case droppée
      * @param {object} data données transmises lors du DragNDrop
      */
-    $scope.onWorkspaceDrop = function (column, position, data) {
+    $scope.onWorkspaceDrop = function (x, y, data) {
         console.log(data);
         switch (data.from){
             case "menu" :
-                WorkspacesService.addWidget(column,position,data.data);
+                WorkspacesService.addWidget(x,y,data.data);
                 break;
             case "workspace" :
-                WorkspacesService.moveWidget(data.columnFrom,data.positionFrom,column,position);
+                WorkspacesService.moveWidget(data.xFrom,data.yFrom,x,y);
                 break;
         }
     };
-
-    $scope.getLastPosition = function(column){
-
-        return WorkspacesService.currentWorkspace.widgets[column].length;
-    }
 
 
 });

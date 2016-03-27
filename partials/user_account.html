@@ -1,11 +1,9 @@
 <div class="account">
     <div class="hello" ng-show='UserService.loginData.isLogged'>
-        Bonjour {{UserService.loginData.loggedUser.login}}
+        Bonjour {{UserService.loginData.loggedUser.username}}
     </div>
 
+    <div class="btn btn-red" ng-show="UserService.loginData.isLogged" ng-click="UserService.onButtonClick()">Deconnexion</div>
+    <div class="btn" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onButtonClick()">Connexion</div>
 
-    <md-button class="md-raised md-warn" ng-show="UserService.loginData.isLogged" ng-click="UserService.onDeconnexionClick($event)" >Deconnexion</md-button>
-
-    <md-button class="md-raised md-primary" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onConnexionClick($event)" >Connexion</md-button>
-    <md-button class="md-raised md-primary" ng-show="!UserService.loginData.isLogged" ng-click="UserService.onInscriptionClick($event)" >Inscription</md-button>
 </div>

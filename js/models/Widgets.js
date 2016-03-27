@@ -4,31 +4,51 @@
  * @param {string} color       Couleur de fond du widget
  * @param {url}    templateUrl Url du template du widget
  */
-function Widget (name, color, templateUrl, controllerName = "WidgetCtrl") {
+function Widget (name, color, templateUrl) {
     this.name = name;
     this.color = color;
     this.imgUrl = "";
     this.templateUrl = templateUrl;
-    this.isReduced = false
-}
-
-Widget.prototype.reduce = function(){
-    this.isReduced = true
-    console.log("coucou");
-}
-
-Widget.prototype.restore = function(){
-    this.isReduced = false
 }
 
 
+/**
+ * Widget Tisséo - Prochains passages
+ */
+function WidgetTisseo () {
+    Widget.call(this, "Tisseo - Prochain passages", "#0C226B", "/partials/widgets/widget_tisseo.html")
+    this.searchPlaces = [];
+
+    this.searchValue = "";
+
+    this.arret = null;
+    this.passages = [];
+}
+
+
+WidgetTisseo.prototype.getPassages = function(tisseoApi){
+    var that = this;
+
+    if (this.arret && this.arret.id){
+        tisseoApi.getProchainPassages(this.arret.id).then(function(data){
+            console.log(data);
+            that.passages = data;
+        }, function(msg){
+            alert(msg);
+        })
+    } else {
+        this.passages = [];
+    }
+}
+
+WidgetTisseo.prototype.hasPassages = function(){
+    return this.passages.length == 0;
+}
 
 /**
  * Widget post it
  */
 function WidgetPostIt (){
-    Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html")
+    Widget.call(this, "Post it", "#FFE100", "/partials/widgets/widget_postIt.html")
     this.texte = "";
 }
-
-WidgetPostIt.prototype = new Widget();

@@ -89,7 +89,6 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
 
     $scope.startDragging = function (currentDraggingWidget) {
         $scope.isDragging = true;
-        $scope.wasMenuVisible = $scope.isMenuVisible;
         $scope.isMenuVisible = false;
         $scope.currentDraggingWidget = currentDraggingWidget;
         $scope.buttonIcon = "fa-trash";
@@ -101,7 +100,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
 
     $scope.stopDragging = function () {
         $scope.isDragging = false;
-        $scope.isMenuVisible = $scope.wasMenuVisible;
+        $scope.isMenuVisible = true;
         $scope.currentDraggingWidget.deletion = false;
         $scope.setBtnIcon();
     };
@@ -110,7 +109,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
     // Permet
     $rootScope.$on("draggable:move", function() {
         // Si le bouton du menu est survolé
-        if ($('.floating-btn.drag-enter').length!=0){
+        if ($('.menu_btn.drag-enter').length!=0){
             // Activation de la suppression (widget trnasparent)
             $scope.currentDraggingWidget.deletion = true;
             $scope.$apply();
@@ -132,7 +131,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
                 // Rien
                 break;
             case "workspace" :
-                WorkspacesService.deleteWidget(data.columnFrom,data.positionFrom);
+                WorkspacesService.deleteWidget(data.xFrom,data.yFrom);
                 break;
         }
     };

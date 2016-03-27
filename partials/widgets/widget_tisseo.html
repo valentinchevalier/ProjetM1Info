@@ -1,11 +1,12 @@
+
 <div layout="row" layout-wrap>
     <md-autocomplete flex
-       md-selected-item="widget.currentStop"
-       md-search-text="widget.searchValue"
-       md-items="item in TisseoApiService.searchPlace(widget.searchValue)"
+       md-selected-item="emplacement.widget.arret"
+       md-search-text="emplacement.widget.searchValue"
+       md-items="item in TisseoApiService.searchPlace(emplacement.widget.searchValue)"
        md-item-text="item.label"
        md-min-length="3"
-       md-selected-item-change="widget.selectStop(TisseoApiService)"
+       md-selected-item-change="emplacement.widget.getPassages(TisseoApiService)"
        md-select-on-match="true"
        md-autoselect="true"
        placeholder="Saisissez l'arrêt que vous souhaitez consulter..." >
@@ -16,45 +17,31 @@
             Aucuns résultats
         </md-not-found>
     </md-autocomplete>
-
     <md-button
         class="md-icon-button"
-        ng-click="widget.onReloadClick(TisseoApiService)"
+        ng-click="emplacement.widget.getPassages(TisseoApiService)"
         alt="Actualiser"
         aria-label="Actualiser"
-        ng-disabled="widget.hasPassages()">
-        <md-icon md-svg-src="./img/ic_refresh_white_24px.svg" style="color:white;"></md-icon>
+        ng-disabled="emplacement.widget.hasPassages()">
+        <md-icon md-svg-src="/img/ic_refresh_white_24px.svg" style="color:white;"></md-icon>
     </md-button>
 </div>
 
+<div class="passages" ng-hide="emplacement.widget.hasPassages()">
+    <!--<div ng-repeat="passage in emplacement.widget.passages">{{passage.dateTime | asDate | date:'H:mm'}} <span class="line-number">{{passage.line.shortName}}</span> vers {{passage.destination[0].name}}</div>-->
+    <md-list flex>
+        <md-list-item class="passage-list" ng-repeat="passage in emplacement.widget.passages">
 
-<div class="lines" ng-show="widget.isStopSelected()">
-    <span class="line-title">Ligne : </span>
-    <div ng-repeat="line in widget.lines | orderBy: '' track by line.id" class="line-icon" style="background-color: {{line.bgXmlColor}}" ng-click="widget.selectLine(line, TisseoApiService)" ng-class="{select:line.shortName == widget.currentLine.shortName}">
-        {{line.shortName}}
-    </div>
+            <div class="passage-line" layout="column"><h3>Ligne {{passage.line.shortName}}</h3></div>
+            <div class="passage-info" layout="column">
+                <h4>{{passage.dateTime | asDate | date:'H:mm'}}</h4>
+                <p>vers {{passage.destination[0].name}}</p>
+            </div>
+            <md-divider ></md-divider>
+        </md-list-item>
+    </md-list>
 </div>
 
-<md-list flex class="passages" ng-show="widget.isStopSelected() && widget.isLineSelected() && !widget.loading">
-    <md-list-item class="list-passage" ng-repeat="passage in widget.passages">
-
-        <div class="passage-time" layout="column"><h3>{{passage.dateTime | asDate | date:'H:mm'}}</h3></div>
-        <div class="passage-info" layout="column">
-            <h4>Ligne {{passage.line.shortName}}</h4>
-            <p>destination {{passage.destination[0].name}}</p>
-        </div>
-        <md-divider ></md-divider>
-    </md-list-item>
-</md-list>
-
-<div class="loading" ng-show="widget.loading">
-    <md-progress-circular md-mode="indeterminate" class="md-warn"></md-progress-circular>
-</div>
-
-<div class="info-message" ng-show="!widget.isStopSelected()">
-    <p><i class="material-icons">arrow_upward</i> Veuillez saisir un arrêt <i class="material-icons">arrow_upward</i></p>
-</div>
-
-<div class="info-message" ng-show="widget.isStopSelected() && !widget.isLineSelected()" >
-    <p><i class="material-icons">arrow_upward</i> Veuillez selectionner la ligne <i class="material-icons">arrow_upward</i></p>
+<div class="no_result" ng-show="emplacement.widget.hasPassages()">
+    <p><i class="material-icons">arrow_upward</i> Veuillez saisir un arrêt dans le champ ci-dessus <i class="material-icons">arrow_upward</i></p>
 </div>
