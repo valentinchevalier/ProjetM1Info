@@ -67,7 +67,28 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
         $scope.isConfirmationVisible = false;
         $scope.confirmMessage = "";
 
+        $scope.availableBgColors = [
+            {
+                name : "Gris (default)",
+                hexValue : "#eeeeee"
+            },
+            {
+                name : "Canard",
+                hexValue : "#E0F2F1"
+            },
+            {
+                name : "Cyan",
+                hexValue : "#E0F7FA"
+            },
+            {
+                name : "Indigo",
+                hexValue : "#E8EAF6"
+            }
+
+        ]
+
         $scope.workspace = workspace;
+
         $scope.hide = function() {
             $mdDialog.hide();
         };
@@ -104,6 +125,9 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
             $scope.deletionIndex = null;
             $scope.isConfirmationVisible = false;
             $scope.confirmMessage = "";
+        }
+        $scope.setBgColor = function(color){
+            $scope.workspace.setBgColor(color.hexValue);
         }
     }
 

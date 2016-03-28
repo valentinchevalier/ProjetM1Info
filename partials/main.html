@@ -29,7 +29,8 @@
                 ng-click="WorkspacesService.switchWorkspace(workspace)"
                 ng-dblclick="workspace.startEditing($event);"
                 ng-class="{active: workspace == WorkspacesService.currentWorkspace}"
-                ng-drop="workspace != WorkspacesService.currentWorkspace" >
+                ng-drop="workspace != WorkspacesService.currentWorkspace"
+                style="background-color: {{workspace.bgColor}}">
 
                 <div class="edit" ng-click="editWorkspace($event, $index)" ng-class="{visible: workspace == WorkspacesService.currentWorkspace}">
                     <md-icon md-svg-src="./img/ic_edit_black_24px.svg"></md-icon>
@@ -53,7 +54,8 @@
 
         </div><!-- End Tabs -->
 
-        <div class="workspace" ng-class="{drag_in_progress:isDragging}">
+        <div class="workspace" ng-class="{drag_in_progress:isDragging}"
+                style="background-color: {{WorkspacesService.currentWorkspace.bgColor}}">
             <style>
                 .column {
                     width : {{WorkspacesService.currentWorkspace.column_width}}% !important;

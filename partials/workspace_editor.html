@@ -51,7 +51,18 @@
                     </md-content>
                 </md-tab>
                 <md-tab label="personnalisation">
-                    <md-content class="md-padding">
+                    <md-content class="md-padding personnalisation-container">
+                        <md-radio-group ng-model="workspace.bgColor">
+                            <md-list ng-cloak>
+                                <md-subheader class="md-no-sticky">Couleur de fond du Workspace</md-subheader>
+                                <md-list-item ng-repeat="color in availableBgColors" ng-click="setBgColor(color)">
+                                    <div class="md-avatar" style="background-color:{{color.hexValue}}"> </div>
+                                    <p>{{color.name}}</p>
+                                    <md-radio-button class="md-secondary" ng-value="color.hexValue" ng-model="color" aria-label="{{color.name}}"></md-radio-button>
+                                </md-list-item>
+                            </md-list>
+                        </md-radio-group>
+
                     </md-content>
                 </md-tab>
             </md-tabs>

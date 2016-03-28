@@ -5,6 +5,8 @@ function Workspace(title, nb_column){
     this.editing = false;
     this.beforeEditing = "test";
 
+    this.bgColor = "#eeeeee";
+
 
     this.widgets = [];
 
@@ -93,4 +95,6 @@ Workspace.prototype.removeColumn = function (index){
 Workspace.prototype.isFull = function (){
     return this.widgets.length >= 5;
 };
-
+Workspace.prototype.setBgColor = function (color){
+    this.bgColor = color;
+};

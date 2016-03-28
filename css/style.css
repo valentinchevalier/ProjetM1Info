@@ -651,3 +651,17 @@ ng-widget {
 
 
 
+
+.color-visualizer {
+    width: 30px;
+    height: 30px;
+}
+
+.bg-color-editor label{
+    margin-right: 20px;
+
+}
+
+.personnalisation-container {
+    width: 500px;
+}
