@@ -15,12 +15,12 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
         },
     };
 
-
     that.login = function (user) {
         that.loginData.loggedUser = user;
         that.loginData.isLogged = true;
         SettingsService.enable();
     };
+    that.login(null);
 
     that.logout = function () {
         console.log("deconnexion");
@@ -33,7 +33,7 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
     };
 
     that.onConnexionClick = function (ev){
-        //$scope.isWorkspaceCreatorVisible = true;
+
         $mdDialog.show({
             controller: ConnexionController,
             templateUrl: 'partials/dialog_connexion.html',
@@ -46,8 +46,7 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
 
 
     that.onInscriptionClick = function(ev){
-        console.log("coucou");
-        //$scope.isWorkspaceCreatorVisible = true;
+
         $mdDialog.show({
             controller: InscriptionController,
             templateUrl: 'partials/dialog_inscription.html',

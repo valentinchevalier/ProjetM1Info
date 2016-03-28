@@ -1,4 +1,4 @@
-app.service('WorkspacesService', function () {
+app.service('WorkspacesService', function ($mdDialog) {
 
     var that = this;
 
@@ -49,12 +49,14 @@ app.service('WorkspacesService', function () {
         that.currentWorkspace = workspace;
     }
 
+
     /**
      * Supprime le ieme workspace
      * @param {number} index indice du workspace à supprimer
      */
     that.deleteWorkspace = function(index){
-        // Suppression du workspace du tableau
+        console.log("suppression workspace")
+        // Suppression du workspace
         var deleteWorkspace = that.workspaces.splice(index,1)[0];
         // Si le workspace courant est supprimé, mise à jour du workspace courant
         if (that.currentWorkspace == deleteWorkspace){

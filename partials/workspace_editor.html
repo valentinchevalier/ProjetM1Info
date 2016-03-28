@@ -1,0 +1,67 @@
+<md-dialog aria-label="Édition du workspace" ng-cloak>
+    <form name="workspaceEditorForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Modification du workspace</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()" aria-label="Fermer">
+                    <md-icon md-svg-src="./img/ic_close_white_24px.svg"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="gestion des colonnes">
+                    <md-content class="md-padding columns-editor-container" flex>
+                        <div layout="row">
+                            <div flex></div>
+                            <div class="columns-editor">
+                                <style>
+                                    .column-editor {
+                                        width : {{workspace.column_width -2}}% !important;
+                                        margin:6px 1%;
+                                    }
+                                </style>
+                                <md-button class="md-raised column-editor" ng-repeat="column in workspace.widgets" ng-click="removeColumnClick($event, $index)" ng-disabled="workspace.widgets.length == 1">
+                                    <p>Colonne {{$index + 1}}</p>
+                                    <md-icon>delete</md-icon>
+                                    <p>{{column.length}} widgets</p>
+                                </md-button>
+                            </div>
+
+                            <md-button class='md-fab ' ng-click="addColumnClick()" ng-disabled="workspace.isFull()" >
+                                <md-icon>add</md-icon>
+                            </md-button>
+                            <div flex></div>
+                        </div>
+
+                        <div class="confirmation" ng-show="isConfirmationVisible">
+                            <p ng-bind-html="confirmMessage"></p>
+                            <div class="confirmation-btn-container" layout="row">
+                                <span flex></span>
+                                <md-button ng-click="cancelDeletion()" class="md-raised">
+                                    Annuler la suppression
+                                </md-button>
+                                <md-button ng-click="confirmDeletion()" class="md-raised md-warn">
+                                    Confirmer la suppression
+                                </md-button>
+                                <span flex></span>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="personnalisation">
+                    <md-content class="md-padding">
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="answer(data)" ng-disabled="workspaceCreatorForm.$invalid">
+                Terminer
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

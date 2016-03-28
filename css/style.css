@@ -33,6 +33,9 @@ md-progress-circular svg{
     left: -25px !important;
 }
 
+md-icon {
+    color: currentColor !important;
+}
 
 /*
     HEADER
@@ -118,7 +121,7 @@ md-progress-circular svg{
 */
 .global_container {
     position : fixed;
-    top: 46px;
+    top: 64px;
     bottom : 0;
     left: 0;
     right : 0;
@@ -173,6 +176,26 @@ ng-widget {
     display:block
 }
 
+/*
+    WORKSPACE EDITOR
+*/
+.columns-editor {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
+    background-color:#eee;
+    width:520px;
+}
+
+.column-editor {
+    height: 200px;
+    color: #777 !important;
+}
+
+.columns-editor-container {
+    width: 640px;
+    text-align: center;
+}
 
 /*
     TABS
@@ -200,13 +223,30 @@ ng-widget {
     background-color:#eeeeee;
 }
 
-.tab .title, .tab.delete {
+.tab .edit, .tab .title, .tab.delete {
     display: table-cell;
     vertical-align: middle;
 }
+.tab .edit {
+    padding-left: 0px;
+}
+.tab .edit md-icon {
+    width:0px;
+    transition: all .2s ease-out;
+}
+.tab .edit svg {
+    fill: #999;
+}
+.tab .edit.visible{
+    padding-left: 15px;
+}
+.tab .edit.visible md-icon {
+    width:24px;
+}
+
 .tab .title {
     min-width: 120px;
-    padding-left: 15px;
+    padding-left:15px;
 }
 .tab .title input{
     font-size: 12px
@@ -369,20 +409,19 @@ ng-widget {
     bottom:10px;
     right:10px;
     padding:20px;
-    z-index:70;
+    z-index:51;
     cursor: pointer;
 }
 .available-widgets {
     position:fixed;
     bottom:-250px; left: 0; right:0;
-    z-index:60;
+    z-index:50;
     background-color:gray;
     padding:5px;
 }
 
 .bottom-menu.visible .floating-btn {
-    bottom:165px;
-    z-index:101;
+    bottom:150px;
 }
 .bottom-menu.visible .available-widgets {
     bottom:0;
@@ -608,4 +647,7 @@ ng-widget {
 ::-webkit-scrollbar-thumb:hover {
 	background:#7d7d7d;
 }*/
+
+
+
 

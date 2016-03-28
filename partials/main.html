@@ -1,22 +1,39 @@
 
 <!-- Header -> Settings et User -->
-<div class="header">
+<!--<div class="header">
     <div class="half" ng-include="SettingsService.templateUrl"></div>
     <div class="half" ng-include="UserService.templateUrl"></div>
-</div>
+</div>-->
+
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Paramètres"
+            ng-show="SettingsService.settingsData.isEnable"
+            ng-click="SettingsService.settingsBtnClick()">
+            <md-icon>settings</md-icon>
+        </md-button>
+        <div flex></div>
+        <div ng-include="UserService.templateUrl"></div>
+    </div>
+</md-toolbar>
+
+<div ng-include="SettingsService.sidenavTemplateUrl"></div>
 
 
-<div ng-controller="WorkspacesCtrl">
-
+<md-content flex ng-controller="WorkspacesCtrl">
     <div class="global_container">
         <div class="tabs">
             <div
                 class="tab"
                 ng-repeat="workspace in WorkspacesService.workspaces"
                 ng-click="WorkspacesService.switchWorkspace(workspace)"
-                ng-dblclick="workspace.startEditing();"
+                ng-dblclick="workspace.startEditing($event);"
                 ng-class="{active: workspace == WorkspacesService.currentWorkspace}"
                 ng-drop="workspace != WorkspacesService.currentWorkspace" >
+
+                <div class="edit" ng-click="editWorkspace($event, $index)" ng-class="{visible: workspace == WorkspacesService.currentWorkspace}">
+                    <md-icon md-svg-src="./img/ic_edit_black_24px.svg"></md-icon>
+                </div>
 
                 <div class="title">
                     <span ng-hide="workspace.editing">{{workspace.title}}</span>
@@ -25,10 +42,12 @@
                     </form>
                 </div>
 
-                <div class="delete" ng-click="WorkspacesService.deleteWorkspace($index)"><div class="cross"><span></span><span></span></div></div>
+                <div class="delete" ng-click="deleteWorkspaceClick($event, $index)">
+                    <div class="cross"><span></span><span></span></div>
+                </div>
             </div>
 
-            <div class="tab add_tab" ng-click="showWorkspaceCreator($event)">
+            <div class="tab add_tab" ng-click="createWorkspaceClick($event)">
                 <div class="title">+</div>
             </div>
 
@@ -68,14 +87,21 @@
         </div><!-- End Workspace -->
 
     </div><!-- End Global container -->
+</md-content>
+<div >
+
+
 </div>
 
 
 <!-- Menu contenant les widgets disponibles -->
 <div class="bottom-menu" ng-class="{'visible': isMenuVisible}">
     <div class="floating-btn" ng-drop="isDragging" ng-drop-success="onDeleteDrop($data)" ng-mousemove="onBtnMouseover()">
-        <a class="fab-btn" ng-click="toggleMenu()"><i class="fa {{buttonIcon}}"></i></a>
+        <md-button class="md-fab" ng-click="toggleMenu()">
+            <md-icon>{{buttonIcon}}</md-icon>
+        </md-button>
     </div>
+
 
     <div class="available-widgets">
         <div class="available-widget"

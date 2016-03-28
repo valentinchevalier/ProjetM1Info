@@ -1,9 +1,3 @@
-/**
- * Classe Workspace
- * @param {string} title     Titre du workspace
- * @param {number} nb_row    Nombre de lignes du workspace
- * @param {number} nb_column Nombre de colonnes du workspace
- */
 function Workspace(title, nb_column){
     this.title = title;
     this.nb_column = nb_column;
@@ -21,10 +15,16 @@ function Workspace(title, nb_column){
 
 }
 
-Workspace.prototype.startEditing = function(){
+Workspace.prototype.startEditing = function(ev){
+
     this.beforeEditing = this.title;
     this.editing = true;
+
+    /*var input = $(ev.currentTarget).find('input');
+
+    input.focus();*/
 }
+
 Workspace.prototype.stopEditing = function(){
     if (this.title == ""){
         this.title = this.beforeEditing;
@@ -33,13 +33,17 @@ Workspace.prototype.stopEditing = function(){
     this.editing = false;
 }
 
-/**
-     * Deplace un widget dans le workspace
-     * @param {number} xFrom coordonnée x d'origine
-     * @param {number} yFrom coordonnée y d'origine
-     * @param {number} xTo   coordonnée x de destination
-     * @param {number} yTo   coordonnée y de destination
-     */
+Workspace.prototype.containsWidgets = function(){
+    var ret = false;
+    for (var i = 0; i < this.widgets.length; i++){
+        if (this.widgets[i].length > 0){
+            ret = true;
+        }
+    }
+    console.log("Contains widget : "+ret);
+    return ret;
+}
+
 Workspace.prototype.moveWidget = function (columnFrom,positionFrom,columnTo,positionTo){
     var widget = this.widgets[columnFrom][positionFrom]
     this.deleteWidget(columnFrom, positionFrom);
@@ -47,12 +51,6 @@ Workspace.prototype.moveWidget = function (columnFrom,positionFrom,columnTo,posi
 };
 
 // TODO À modifier pour recuperer le type du widget ajouté
-/**
- * Ajoute un widget dans le worksapce
- * @param {number} x    coordonnée x d'ajout
- * @param {number} y    coordonnée y d'ajout
- * @param {object} data données du widget
- */
 Workspace.prototype.addNewWidget = function(column, position, data){
     // Ajout du widget dans les widgets
 
@@ -71,12 +69,28 @@ Workspace.prototype.addWidget = function(column, position, widget){
     this.widgets[column].splice(position, 0, widget);
 };
 
-/**
- * Supprime un widget d'une position donnée
- * @param {number} x coordonnée x du widget
- * @param {number} y coordonnée y du widget
- */
 Workspace.prototype.deleteWidget = function(column, position){
     this.widgets[column].splice(position, 1);
+};
+
+
+Workspace.prototype.isColumnEmpty = function (index){
+    return this.widgets[index].length == 0;
+};
+
+Workspace.prototype.addColumn = function (){
+    this.nb_column++;
+    this.widgets.push([]);
+    this.column_width = (100/this.nb_column);
+};
+
+Workspace.prototype.removeColumn = function (index){
+    this.nb_column--;
+    this.widgets.splice(index, 1);
+    this.column_width = (100/this.nb_column);
+};
+
+Workspace.prototype.isFull = function (){
+    return this.widgets.length >= 5;
 };
 

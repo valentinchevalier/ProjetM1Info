@@ -4,7 +4,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
     // Variables d'état
     $scope.isMenuVisible = true;
     $scope.isDragging = false;
-    $scope.buttonIcon = "plus";
+    $scope.buttonIcon = "add";
 
     $scope.currentDraggingWidget = {};
 
@@ -72,9 +72,9 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
      */
     $scope.setBtnIcon = function() {
         if ($scope.isMenuVisible) {
-            $scope.buttonIcon = "fa-arrow-down";
+            $scope.buttonIcon = "arrow_downward";
         } else {
-            $scope.buttonIcon = "fa-plus";
+            $scope.buttonIcon = "add";
         }
     };
 
@@ -92,7 +92,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
         $scope.wasMenuVisible = $scope.isMenuVisible;
         $scope.isMenuVisible = false;
         $scope.currentDraggingWidget = currentDraggingWidget;
-        $scope.buttonIcon = "fa-trash";
+        $scope.buttonIcon = "delete";
     };
 
     $scope.dragging = function(){
