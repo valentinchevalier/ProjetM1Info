@@ -28,7 +28,7 @@
                 ng-repeat="workspace in WorkspacesService.workspaces"
                 ng-click="WorkspacesService.switchWorkspace(workspace)"
                 ng-dblclick="workspace.startEditing($event);"
-                ng-class="{active: workspace == WorkspacesService.currentWorkspace}"
+                ng-class="{inactive: workspace != WorkspacesService.currentWorkspace}"
                 ng-drop="workspace != WorkspacesService.currentWorkspace"
                 style="background-color: {{workspace.bgColor}}">
 

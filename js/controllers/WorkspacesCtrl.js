@@ -49,7 +49,7 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose:true,
-            fullscreen: true,
+            fullscreen: false,
             locals : {
                 workspace : workspace,
             },
@@ -141,7 +141,7 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose:true,
-            fullscreen: true,
+            fullscreen: false,
         })
         .then(function(answer) {
             WorkspacesService.createNewWorkspace(answer.title, answer.nb_column);

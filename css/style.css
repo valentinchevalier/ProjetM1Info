@@ -207,7 +207,6 @@ ng-widget {
     position:relative;
     display: inline-table;
     vertical-align: top;
-    background-color: lightgrey;
     margin : 0px 10px;
     height: 40px;
     -moz-box-sizing: border-box;
@@ -219,8 +218,8 @@ ng-widget {
     text-align: left;
     color: #999;
 }
-.tab.active {
-    background-color:#eeeeee;
+.tab.inactive {
+    opacity:0.7;
 }
 
 .tab .edit, .tab .title, .tab.delete {
@@ -258,6 +257,7 @@ ng-widget {
 .tab.add_tab {
     min-width: 50px;
     text-align: center;
+    background-color: lightgrey !important;
 }
 .tab.add_tab .title {
     min-width: 40px;

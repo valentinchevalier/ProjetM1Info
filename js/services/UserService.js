@@ -40,7 +40,7 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose:true,
-            fullscreen: true,
+            fullscreen: false,
         });
     };
 
