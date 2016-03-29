@@ -1,7 +1,8 @@
-app.service('SettingsService', function () {
+app.service('SettingsService', function ($mdSidenav) {
     var that = this;
 
     that.templateUrl = "./partials/settings.html";
+    that.sidenavTemplateUrl = "./partials/sidenav_settings.html";
 
     that.settingsData = {
         isEnable : false,
@@ -18,5 +19,6 @@ app.service('SettingsService', function () {
 
     that.settingsBtnClick = function () {
         that.settingsData.isMenuVisible = !that.settingsData.isMenuVisible;
+        $mdSidenav('left-menu').toggle();
     };
 });
