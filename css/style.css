@@ -665,3 +665,9 @@ ng-widget {
 .personnalisation-container {
     width: 500px;
 }
+
+.evenements {
+    overflow: auto;
+    max-height: 200px;
+    padding: 0;
+}
