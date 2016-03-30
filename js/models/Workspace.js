@@ -63,6 +63,8 @@ Workspace.prototype.addNewWidget = function(column, position, data){
         widget = new WidgetPostIt();
     } else if (data.type == "agenda_culturel"){
         widget = new WidgetAgendaCulturel();
+    } else if(data.type == "velib"){
+        widget = new WidgetVelib();
     } else {
         widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
     }

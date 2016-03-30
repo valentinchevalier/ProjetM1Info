@@ -711,7 +711,7 @@ ng-widget {
   height: auto;
   width:auto;
   padding: 10px 5px 5px 5px;
-  margin: 0px auto 0px auto;
+  margin: 10px auto;
   display: block;
   background: rgba(0, 0, 0, 0.3);
   color: #FFFFFF;

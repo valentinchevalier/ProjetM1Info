@@ -42,7 +42,3 @@ WidgetAgendaCulturel.prototype.onChange = function(agendaCulturelApi){
         alert(msg);
     });
 }
-
-
-
-
