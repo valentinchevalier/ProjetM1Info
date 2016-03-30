@@ -1,0 +1,18 @@
+<div layout="row" layout-wrap>
+    <md-input-container class="imput" flex-gt-sm>
+        <label>Recherche</label>
+        <input ng-change="widget.onChange(AgendaCulturelApiService)" ng-model="widget.searchValue">
+    </md-input-container>
+</div>
+
+<md-list flex class=" evenements">
+    <md-list-item class="md-3-line md-long-text" ng-repeat="evenement in widget.evenements | limitTo: 2" ng-click="widget.switchDescription()">
+        <div class="md-list-item-text" layout="column">
+            <h3>{{ evenement.fields.nom_generique }}</h3>
+            <h4>{{ evenement.fields.dates_affichage_horaires }} {{ evenement.fields.lieu_nom}}</h4>
+            <p ng-show="widget.isDescriptionCourteVisible">{{ evenement.fields.descriptif_court }}</p>
+            <p ng-hide="widget.isDescriptionCourteVisible">{{ evenement.fields.descriptif_long }}</p>
+        </div>
+        <md-divider ></md-divider>
+    </md-list-item>
+</md-list>

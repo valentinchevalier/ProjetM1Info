@@ -63,6 +63,8 @@ app.service('WorkspacesService', function ($mdDialog) {
             that.currentWorkspace = that.workspaces[Math.max(index-1,0)];
         }
     }
-
+    that.addWidgetElsewhere = function(index,position,column,widget){
+        that.workspaces[index].widgets[1][0] = widget;
+    }
 
 });

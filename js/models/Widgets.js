@@ -21,6 +21,9 @@ Widget.prototype.restore = function(){
     this.isReduced = false
 }
 
+Widget.prototype.switchWorkspaceClick = function(){
+    this.deleteWidget(this.x,this.y)
+}
 
 
 /**
