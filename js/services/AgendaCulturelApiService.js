@@ -15,7 +15,7 @@ app.service("AgendaCulturelApiService", function($http, $q, $filter){
         $http.get(url, {
             params: {
                 q: vraieQuery,
-                sort : -date_debut
+                sort : "-date_debut"
             }
         }).success(function(data,status){
             console.log(data);

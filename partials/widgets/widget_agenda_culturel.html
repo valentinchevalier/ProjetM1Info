@@ -1,17 +1,17 @@
 <div layout="row" layout-wrap>
     <md-input-container class="imput" flex-gt-sm>
             <label>Recherche</label>
-            <input ng-change="widget.onChange(AgendaCulturelApi)" ng-model="widget.searchValue">
+            <input ng-change="widget.onChange(AgendaCulturelApiService)" ng-model="widget.searchValue">
     </md-input-container>
 </div>
 
 <md-list flex>
-    <md-list-item class="ng-3-line" ng-repeat="evenement in widget.evenements">
+    <md-list-item class="ng-3-line" ng-repeat="evenement in widget.evenements | limitTo: 2">
         <div class="md-list-item-text" ng-click="widget.switchDescription()" layout="column">
-            <h3>{{ evenement.nom }}</h3>
-            <h4>{{ evenement.date }}</h4>
-            <p ng-show="widget.isDescriptionCourteVisible">{{ evenement.descriptionCourte }}</p>
-            <p ng-hide="widget.isDescriptionCourteVisible">{{ evenement.descriptionLongue }}</p>
+            <h3>{{ evenement.fields.nom_generique }}</h3>
+            <h4>{{ evenement.fields.dates_affichage_horaires }} {{ evenement.fields.lieu_nom}}</h4>
+            <p ng-show="widget.isDescriptionCourteVisible">{{ evenement.fields.descriptif_court }}</p>
+            <p ng-hide="widget.isDescriptionCourteVisible">{{ evenement.fields.descriptif_long }}</p>
           </div>
     </md-list-item>
 </md-list>
