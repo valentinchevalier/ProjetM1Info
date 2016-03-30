@@ -6,13 +6,12 @@
 </div>
 
 <md-list flex>
-    <md-list-item class="md-3-line md-long-text" ng-repeat="evenement in widget.evenements | limitTo: 2" ng-click="widget.switchDescription()">
+    <md-list-item class="ng-3-line" ng-repeat="evenement in widget.evenements | limitTo: 5 track by $index">
         <div class="md-list-item-text" layout="column">
-            <h3>{{ evenement.fields.nom_generique }}</h3>
-            <h4>{{ evenement.fields.dates_affichage_horaires }} {{ evenement.fields.lieu_nom}}</h4>
-            <p ng-show="widget.isDescriptionCourteVisible">{{ evenement.fields.descriptif_court }}</p>
-            <p ng-hide="widget.isDescriptionCourteVisible">{{ evenement.fields.descriptif_long }}</p>
-        </div>
-        <md-divider ></md-divider>
+            <a target=_blank href="{{evenement.fields.reservation_site_internet}}" <h3>{{ evenement.fields.nom_generique }}</h3> </a>
+            <h4>{{ evenement.fields.dates_affichage_horaires }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ evenement.fields.lieu_nom}} </h4>
+            <p ng-hide="widget.isEtendu($index)" ng-click="widget.switchDescription($index)" >{{ evenement.fields.descriptif_court }}</p>
+            <p ng-show="widget.isEtendu($index)" ng-click="widget.switchDescription($index)" >{{ evenement.fields.descriptif_long }}</p>
+          </div>
     </md-list-item>
 </md-list>
