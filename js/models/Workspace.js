@@ -61,6 +61,8 @@ Workspace.prototype.addNewWidget = function(column, position, data){
         widget = new WidgetTisseo();
     } else if (data.type == "post_it"){
         widget = new WidgetPostIt();
+    } else if (data.type == "agenda_culturel"){
+        widget = new WidgetAgendaCulturel();
     } else {
         widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
     }

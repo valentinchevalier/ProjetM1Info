@@ -1,47 +1,17 @@
 <div layout="row" layout-wrap>
     <md-input-container class="imput" flex-gt-sm>
-            <label>First name</label>
-            <input ng-model="user.firstName">
+            <label>Recherche</label>
+            <input ng-change="widget.onChange(AgendaCulturelApi)" ng-model="widget.searchValue">
     </md-input-container>
-
-    <md-button
-        class="md-icon-button"
-        ng-click="widget.onReloadClick(TisseoApiService)"
-        alt="Actualiser"
-        aria-label="Actualiser"
-        ng-disabled="widget.hasPassages()">
-        <md-icon md-svg-src="./img/ic_refresh_white_24px.svg" style="color:white;"></md-icon>
-    </md-button>
 </div>
 
-
-<div class="lines" ng-show="widget.isStopSelected()">
-    <span class="line-title">Ligne : </span>
-    <div ng-repeat="line in widget.lines | orderBy: '' track by line.id" class="line-icon" style="background-color: {{line.bgXmlColor}}" ng-click="widget.selectLine(line, TisseoApiService)" ng-class="{select:line.shortName == widget.currentLine.shortName}">
-        {{line.shortName}}
-    </div>
-</div>
-
-<md-list flex class="passages" ng-show="widget.isStopSelected() && widget.isLineSelected() && !widget.loading">
-    <md-list-item class="list-passage" ng-repeat="passage in widget.passages">
-
-        <div class="passage-time" layout="column"><h3>{{passage.dateTime | asDate | date:'H:mm'}}</h3></div>
-        <div class="passage-info" layout="column">
-            <h4>Ligne {{passage.line.shortName}}</h4>
-            <p>destination {{passage.destination[0].name}}</p>
-        </div>
-        <md-divider ></md-divider>
+<md-list flex>
+    <md-list-item class="ng-3-line" ng-repeat="evenement in widget.evenements">
+        <div class="md-list-item-text" ng-click="widget.switchDescription()" layout="column">
+            <h3>{{ evenement.nom }}</h3>
+            <h4>{{ evenement.date }}</h4>
+            <p ng-show="widget.isDescriptionCourteVisible">{{ evenement.descriptionCourte }}</p>
+            <p ng-hide="widget.isDescriptionCourteVisible">{{ evenement.descriptionLongue }}</p>
+          </div>
     </md-list-item>
 </md-list>
-
-<div class="loading" ng-show="widget.loading">
-    <md-progress-circular md-mode="indeterminate" class="md-warn"></md-progress-circular>
-</div>
-
-<div class="info-message" ng-show="!widget.isStopSelected()">
-    <p><i class="material-icons">arrow_upward</i> Veuillez saisir un arrêt <i class="material-icons">arrow_upward</i></p>
-</div>
-
-<div class="info-message" ng-show="widget.isStopSelected() && !widget.isLineSelected()" >
-    <p><i class="material-icons">arrow_upward</i> Veuillez selectionner la ligne <i class="material-icons">arrow_upward</i></p>
-</div>

@@ -3,74 +3,35 @@
  * Widget Tisséo - Prochains passages
  */
 function WidgetAgendaCulturel () {
-    Widget.call(this, "Agenda culturel", "#0C226B", "./partials/widgets/widget_agenda_culturel.html", "WidgetAgendaCulturelCtrl")
-    this.searchPlaces = [];
+    Widget.call(this, "Agenda culturel", "#cc3366", "./partials/widgets/widget_agenda_culturel.html", "WidgetAgendaCulturelCtrl")
 
     this.searchValue = "";
-
+    this.isDescriptionCourteVisible = true;
     this.evenements = [];
-    this.lines = [];
-    this.currentLine = null;
-    this.currentStop = null;
 
     this.controller = function($scope, AgendaCulturelApiService){
         $scope.test = "coucou";
     }
 }
-WidgetTisseo.prototype = new Widget();
+WidgetAgendaCulturel.prototype = new Widget();
 
+WidgetAgendaCulturel.prototype.switchDescription = function(){
+    this.isDescriptionCourteVisible = !this.isDescriptionCourteVisible;
+}
 
-WidgetTisseo.prototype.isRechercheEnCours = function(){
+WidgetAgendaCulturel.prototype.isRechercheEnCours = function(){
     return ! (this.searchValue == "");
 }
 
-WidgetTisseo.prototype.selectStop = function(tisseoApi){
+WidgetAgendaCulturel.prototype.onChange = function(agendaCulturelApi){
     var that = this;
-
-    if (that.currentStop && that.currentStop.id){
-        that.loading = true;
-
-        tisseoApi.getLinesForStop(that.currentStop.id).then(function(data){
-            that.lines = data;
-            that.currentLine = null;
-            that.loading = false;
-        }, function(msg){
-            alert(msg);
-        });
-    } else {
-        that.lines = [];
-    }
-}
-
-WidgetTisseo.prototype.selectLine = function(line, tisseoApi){
-    var that = this;
-    if (that.currentLine == line){
-        that.currentLine = null;
-    } else {
-        that.currentLine = line;
-    }
-    if (that.isLineSelected() && that.isStopSelected()){
-        that.loading = true;
-        tisseoApi.getStopsSchedules(that.currentStop.id, that.currentLine.id).then(function(data){
-            that.passages = data;
-            that.loading = false;
-        }, function(msg){
-            alert(msg);
-        });
-    }
-}
-
-WidgetTisseo.prototype.onReloadClick = function(tisseoApi){
-    var that = this;
-    if (that.isLineSelected() && that.isStopSelected()){
-        that.loading = true;
-        tisseoApi.getStopsSchedules(that.currentStop.id, that.currentLine.id).then(function(data){
-            that.passages = data;
-            that.loading = false;
-        }, function(msg){
-            alert(msg);
-        });
-    }
+    that.loading = true;
+    agendaCulturelApi.getEvenements(that.searchValue).then(function(data){
+        that.evenements = data.records;
+        that.loading = false;
+    }, function(msg){
+        alert(msg);
+    });
 }
 
 

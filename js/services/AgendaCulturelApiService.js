@@ -9,14 +9,17 @@ app.service("AgendaCulturelApiService", function($http, $q, $filter){
 
     that.getEvenements = function(query){
         var url = that.preffix;
+        var date = $filter('date')(new Date(), "yyyy/MM/dd");
+        var vraieQuery += " AND date_debut >" + date;
         var deferred = $q.defer();
         $http.get(url, {
             params: {
-                q: query,
+                q: vraieQuery,
                 sort : -date_debut
             }
         }).success(function(data,status){
-            deferred.resolve(data.departures.departure)
+            console.log(data);
+            deferred.resolve(data)
         }). error(function(data, status){
             deferred.reject("Erreur");
         });
