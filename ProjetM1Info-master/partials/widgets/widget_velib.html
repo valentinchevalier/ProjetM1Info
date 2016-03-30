@@ -1,0 +1,44 @@
+<div layout="row" layout-wrap>
+    <md-autocomplete flex
+       md-selected-item="widget.currentStop"
+       md-search-text="widget.searchValue"
+       md-items="item in VelibApiService.searchPlace(widget.searchValue)"
+       md-item-text="item.name"
+       md-min-length="3"
+       md-selected-item-change="widget.selectStop(VelibApiService)"
+       md-select-on-match="true"
+       md-autoselect="true"
+       placeholder="Saisissez la station que vous souhaitez consulter..." >
+        <md-item-template>
+            <span>{{item.name}}</span>
+        </md-item-template>
+        <md-not-found>
+            Aucuns résultats
+        </md-not-found>
+    </md-autocomplete>
+</div>
+
+
+<div class="lines" ng-show="widget.isStopSelected()">
+    <span class="line-title">Information sur la station sélectionnée : </span>
+    <div ng-repeat="line in widget.lines | orderBy: '' track by line.id" class="line-icon" style="background-color: {{line.bgXmlColor}}" ng-click="widget.selectLine(line, TisseoApiService)" ng-class="{select:line.shortName == widget.currentLine.shortName}">
+        {{line.shortName}}
+    </div>
+</div>
+
+<div class="loading" ng-show="widget.loading">
+    <md-progress-circular md-mode="indeterminate" class="md-warn"></md-progress-circular>
+</div>
+
+<div class="info-message" ng-show="!widget.isStopSelected()">
+    <p><i class="material-icons">arrow_upward</i> Veuillez saisir une station <i class="material-icons">arrow_upward</i></p>
+</div>
+
+<div class="info-message" ng-show="widget.isStopSelected() && !widget.isLineSelected()" >
+     <p align="left"> -> Adresse: {{widget.currentStop.address}} </p>
+     <p align="left"> -> Borne de paiement: {{widget.currentStop.banking}} </p>
+     <p align="left"> -> Status: {{widget.currentStop.status}} </p>
+     <p align="left"> -> Nombre de velib disponible: {{widget.currentStop.available_bikes}} </p>
+     <p align="left"> -> Emplacement libre: {{widget.currentStop.available_bike_stands}} </p>
+     <p align="left"> -> Total des emplacements: {{widget.currentStop.bike_stands}} </p>
+</div>

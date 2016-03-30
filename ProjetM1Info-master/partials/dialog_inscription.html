@@ -1,0 +1,50 @@
+<md-dialog aria-label="Connexion" ng-cloak>
+    <form name="inscriptionForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Inscription</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()" aria-label="Fermer">
+                    <md-icon md-svg-src="./img/ic_close_white_24px.svg"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-dialog-content">
+            <md-input-container class="md-block">
+                <label for="login">Nom d'utilisateur</label>
+                <input name="login" required type="text" ng-model="data.login">
+                <div ng-messages="inscriptionForm.login.$error">
+                    <div ng-message="required">Veuillez saisir un nom d'utilisateur</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="password">Mot de passe</label>
+                <input name="password" type="password" ng-model="data.password" required>
+                <div ng-messages="inscriptionForm.password.$error" role="alert">
+                    <div ng-message="required">Veuillez saisir un mot de passe</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label for="password">Confirmation du mot de passe</label>
+                <input name="password" type="password" ng-model="data.confirm_password" required>
+                <div ng-messages="inscriptionForm.password.$error" role="alert">
+                    <div ng-message="required">Veuillez à nouveau saisir le mot de passe</div>
+                </div>
+            </md-input-container>
+
+            <div class="error-msg" ng-show="hasErrorMessage()">
+                {{data.message}}
+            </div>
+
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">
+                Annuler
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="submit()" ng-disabled="inscriptionForm.$invalid">
+                S'inscrire
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
