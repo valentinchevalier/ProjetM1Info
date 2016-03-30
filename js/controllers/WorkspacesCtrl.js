@@ -84,8 +84,7 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
                 name : "Indigo",
                 hexValue : "#E8EAF6"
             }
-
-        ]
+        ];
 
         $scope.workspace = workspace;
 
@@ -165,9 +164,6 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
             $mdDialog.hide(answer);
         };
     }
-
-
-
 
     /**
      * Fonction appelée lors d'un drop sur le workspace

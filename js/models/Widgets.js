@@ -26,7 +26,6 @@ Widget.prototype.switchWorkspaceClick = function(){
 }
 
 
-
 /**
  * Widget post it
  */

@@ -6,7 +6,11 @@ app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, Tis
     $scope.TisseoApiService = TisseoApiService;
     $scope.WorkspacesService = WorkspacesService;
 
+<<<<<<< HEAD
     $scope.showSwitchClick = function(ev,column,position){
+=======
+    $scope.showSwitchClick = function(ev,workspace,column,position){
+>>>>>>> Projet/master
         var currentWorkspace = WorkspacesService.currentWorkspace;
         var workspaces = WorkspacesService.workspaces;
         var position = position;
@@ -61,6 +65,5 @@ app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, Tis
             $scope.hide();
         };
     }
-
 
 });

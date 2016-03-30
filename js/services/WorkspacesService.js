@@ -63,9 +63,14 @@ app.service('WorkspacesService', function ($mdDialog) {
             that.currentWorkspace = that.workspaces[Math.max(index-1,0)];
         }
     }
+<<<<<<< HEAD
 
     that.addWidgetElsewhere = function(index,column,widget){
         that.workspaces[index].addWidgetWithoutPosition(column,widget);
+=======
+    that.addWidgetElsewhere = function(index,position,column,widget){
+        that.workspaces[index].widgets[1][0] = widget;
+>>>>>>> Projet/master
     }
 
 });
