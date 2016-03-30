@@ -165,18 +165,12 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
         };
     }
 
-
-<<<<<<< HEAD
-
-
     /**
      * Fonction appelée lors d'un drop sur le workspace
      * @param {number} x    coordonnée x de la case droppée
      * @param {number} y    coordonnée y de la case droppée
      * @param {object} data données transmises lors du DragNDrop
      */
-=======
->>>>>>> Projet/master
     $scope.onWorkspaceDrop = function (column, position, data) {
         console.log(data);
         switch (data.from){

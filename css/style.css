@@ -702,8 +702,6 @@ ng-widget {
     width: 500px;
 }
 
-<<<<<<< 0a3a2e0dd58b0a49643d814eb1f0122724107497
-=======
 .ng-3-line {
   position: relative;
   top: 0px;
@@ -721,4 +719,3 @@ ng-widget {
   box-shadow: inset 0px 0px 7px 0px rgba(0, 0, 0, 0.4);
   -webkit-box-shadow: inset 0px 0px 7px 0px rgba(0, 0, 0, 0.4);
 }
->>>>>>> Amélioration (encore) du widget Agenda culturel
