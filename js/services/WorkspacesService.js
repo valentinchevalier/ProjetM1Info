@@ -64,8 +64,8 @@ app.service('WorkspacesService', function ($mdDialog) {
         }
     }
 
-    that.addWidgetElsewhere = function(index,position,column,widget){
-        workspaces[index].widgets[1][0] = widget;
+    that.addWidgetElsewhere = function(index,column,widget){
+        that.workspaces[index].addWidgetWithoutPosition(column,widget);
     }
 
 });
