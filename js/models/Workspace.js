@@ -85,6 +85,10 @@ Workspace.prototype.deleteWidget = function(column, position){
     this.widgets[column].splice(position, 1);
 };
 
+Workspace.prototype.addWidgetWithoutPosition = function(column, widget){
+    this.addWidget(column, this.widgets[column.length], widget);
+};
+
 
 Workspace.prototype.isColumnEmpty = function (index){
     return this.widgets[index].length == 0;

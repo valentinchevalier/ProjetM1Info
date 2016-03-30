@@ -6,7 +6,7 @@ app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, Tis
     $scope.TisseoApiService = TisseoApiService;
     $scope.WorkspacesService = WorkspacesService;
 
-    $scope.showSwitchClick = function(ev,workspace,column,position){
+    $scope.showSwitchClick = function(ev,column,position){
         var currentWorkspace = WorkspacesService.currentWorkspace;
         var workspaces = WorkspacesService.workspaces;
         var position = position;
@@ -55,11 +55,10 @@ app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, Tis
         };
 
         $scope.moveAnotherWorkspace = function(ev,index) {
-            console.log("Step 1");
             $scope.widget = $scope.currentWorkspace.widgets[$scope.column][$scope.position];
             WorkspacesService.deleteWidget($scope.column,$scope.position);
-            WorkspacesService.addWidgetElsewhere(index,1,0,$scope.widget);
-            console.log("Step 2");
+            WorkspacesService.addWidgetElsewhere(index,0,$scope.widget);
+            $scope.hide();
         };
     }
 
