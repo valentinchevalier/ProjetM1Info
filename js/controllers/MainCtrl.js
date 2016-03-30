@@ -55,7 +55,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
             name: "Agenda Culturel",
             type: "agenda_culturel",
             color: "#cc3366",
-            img_url: null,
+            img_url: "img/toulouse_metropole_logo.png",
             deletion: false,
         },
         {
