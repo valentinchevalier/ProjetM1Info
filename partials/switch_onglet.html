@@ -1,0 +1,38 @@
+<md-dialog aria-label="Déplacer le widget vers un autre onglet" ng-cloak>
+    <form name="switchOngletForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Déplacer le widget</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()" aria-label="Fermer">
+                    <md-icon md-svg-src="./img/ic_close_white_24px.svg"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+            <md-content class="md-padding columns-editor-container" flex>
+                <div layout="row">
+                    <div flex></div>
+                    <div class="columns-editor">
+                        <style>
+                            .column-editor {
+                                width : {{workspace.column_width -2}}% !important;
+                                margin:6px 1%;
+                            }
+                        </style>
+                        <md-button class="md-raised column-editor" ng-repeat="workspace in workspaces" ng-click="moveAnotherWorkspace($event,$index)">
+                            <p>{{workspace.title}}</p>
+                        </md-button>
+                    </div>
+                    <div flex></div>
+                </div>
+            </md-content>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="answer(data)" ng-disabled="switchOngletForm.$invalid">
+                Terminer
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

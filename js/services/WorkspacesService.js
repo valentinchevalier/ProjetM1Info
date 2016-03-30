@@ -64,5 +64,8 @@ app.service('WorkspacesService', function ($mdDialog) {
         }
     }
 
+    that.addWidgetElsewhere = function(index,position,column,widget){
+        workspaces[index].widgets[1][0] = widget;
+    }
 
 });
