@@ -53,6 +53,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
         },
         {
             name: "Agenda Culturel",
+            type: "agenda_culturel",
             color: "#cc3366",
             img_url: null,
             deletion: false,

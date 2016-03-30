@@ -1,7 +1,8 @@
 // Controleur principal
-app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, TisseoApiService) {
+app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, TisseoApiService, AgendaCulturelApiService) {
 
 
+    $scope.AgendaCulturelApiService = AgendaCulturelApiService;
     $scope.TisseoApiService = TisseoApiService;
     $scope.WorkspacesService = WorkspacesService;
 
