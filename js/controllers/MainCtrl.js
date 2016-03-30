@@ -61,8 +61,8 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
         {
             name: "Vélib toulouse",
             type: "velib",
-            color: "green",
-            img_url: null,
+            color: "#B50F1B",
+            img_url: "img/toulouse-velotoulouse-logo.png",
             deletion: false,
         },
     ];

@@ -2,7 +2,7 @@
  * Widget Velib
  */
 function WidgetVelib () {
-    Widget.call(this, "Vélib - Toulouse", "green", "./partials/widgets/widget_velib.html", "WidgetVelibCtrl")
+    Widget.call(this, "Vélib - Toulouse", "#B50F1B", "./partials/widgets/widget_velib.html", "WidgetVelibCtrl")
     this.searchPlaces = [];
 
     this.searchValue = "";
@@ -16,6 +16,7 @@ function WidgetVelib () {
         $scope.test = "coucou";
     }
 }
+
 WidgetVelib.prototype = new Widget();
 
 WidgetVelib.prototype.isStopSelected = function(){
