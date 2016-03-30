@@ -7,7 +7,7 @@ app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, Tis
     $scope.WorkspacesService = WorkspacesService;
 
     $scope.showSwitchClick = function(ev,workspace,column,position){
-        var currentWorkspace = workspace;
+        var currentWorkspace = WorkspacesService.currentWorkspace;
         var workspaces = WorkspacesService.workspaces;
         var position = position;
         var column = column;
