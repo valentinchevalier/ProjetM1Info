@@ -72,6 +72,14 @@ Workspace.prototype.addNewWidget = function(column, position, data){
 Workspace.prototype.addWidget = function(column, position, widget){
     this.widgets[column].splice(position, 0, widget);
 };
+Workspace.prototype.addWidgetWithoutPosition = function(column, widget){
+    this.addWidget(column, this.widgets[column.length], widget);
+};
+Workspace.prototype.addWidgetsToColumn = function(widgets, column){
+    for (var i = 0; i < widgets.length; i++){
+        this.addWidgetWithoutPosition(column, widgets[i]);
+    }
+}
 
 Workspace.prototype.deleteWidget = function(column, position){
     this.widgets[column].splice(position, 1);
@@ -90,6 +98,12 @@ Workspace.prototype.addColumn = function (){
 
 Workspace.prototype.removeColumn = function (index){
     this.nb_column--;
+    var widgets = this.widgets[index];
+    if (index==0){
+        this.addWidgetsToColumn(widgets, index+1);
+    } else {
+        this.addWidgetsToColumn(widgets, index-1);
+    }
     this.widgets.splice(index, 1);
     this.column_width = (100/this.nb_column);
 };
