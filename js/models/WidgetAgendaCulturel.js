@@ -8,6 +8,7 @@ function WidgetAgendaCulturel () {
     this.searchValue = "";
     this.isDescriptionCourteVisible = true;
     this.evenements = [];
+    this.etendus = [];
 
     this.controller = function($scope, AgendaCulturelApiService){
         $scope.test = "coucou";
@@ -15,8 +16,16 @@ function WidgetAgendaCulturel () {
 }
 WidgetAgendaCulturel.prototype = new Widget();
 
-WidgetAgendaCulturel.prototype.switchDescription = function(){
-    this.isDescriptionCourteVisible = !this.isDescriptionCourteVisible;
+WidgetAgendaCulturel.prototype.switchDescription = function(item){
+    if(this.etendus[item] == 1){
+        this.etendus[item] = 0;
+    }else{
+        this.etendus[item] = 1;
+    }
+}
+
+WidgetAgendaCulturel.prototype.isEtendu = function(item){
+    return this.etendus[item]==1;
 }
 
 WidgetAgendaCulturel.prototype.isRechercheEnCours = function(){
