@@ -702,9 +702,3 @@ ng-widget {
     width: 500px;
 }
 
-.evenements {
-    overflow: auto;
-    max-height: 200px;
-    padding: 0;
-    background-color: rgba(250,250,250,0.5);
-}
