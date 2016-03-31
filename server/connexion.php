@@ -24,7 +24,7 @@ if ($login == "" || $password == ""){
 try {
     $DB = new PDO('mysql:host=' . $db_host . ';dbname=' . $db_name, $db_user, $db_password);
 
-    $sql = "SELECT login, password FROM user WHERE login='".$login."'";
+    $sql = "SELECT * FROM user WHERE login='".$login."'";
 
     $req = $DB->query($sql);
 

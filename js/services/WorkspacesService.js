@@ -1,4 +1,4 @@
-app.service('WorkspacesService', function ($mdDialog) {
+app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
 
     var that = this;
 
@@ -71,9 +71,13 @@ app.service('WorkspacesService', function ($mdDialog) {
 
     that.save = function(){
         console.log("coucou");
+        var user = UserService.loginData.loggedUser;
+        console.log(user);
+        console.log(that.workspaces);
+        var deferred = $q.defer();
         $http.post("http://purplemultimedia.com/private/ProjetM1Info/server/dataSave.php", {
-            login : login,
-            password : password
+            userId : user.id,
+            workspaces : that.workspaces
         }).then(function(response) {
             console.log(response);
             if (response.data.status == 1){
