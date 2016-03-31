@@ -2,7 +2,7 @@
  * Widget Velib
  */
 function WidgetVelib () {
-    Widget.call(this, "Vélib - Toulouse", "#B50F1B", "./partials/widgets/widget_velib.html", "WidgetVelibCtrl")
+    Widget.call(this, "Vélib - Toulouse", "#B50F1B", "./partials/widgets/widget_velib.html", "WidgetVelibCtrl", "velo_toulouse")
     this.searchPlaces = [];
 
     this.searchValue = "";

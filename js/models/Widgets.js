@@ -4,11 +4,12 @@
  * @param {string} color       Couleur de fond du widget
  * @param {url}    templateUrl Url du template du widget
  */
-function Widget (name, color, templateUrl, controllerName = "WidgetCtrl") {
+function Widget (name, color, templateUrl, controllerName = "WidgetCtrl", type_widget = "") {
     this.name = name;
     this.color = color;
     this.imgUrl = "";
     this.templateUrl = templateUrl;
+    this.type_widget = type_widget;
     this.isReduced = false
 }
 
@@ -30,7 +31,7 @@ Widget.prototype.switchWorkspaceClick = function(){
  * Widget post it
  */
 function WidgetPostIt (){
-    Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html")
+    Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html", "post_it")
     this.texte = "";
 }
 
