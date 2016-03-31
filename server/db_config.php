@@ -8,5 +8,6 @@ $db_name = 'db614567606';
 $db_user = 'dbo614567606';
 $db_password = 'ProjetM1Info';
 
+header("Access-Control-Allow-Origin: *");
 
 ?>

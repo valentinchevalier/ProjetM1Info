@@ -20,7 +20,6 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
         that.loginData.isLogged = true;
         SettingsService.enable();
     };
-    that.login(null);
 
     that.logout = function () {
         console.log("deconnexion");

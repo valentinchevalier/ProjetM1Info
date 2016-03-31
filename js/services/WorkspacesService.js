@@ -68,4 +68,25 @@ app.service('WorkspacesService', function ($mdDialog) {
         that.workspaces[index].addWidgetWithoutPosition(column,widget);
     }
 
+
+    that.save = function(){
+        $http.post("http://purplemultimedia.com/private/ProjetM1Info/server/dataSave.php", {
+            login : login,
+            password : password
+        }).then(function(response) {
+            console.log(response);
+            if (response.data.status == 1){
+                deferred.resolve(response.data.user);
+            } else {
+                deferred.reject(response.data.message);
+            }
+        }, function(response) {
+            deferred.reject("Erreur de connexion au serveur");
+        });
+    }
+
+    that.reload = function(){
+
+    }
+
 });
