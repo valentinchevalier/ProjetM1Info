@@ -62,7 +62,7 @@ try {
                 var_dump($widget);
                 echo "\n";
 
-                $sql = "INSERT INTO widget(workspace_id,title,col,position) VALUES('".$workspaceId."', '".$widget['name']."', '".$colIndex."', '".$posIndex."')";
+                $sql = "INSERT INTO widget(workspace_id,title,col,position,type_widget) VALUES('".$workspaceId."', '".$widget['name']."', '".$colIndex."', '".$posIndex."', '".$widget['type_widget']."')";
                 echo "Sql : ".$sql."\n";
                 $res_exec = $DB->exec($sql);
                 if ($res_exec == 0) {
