@@ -3,7 +3,7 @@
  * Widget Tisséo - Prochains passages
  */
 function WidgetAgendaCulturel () {
-    Widget.call(this, "Agenda culturel", "#cc3366", "./partials/widgets/widget_agenda_culturel.html", "WidgetAgendaCulturelCtrl","agenda_culturel")
+    Widget.call(this, "Agenda culturel", "#cc3366", "./partials/widgets/widget_agenda_culturel.html","agenda_culturel")
 
     this.searchValue = "";
     this.isDescriptionCourteVisible = true;
