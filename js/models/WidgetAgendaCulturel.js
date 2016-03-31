@@ -34,11 +34,16 @@ WidgetAgendaCulturel.prototype.isRechercheEnCours = function(){
 
 WidgetAgendaCulturel.prototype.onChange = function(agendaCulturelApi){
     var that = this;
-    that.loading = true;
-    agendaCulturelApi.getEvenements(that.searchValue).then(function(data){
-        that.evenements = data.records;
-        that.loading = false;
-    }, function(msg){
-        alert(msg);
-    });
+    if (that.searchValue != ""){
+        that.loading = true;
+        agendaCulturelApi.getEvenements(that.searchValue).then(function(data){
+            that.evenements = data.records;
+            that.loading = false;
+        }, function(msg){
+            alert(msg);
+        });
+    } else {
+        that.evenements = [];
+    }
+
 }
