@@ -7,7 +7,7 @@
 </div>
 
 <md-list flex class="evenements">
-    <md-list-item class="ng-3-line" ng-repeat="evenement in widget.evenements | limitTo: 5 track by $index">
+    <md-list-item class="ng-3-line" ng-repeat="evenement in widget.evenements | limitTo: 10 track by $index">
         <div class="md-list-item-text" layout="column">
             <a target=_blank href="{{evenement.fields.reservation_site_internet}}" <h3>{{ evenement.fields.nom_generique }}</h3> </a>
             <h4>{{ evenement.fields.dates_affichage_horaires }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ evenement.fields.lieu_nom}} </h4>
