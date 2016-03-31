@@ -15,11 +15,19 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
         },
     };
 
+
+
     that.login = function (user) {
         that.loginData.loggedUser = user;
         that.loginData.isLogged = true;
         SettingsService.enable();
     };
+
+    that.login({
+        id: "37",
+        login:"valche.vc",
+        password:"test",
+    });
 
     that.logout = function () {
         console.log("deconnexion");

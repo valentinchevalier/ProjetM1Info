@@ -12,6 +12,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
     $scope.UserService = UserService;
     $scope.SettingsService = SettingsService;
     $scope.TisseoApiService = TisseoApiService;
+    $scope.WorkspacesService = WorkspacesService;
 
 
     $scope.searchArret = function(){

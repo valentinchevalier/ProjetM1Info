@@ -70,6 +70,7 @@ app.service('WorkspacesService', function ($mdDialog) {
 
 
     that.save = function(){
+        console.log("coucou");
         $http.post("http://purplemultimedia.com/private/ProjetM1Info/server/dataSave.php", {
             login : login,
             password : password

@@ -3,6 +3,13 @@
         <h1 class="md-toolbar-tools">Paramètres</h1>
     </md-toolbar>
     <md-content layout-padding>
-
+        <md-list flex>
+            <md-list flex>
+                <md-list-item ng-click="WorkspacesService.save()">
+                    <md-icon>save</md-icon>
+                    <p>Sauvegarder l'état courant</p>
+                </md-list-item>
+            </md-list>
+        </md-list>
     </md-content>
 </md-sidenav>
