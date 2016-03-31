@@ -4,7 +4,7 @@
  * @param {string} color       Couleur de fond du widget
  * @param {url}    templateUrl Url du template du widget
  */
-function Widget (name, color, templateUrl, controllerName = "WidgetCtrl", type_widget = "") {
+function Widget (name, color, templateUrl, type_widget = "") {
     this.name = name;
     this.color = color;
     this.imgUrl = "";
