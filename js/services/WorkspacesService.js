@@ -75,18 +75,17 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
         console.log(user);
         console.log(that.workspaces);
         var deferred = $q.defer();
+            that.isMessageVisible = true;
+            that.message =  "Sauvegarde en cours ... "
         $http.post("http://purplemultimedia.com/private/ProjetM1Info/server/dataSave.php", {
             userId : user.id,
             workspaces : that.workspaces
         }).then(function(response) {
-            console.log(response);
-            if (response.data.status == 1){
-                deferred.resolve(response.data.user);
-            } else {
-                deferred.reject(response.data.message);
-            }
+            that.isMessageVisible = true;
+            that.message =  "Sauvegarde réussi"
         }, function(response) {
-            deferred.reject("Erreur de connexion au serveur");
+            that.isMessageVisible = true;
+            that.message =  "Problème de connexion au serveur"
         });
     }
 

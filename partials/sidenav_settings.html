@@ -10,6 +10,9 @@
                     <p>Sauvegarder l'état courant</p>
                 </md-list-item>
             </md-list>
+            <md-list ng-show="WorkspacesService.isMessageVisible">
+                {{WorkspacesService.message}}
+            </md-list>
         </md-list>
     </md-content>
 </md-sidenav>
