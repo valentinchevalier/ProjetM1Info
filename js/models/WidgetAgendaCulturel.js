@@ -1,6 +1,6 @@
 
 /**
- * Widget Tisséo - Prochains passages
+ * Widget Agenda culturel
  */
 function WidgetAgendaCulturel () {
     Widget.call(this, "Agenda culturel", "#cc3366", "./partials/widgets/widget_agenda_culturel.html","agenda_culturel")

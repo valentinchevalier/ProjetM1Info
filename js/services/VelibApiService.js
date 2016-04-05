@@ -20,7 +20,7 @@ app.service("VelibApiService", function($http, $q, $filter){
                 var results = that.stations.filter( that.createFilterFor(s));
                 deferred.resolve(results)
             }). error(function(data, status){
-                deferred.reject("Aucunne station ne correspond");
+                deferred.reject("Aucune station ne correspond à votre recherche.");
             });
             return deferred.promise;
         } else {

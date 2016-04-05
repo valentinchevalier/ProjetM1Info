@@ -23,9 +23,9 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
             WorkspacesService.deleteWorkspace(index);
         } else {
             var confirm = $mdDialog.confirm()
-            .title('Voulez vous vraiment supprimer le workspace ?')
+            .title('Êtes-vous sûr de vouloir supprimer le workspace ?')
                 .textContent("Tous les widgets qu'il contient seront également supprimés !")
-                .ariaLabel('Confirmation de supression')
+                .ariaLabel('Confirmation de suppression')
                 .targetEvent(ev)
                 .openFrom($(ev.currentTarget))
                 .ok('Supprimer')
@@ -112,7 +112,7 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
         $scope.showConfirmDeletion = function(index){
             $scope.deletionIndex = index;
             $scope.isConfirmationVisible = true;
-            $scope.confirmMessage = $sce.trustAsHtml("Voulez vous vraiment supprimer cette colonne ? <br>(tous les widgets qu'elles contient seront déplacés vers un colonne voisine)");
+            $scope.confirmMessage = $sce.trustAsHtml("Êtes-vous sûr de vouloir supprimer cette colonne ? <br>(tous les widgets qu'elle contient seront déplacés vers une colonne voisine)");
         }
         $scope.confirmDeletion = function(){
             $scope.workspace.removeColumn($scope.deletionIndex);

@@ -120,7 +120,7 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
     $rootScope.$on("draggable:move", function() {
         // Si le bouton du menu est survolé
         if ($('.floating-btn.drag-enter').length!=0){
-            // Activation de la suppression (widget trnasparent)
+            // Activation de la suppression (widget transparent)
             $scope.currentDraggingWidget.deletion = true;
             $scope.$apply();
         } else {
@@ -132,8 +132,8 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
 
 
     /**
-     * Fonction appelé lors du drop sur la corbeille
-     * @param {object} data Données reçu par le drop
+     * Fonction appelée lors du drop sur la corbeille
+     * @param {object} data Données reçues par le drop
      */
     $scope.onDeleteDrop = function (data) {
         switch (data.from){

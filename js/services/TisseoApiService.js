@@ -22,7 +22,7 @@ app.service("TisseoApiService", function($http, $q, $filter){
         }).success(function(data,status){
             deferred.resolve(data.placesList.place)
         }). error(function(data, status){
-            deferred.reject("Aucuns arrêt ne correspond");
+            deferred.reject("Aucun arrêt ne correspond à votre recherche.");
         });
         return deferred.promise;
     }

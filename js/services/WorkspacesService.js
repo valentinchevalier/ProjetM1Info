@@ -82,10 +82,10 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
             workspaces : that.workspaces
         }).then(function(response) {
             that.isMessageVisible = true;
-            that.message =  "Sauvegarde réussi"
+            that.message =  "Sauvegarde réussie"
         }, function(response) {
             that.isMessageVisible = true;
-            that.message =  "Problème de connexion au serveur"
+            that.message =  "Impossible de se connecter au serveur"
         });
     }
 
