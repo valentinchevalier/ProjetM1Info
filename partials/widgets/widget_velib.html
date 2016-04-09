@@ -1,0 +1,34 @@
+<div layout="row" layout-wrap>
+    <md-autocomplete flex
+       md-selected-item="widget.currentStation"
+       md-search-text="widget.searchValue"
+       md-items="item in VelibApiService.searchPlace(widget.searchValue)"
+       md-item-text="item.name"
+       md-min-length="3"
+       md-selected-item-change="widget.selectStop(VelibApiService)"
+       md-select-on-match="true"
+       md-autoselect="true"
+       placeholder="Saisissez la station que vous souhaitez consulter..." >
+        <md-item-template>
+            <span>{{item.name}}</span>
+        </md-item-template>
+        <md-not-found>
+            Aucun résultat
+        </md-not-found>
+    </md-autocomplete>
+</div>
+
+
+
+<div class="loading" ng-show="widget.loading">
+    <md-progress-circular md-mode="indeterminate" class="md-warn"></md-progress-circular>
+</div>
+
+<div class="info-message" ng-hide="widget.isStationSelected()">
+    <p><i class="material-icons">arrow_upward</i> Veuillez saisir une station <i class="material-icons">arrow_upward</i></p>
+</div>
+
+<div class="info-message" ng-show="widget.isStationSelected()" >
+     <p align="left"> -> Velos disponibles : {{widget.currentStation.available_bikes}} </p>
+     <p align="left"> -> Emplacements libres : {{widget.currentStation.available_bike_stands}} </p>
+</div>
