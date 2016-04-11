@@ -34,8 +34,6 @@ app.service("VelibApiService", function($http, $q, $filter){
     that.createFilterFor = function(query) {
       var lowercaseQuery = angular.lowercase(query);
       return function filterFn(station) {
-        console.log(angular.lowercase(station.name))
-        console.log(lowercaseQuery)
         return (angular.lowercase(station.name).indexOf(lowercaseQuery) != -1);
       };
     }

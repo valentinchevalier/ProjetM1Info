@@ -51,7 +51,7 @@ WidgetTisseo.prototype.selectStop = function(tisseoApi){
         that.params.currentStopKey = null;
     }
 }
-WidgetTisseo.prototype.changeStop = function(tisseoApi){
+WidgetTisseo.prototype.changeStop = function(){
     var that = this;
 
     if (that.currentStop && that.currentStop.id){

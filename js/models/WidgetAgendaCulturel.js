@@ -10,12 +10,19 @@ function WidgetAgendaCulturel () {
     this.evenements = [];
     this.etendus = [];
 
+    this.nb_elements = 10;
+
     this.controller = function($scope, AgendaCulturelApiService){
         $scope.test = "coucou";
     }
 }
 WidgetAgendaCulturel.prototype = new Widget();
 
+
+WidgetAgendaCulturel.prototype.showMore = function(nb_elements){
+    nb_elements+=5;
+    console.log(nb_elements);
+}
 WidgetAgendaCulturel.prototype.switchDescription = function(item){
     if(this.etendus[item] == 1){
         this.etendus[item] = 0;
@@ -37,6 +44,7 @@ WidgetAgendaCulturel.prototype.onChange = function(agendaCulturelApi){
     if (that.searchValue != ""){
         that.loading = true;
         agendaCulturelApi.getEvenements(that.searchValue).then(function(data){
+            console.log(data);
             that.evenements = data.records;
             that.loading = false;
         }, function(msg){

@@ -720,3 +720,16 @@ ng-widget {
 .ng-3-line h4, .ng-3-line p {
     margin: 5px 0;
 }
+
+.evenement h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: normal;
+}
+.evenement h3 a{
+    color: white;
+}
+.evenement .lieu {
+    text-transform: capitalize;
+}
+

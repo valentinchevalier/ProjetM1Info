@@ -5,7 +5,8 @@
        md-items="item in VelibApiService.searchPlace(widget.searchValue)"
        md-item-text="item.name"
        md-min-length="3"
-       md-selected-item-change="widget.selectStop(VelibApiService)"
+       md-selected-item-change="widget.changeStation()"
+       md-search-text-change="widget.changeStation()"
        md-select-on-match="true"
        md-autoselect="true"
        placeholder="Saisissez la station que vous souhaitez consulter..." >
@@ -17,7 +18,6 @@
         </md-not-found>
     </md-autocomplete>
 </div>
-
 
 
 <div class="loading" ng-show="widget.loading">
