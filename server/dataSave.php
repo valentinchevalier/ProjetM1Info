@@ -50,7 +50,6 @@ try {
         $res_exec = $DB->exec($sql);
 
         $sql = "SELECT LAST_INSERT_ID()";
-
         $req = $DB->query($sql);
         $workspaceId = $req->fetch()[0];
 
