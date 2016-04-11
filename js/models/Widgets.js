@@ -36,7 +36,7 @@ Widget.prototype.switchWorkspaceClick = function(){
  * Widget post it
  */
 function WidgetPostIt (){
-    Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html",null,  "post_it")
+    Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html","post_it")
     this.params.texte = "";
 }
 

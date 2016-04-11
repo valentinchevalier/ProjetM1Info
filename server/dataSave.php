@@ -66,7 +66,22 @@ try {
                 $res_exec = $DB->exec($sql);
                 if ($res_exec == 0) {
                     var_dump($DB->errorInfo());
-                }
+                } else {                    
+                    $sql = "SELECT LAST_INSERT_ID()";
+                    $req = $DB->query($sql);
+                    $widgetId = $req->fetch()[0];
+
+                    $params = $widget['params'];
+                    var_dump($params);
+                    foreach ($params as $key => $value){
+                        $sql = "INSERT INTO widget_params(widget_id,field_name,value) VALUES('".$widgetId."', '".$key."', '".$value."')";
+                        echo "Sql : ".$sql."\n";
+                        $res_exec = $DB->exec($sql);
+                        if ($res_exec == 0) {
+                            var_dump($DB->errorInfo());
+                        } else { }
+                    }
+                }   
             }
         }
 
