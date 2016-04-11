@@ -4,7 +4,7 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
 
     // Tableau contenant les workspaces
     that.workspaces = [
-        new Workspace("Onglet 1", 3, 2),
+        new Workspace("Onglet 1", 2),
     ];
 
     // Workspace courant

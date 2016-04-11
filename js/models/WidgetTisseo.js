@@ -13,6 +13,9 @@ function WidgetTisseo () {
     this.currentLine = null;
     this.currentStop = null;
 
+    this.params.currentStopKey = null;
+    this.params.currentLineNumber = null;
+
     this.controller = function($scope, TisseoApiService){
         $scope.test = "coucou";
     }
@@ -34,6 +37,8 @@ WidgetTisseo.prototype.selectStop = function(tisseoApi){
     if (that.currentStop && that.currentStop.id){
         that.loading = true;
 
+        that.params.currentStopKey = that.currentStop.key;
+
         tisseoApi.getLinesForStop(that.currentStop.id).then(function(data){
             that.lines = data;
             that.currentLine = null;
@@ -43,6 +48,16 @@ WidgetTisseo.prototype.selectStop = function(tisseoApi){
         });
     } else {
         that.lines = [];
+        that.params.currentStopKey = null;
+    }
+}
+WidgetTisseo.prototype.changeStop = function(tisseoApi){
+    var that = this;
+
+    if (that.currentStop && that.currentStop.id){
+        that.params.currentStopKey = that.currentStop.key;
+    } else {
+        that.params.currentStopKey = null;
     }
 }
 
@@ -50,8 +65,11 @@ WidgetTisseo.prototype.selectLine = function(line, tisseoApi){
     var that = this;
     if (that.currentLine == line){
         that.currentLine = null;
+        this.params.currentLineNumber = null;
     } else {
         that.currentLine = line;
+        console.log(line);
+        this.params.currentLineNumber = line.id;
     }
     if (that.isLineSelected() && that.isStopSelected()){
         that.loading = true;
