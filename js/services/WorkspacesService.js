@@ -70,13 +70,12 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
 
 
     that.save = function(){
-        console.log("coucou");
+        console.log("Sauvegarde");
         var user = UserService.loginData.loggedUser;
-        console.log(user);
-        console.log(that.workspaces);
+        that.isMessageVisible = true;
+        that.message =  "Sauvegarde en cours ... ";
+
         var deferred = $q.defer();
-            that.isMessageVisible = true;
-            that.message =  "Sauvegarde en cours ... "
         $http.post("http://purplemultimedia.com/private/ProjetM1Info/server/dataSave.php", {
             userId : user.id,
             workspaces : that.workspaces
@@ -90,7 +89,38 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
     }
 
     that.reload = function(){
+        console.log("Chargement");
 
+        var user = UserService.loginData.loggedUser;
+
+        that.isMessageVisible = true;
+        that.message =  "Chargement en cours ... "
+
+        var deferred = $q.defer();
+        $http.post("http://purplemultimedia.com/private/ProjetM1Info/server/dataLoad.php", {
+            userId : user.id,
+        }).then(function(response) {
+            console.log(response);
+            that.reloadData(response.data);
+            that.isMessageVisible = true;
+            that.message =  "Chargement réussie"
+        }, function(response) {
+            that.isMessageVisible = true;
+            that.message =  "Impossible de se connecter au serveur"
+        });
+    }
+
+    that.reloadData = function(workspaces){
+        that.workspaces = [];
+        angular.forEach(workspaces, function(workspaceData) {
+            console.log(workspaceData);
+            workspace = new Workspace(workspaceData.title, workspaceData.nb_column);
+
+            workspace.initWidgets(workspaceData.widgets);
+
+            that.workspaces[workspaceData.position] = workspace;
+
+        });
     }
 
 });
