@@ -48,8 +48,9 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
         },
         {
             name: "Météo",
-            color: "#33cc99",
-            img_url: null,
+            type: "weather_toulouse",
+            color: "#40FFB8",
+            img_url: "weather_logo.png",
             deletion: false,
         },
         {
