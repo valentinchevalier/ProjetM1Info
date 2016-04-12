@@ -6,7 +6,6 @@ function WidgetWeather () {
 
     this.temperature = null;
     this.weather = null;
-    console.log("Je suis là");
 }
 
 WidgetWeather.prototype = new Widget();
