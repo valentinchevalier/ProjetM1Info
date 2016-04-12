@@ -1,8 +1,4 @@
-<div class="loading" ng-show="widget.loading">
-    <md-progress-circular md-mode="indeterminate" class="md-warn"></md-progress-circular>
-</div>
-
-<div class="info-message" ng-show="widget" >
-     <p align="left"> -> Velos disponibles : {{}} </p>
-     <p align="left"> -> Emplacements libres : {{}} </p>
+<div class="info-message">
+     <p align="left">Température : {{WeatherApiService.info.main.temp*1-273.15}} </p>
+     <p align="left">Temps : {{WeatherApiService.info.weather.main}}</p>
 </div>

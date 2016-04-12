@@ -61,6 +61,8 @@ Workspace.prototype.addNewWidget = function(column, position, data){
         widget = new WidgetTisseo();
     } else if (data.type == "post_it"){
         widget = new WidgetPostIt();
+    } else if (data.type == "weather_toulouse"){
+        widget = new WidgetWeather();
     } else if (data.type == "agenda_culturel"){
         widget = new WidgetAgendaCulturel();
     } else if(data.type == "velo_toulouse"){
