@@ -1,4 +1,3 @@
 <div class="info-message">
-     <p align="left">Température : {{WeatherApiService.info.main.temp*1-273.15}} </p>
-     <p align="left">Temps : {{WeatherApiService.info.weather[0].main}}</p>
+     <p align="left"><img src="../../img/logo_temperature.png" heignt="15px" width="15px"/> : {{(WeatherApiService.info.main.temp-273.15).toFixed(0)}}°C </p>
 </div>

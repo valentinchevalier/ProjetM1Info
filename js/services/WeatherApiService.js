@@ -18,6 +18,4 @@ app.service("WeatherApiService", function($http, $q, $filter){
     }). error(function(data, status){
         deferred.reject("Une erreur est survenue.");
     });
-
-    return deferred.promise;
 });
