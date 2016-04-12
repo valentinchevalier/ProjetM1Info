@@ -5,6 +5,8 @@ app.service("AgendaCulturelApiService", function($http, $q, $filter){
 
     that.sort = "-date_debut";
 
+    var limitStep = 5;
+
 
     that.getEvenements = function(query){
         var url = that.preffix;
@@ -14,7 +16,7 @@ app.service("AgendaCulturelApiService", function($http, $q, $filter){
         $http.get(url, {
             params: {
                 q: vraieQuery,
-                sort : "-date_debut"
+                sort : that.sort
             }
         }).success(function(data,status){
             console.log(data);

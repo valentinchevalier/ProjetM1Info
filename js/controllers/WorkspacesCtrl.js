@@ -2,15 +2,6 @@ app.controller("WorkspacesCtrl", function ($scope, WorkspacesService, $mdDialog,
 
     $scope.WorkspacesService = WorkspacesService;
 
-    // Informations du Workspace Créator
-    $scope.workspaceCreator = {
-        title : "Nouvel onglet",
-        nb_column : 2,
-        nb_row : 3,
-    };
-
-    $scope.isWorkspaceCreatorVisible = false;
-
 
     /**
      * Supprime le ieme workspace

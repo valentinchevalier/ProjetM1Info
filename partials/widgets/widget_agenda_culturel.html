@@ -6,13 +6,33 @@
     <md-progress-circular md-mode="indeterminate" class="md-warn"></md-progress-circular>
 </div>
 
-<md-list flex class="evenements">
-    <md-list-item class="ng-3-line" ng-repeat="evenement in widget.evenements | limitTo: 10 track by $index">
-        <div class="md-list-item-text" layout="column">
-            <a target=_blank href="{{evenement.fields.reservation_site_internet}}" <h3>{{ evenement.fields.nom_generique }}</h3> </a>
-            <h4>{{ evenement.fields.dates_affichage_horaires }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ evenement.fields.lieu_nom}} </h4>
-            <p ng-hide="widget.isEtendu($index)" ng-click="widget.switchDescription($index)">{{ evenement.fields.descriptif_court }}</p>
-            <p ng-show="widget.isEtendu($index)" ng-click="widget.switchDescription($index)">{{ evenement.fields.descriptif_long }}</p>
+<md-list flex class="evenements" ng-init="nb_elements = 5">
+    <md-list-item class="ng-3-line" ng-repeat="evenement in widget.evenements | limitTo: (nb_elements < widget.evenements.length ?nb_elements : widget.evenements.length ) track by $index">
+        <div class="md-list-item-text evenement" layout="column">
+            <h3>
+                <a target=_blank href="http://{{evenement.fields.reservation_site_internet}}" ng-if="evenement.fields.reservation_site_internet">{{ evenement.fields.nom_de_la_manifestation }}</a>
+                <span ng-if="!evenement.fields.reservation_site_internet">{{ evenement.fields.nom_de_la_manifestation }}</span>
+            </h3>
+            <p>
+                <span class="horaires">{{ evenement.fields.dates_affichage_horaires }}</span>
+            </p>
+            <p>
+                <span class="lieu">{{ evenement.fields.lieu_nom | lowercase}}</span>
+            </p>
+            <div ng-hide="widget.isEtendu($index)" ng-click="widget.switchDescription($index)">
+                {{ evenement.fields.descriptif_court }}
+            </div>
+            <div ng-show="widget.isEtendu($index)" ng-click="widget.switchDescription($index)">
+                <p ng-if="evenement.fields.tarif_normal">Tarifs :  {{ evenement.fields.tarif_normal }}</p>
+                {{ evenement.fields.descriptif_long }}
+            </div>
+        </div>
+        <md-divider ></md-divider>
+
+    </md-list-item>
+    <md-list-item class="ng-1-line" ng-click="nb_elements=nb_elements+5" ng-show="nb_elements < widget.evenements.length">
+        <div class="md-list-item-text evenement" layout="column">
+            Voir plus
         </div>
         <md-divider ></md-divider>
 

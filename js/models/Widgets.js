@@ -10,7 +10,12 @@ function Widget (name, color, templateUrl, type_widget = "") {
     this.imgUrl = "";
     this.templateUrl = templateUrl;
     this.type_widget = type_widget;
-    this.isReduced = false
+    this.isReduced = false;
+
+    this.params = {
+
+    };
+
 }
 
 Widget.prototype.reduce = function(){
@@ -31,8 +36,8 @@ Widget.prototype.switchWorkspaceClick = function(){
  * Widget post it
  */
 function WidgetPostIt (){
-    Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html",null,  "post_it")
-    this.texte = "";
+    Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html",  "post_it")
+    this.params.texte = "";
 }
 
 WidgetPostIt.prototype = new Widget();
