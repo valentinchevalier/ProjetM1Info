@@ -32,6 +32,14 @@ Widget.prototype.switchWorkspaceClick = function(){
 }
 
 
+Widget.prototype.setParams = function(paramsData){
+    var that = this;
+    angular.forEach(paramsData, function(value, key){
+        that.params[key] = value;
+    });
+}
+
+
 /**
  * Widget post it
  */

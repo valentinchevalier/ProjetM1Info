@@ -5,7 +5,7 @@
 function WidgetAgendaCulturel () {
     Widget.call(this, "Agenda culturel", "#cc3366", "./partials/widgets/widget_agenda_culturel.html","agenda_culturel")
 
-    this.searchValue = "";
+    this.params.searchValue = "";
     this.isDescriptionCourteVisible = true;
     this.evenements = [];
     this.etendus = [];
@@ -36,14 +36,14 @@ WidgetAgendaCulturel.prototype.isEtendu = function(item){
 }
 
 WidgetAgendaCulturel.prototype.isRechercheEnCours = function(){
-    return ! (this.searchValue == "");
+    return ! (this.params.searchValue == "");
 }
 
 WidgetAgendaCulturel.prototype.onChange = function(agendaCulturelApi){
     var that = this;
-    if (that.searchValue != ""){
+    if (that.params.searchValue != ""){
         that.loading = true;
-        agendaCulturelApi.getEvenements(that.searchValue).then(function(data){
+        agendaCulturelApi.getEvenements(that.params.searchValue).then(function(data){
             console.log(data);
             that.evenements = data.records;
             that.loading = false;

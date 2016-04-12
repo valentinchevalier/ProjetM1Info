@@ -23,7 +23,7 @@ WidgetVelib.prototype.changeStation = function(){
     if (this.currentStation && this.currentStation.name){
         this.params.stationName = this.currentStation.name;
     } else {
-        this.params.currentStopKey = null;
+        this.params.stationName = null;
     }
 }
 

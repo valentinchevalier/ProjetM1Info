@@ -12,8 +12,7 @@ if ($userId == "" || $userId == null){
     $res = array(
         'status' => ERREUR,
         'message' => "Problème de paramètres de sauvegarde",
-        'login' => $login,
-        'password' => $password
+        'user-id' => $userId,
     );
 
     echo json_encode($res);
@@ -45,9 +44,14 @@ try {
 
     for($i = 0; $i < count($workspaces); $i++){
         $workspace = $workspaces[$i];
-        $sql = "INSERT INTO workspace(user_id, title, position, nb_column, background_color) VALUES('".$userId."', '".$workspace['title']."', '".$i."', '".$workspace['nb_column']."', '".$workspace['bgColor']."')";
-        echo "Sql : ".$sql."\n";
-        $res_exec = $DB->exec($sql);
+        $statement = $DB->prepare("INSERT INTO workspace(user_id, title, position, nb_column, background_color) VALUES(:user_id, :title, :position, :nb_column, :background_color)");
+        $statement->bindParam('user_id', $userId, PDO::PARAM_INT);
+        $statement->bindParam('title', $workspace['title']);
+        $statement->bindParam('position', $i, PDO::PARAM_INT);
+        $statement->bindParam('nb_column', $workspace['nb_column'], PDO::PARAM_INT);
+        $statement->bindParam('background_color', $workspace['bgColor']);
+     
+        $res_exec = $statement->execute();
 
         $sql = "SELECT LAST_INSERT_ID()";
         $req = $DB->query($sql);
@@ -60,10 +64,15 @@ try {
                 echo "\n Widget : \n";
                 var_dump($widget);
                 echo "\n";
+                $statement = $DB->prepare("INSERT INTO widget(workspace_id,title,col,position,type_widget) VALUES(:workspace_id,:title,:col,:position,:type_widget)");
+                $statement->bindParam('workspace_id', $workspaceId, PDO::PARAM_INT);
+                $statement->bindParam('title', $widget['name']);
+                $statement->bindParam('col', $colIndex, PDO::PARAM_INT);
+                $statement->bindParam('position', $posIndex, PDO::PARAM_INT);
+                $statement->bindParam('type_widget', $widget['type_widget']);
+             
+                $res_exec = $statement->execute();
 
-                $sql = "INSERT INTO widget(workspace_id,title,col,position,type_widget) VALUES('".$workspaceId."', '".$widget['name']."', '".$colIndex."', '".$posIndex."', '".$widget['type_widget']."')";
-                echo "Sql : ".$sql."\n";
-                $res_exec = $DB->exec($sql);
                 if ($res_exec == 0) {
                     var_dump($DB->errorInfo());
                 } else {
@@ -74,12 +83,21 @@ try {
                     $params = $widget['params'];
                     var_dump($params);
                     foreach ($params as $key => $value){
-                        $sql = "INSERT INTO widget_params(widget_id,field_name,value) VALUES('".$widgetId."', '".$key."', '".$value."')";
-                        echo "Sql : ".$sql."\n";
-                        $res_exec = $DB->exec($sql);
+                        $id = 0;
+                        $nom = 'Test_';
+                     
+                        $statement = $DB->prepare("INSERT INTO widget_params(widget_id,field_name,value) VALUES(:widget_id, :field_name, :value)");
+                        $statement->bindParam('widget_id', $widgetId, PDO::PARAM_INT);
+                        $statement->bindParam('field_name', $key);
+                        $statement->bindParam('value', $value);
+                     
+                        $res_exec = $statement->execute();
+
                         if ($res_exec == 0) {
                             var_dump($DB->errorInfo());
-                        } else { }
+                        } else {
+
+                        }
                     }
                 }
             }
