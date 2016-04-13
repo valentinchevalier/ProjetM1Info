@@ -22,9 +22,6 @@ function WidgetTisseo () {
     
     this.TisseoApiService = injector.get('TisseoApiService');
     
-    console.log(this.params);
-
-
     this.controller = function($scope, TisseoApiService){
         $scope.test = "coucou";
     }
@@ -98,7 +95,7 @@ WidgetTisseo.prototype.onReloadClick = function(){
         }, function(msg){
             alert(msg);
         });
-    }
+    } 
 }
 
 
@@ -107,6 +104,7 @@ WidgetTisseo.prototype.init = function(){
     var that = this;
     this.TisseoApiService.searchPlace(this.params.currentStopKey).then(function(data){
         that.currentStop = data[0];
+        that.selectStop()
     });
 }
 

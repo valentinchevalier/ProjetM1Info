@@ -54,5 +54,5 @@ function WidgetPostIt (){
 WidgetPostIt.prototype = new Widget();
 
 WidgetPostIt.prototype.init = function(){
-    this.params.texte = this.params.texte + "test test test ";
+    this.params.texte = this.params.texte;
 }

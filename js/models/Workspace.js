@@ -83,7 +83,6 @@ Workspace.prototype.addNewWidget = function(column, position, data){
 Workspace.prototype.initWidgets = function(widgetsData){
     var that = this;
     angular.forEach(widgetsData, function(widgetData){
-        console.log(widgetData);
         var widget;
         switch(widgetData.type_widget){
             case 'tisseo_prochains_passages' :
@@ -105,8 +104,8 @@ Workspace.prototype.initWidgets = function(widgetsData){
                 widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
         }
         widget.setParams(widgetData.params);
-        widget.init();
         that.addWidget(widgetData.col, widgetData.position, widget);
+        that.widgets[widgetData.col][widgetData.position].init();
     });
 }
 
