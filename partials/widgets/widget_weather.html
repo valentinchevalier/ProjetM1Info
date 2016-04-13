@@ -1,3 +1,16 @@
-<div class="info-message">
-     <p align="left"><img src="../../img/logo_temperature.png" heignt="15px" width="15px"/> : {{(WeatherApiService.info.main.temp-273.15).toFixed(0)}}°C </p>
+<div layout="row">
+    <div>
+        <p>
+            <img src="../../img/logo_temperature.png" heignt="15px" width="15px"/> : {{(WeatherApiService.info.main.temp-273.15).toFixed(1)}}°C
+        </p>
+    </div>
+    <div flex>
+        <p align="center">
+            <img src="WeatherApiService.findImage()" />
+        </p>
+    </div>
+    <div>
+        <p>{{(WeatherApiService.info.main.temp_min-273.15).toFixed(1)}}°C : Température minimal</p>
+        <p>{{(WeatherApiService.info.main.temp_max-273.15).toFixed(1)}}°C : Température maximal</p>
+    </div>
 </div>

@@ -18,4 +18,15 @@ app.service("WeatherApiService", function($http, $q, $filter){
     }). error(function(data, status){
         deferred.reject("Une erreur est survenue.");
     });
+
+    that.findImage = function(){
+        var lienImage = "../../img/";
+        lienImage = lienImage+that.info.weather[0].icon;
+        console.log("C'est");
+        console.log(that.info.weather[0].icon);
+        lienImage = lienImage+".png";
+
+        return lienImage;
+    }
+
 });
