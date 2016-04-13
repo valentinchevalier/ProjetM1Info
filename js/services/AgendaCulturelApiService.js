@@ -27,5 +27,4 @@ app.service("AgendaCulturelApiService", function($http, $q, $filter){
         return deferred.promise;
     }
 
-
 });
