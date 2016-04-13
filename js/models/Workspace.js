@@ -57,20 +57,24 @@ Workspace.prototype.addNewWidget = function(column, position, data){
     // Ajout du widget dans les widgets
 
     var widget;
+
     switch (data.type) {
-        case 'tisseo_prochains_passages' : 
+        case 'tisseo_prochains_passages' :
             widget = new WidgetTisseo();
             break;
-        case 'post_it' :             
+        case 'post_it' :
             widget = new WidgetPostIt();
             break;
-        case 'agenda_culturel' : 
+        case 'agenda_culturel' :
             widget = new WidgetAgendaCulturel();
             break;
-        case 'velo_toulouse' : 
+        case 'weather_toulouse' :
+            widget = new WidgetWeather();
+            break;
+        case 'velo_toulouse' :
             widget = new WidgetVelib();
             break;
-        default: 
+        default:
             widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
     }
     this.widgets[column].splice(position, 0, widget);
@@ -82,19 +86,19 @@ Workspace.prototype.initWidgets = function(widgetsData){
         console.log(widgetData);
         var widget;
         switch(widgetData.type_widget){
-            case 'tisseo_prochains_passages' : 
+            case 'tisseo_prochains_passages' :
                 widget = new WidgetTisseo();
                 break;
-            case 'post_it' :             
+            case 'post_it' :
                 widget = new WidgetPostIt();
                 break;
-            case 'agenda_culturel' : 
+            case 'agenda_culturel' :
                 widget = new WidgetAgendaCulturel();
                 break;
-            case 'velo_toulouse' : 
+            case 'velo_toulouse' :
                 widget = new WidgetVelib();
                 break;
-            default: 
+            default:
                 widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
         }
         widget.setParams(widgetData.params);

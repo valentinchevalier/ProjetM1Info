@@ -38,7 +38,7 @@ try {
 
     // selection des workspaces de l'utilisateur
     $statementWorkspace = $DB->prepare("SELECT * FROM workspace WHERE user_id=:user_id ORDER BY position asc");
-    $statementWorkspace->bindParam('user_id', $userId);     
+    $statementWorkspace->bindParam('user_id', $userId);
     $res_exec = $statementWorkspace->execute();
     if ($res_exec == 0) {
         echo "\nErreur de la BD : ";
@@ -75,7 +75,7 @@ try {
             array_push($workspace['widgets'], $widget);
         }
 
-        
+
         array_push($res, $workspace);
     }
     echo json_encode($res);

@@ -50,7 +50,7 @@ try {
         $statement->bindParam('position', $i, PDO::PARAM_INT);
         $statement->bindParam('nb_column', $workspace['nb_column'], PDO::PARAM_INT);
         $statement->bindParam('background_color', $workspace['bgColor']);
-     
+
         $res_exec = $statement->execute();
 
         $sql = "SELECT LAST_INSERT_ID()";
@@ -70,7 +70,7 @@ try {
                 $statement->bindParam('col', $colIndex, PDO::PARAM_INT);
                 $statement->bindParam('position', $posIndex, PDO::PARAM_INT);
                 $statement->bindParam('type_widget', $widget['type_widget']);
-             
+
                 $res_exec = $statement->execute();
 
                 if ($res_exec == 0) {
@@ -85,12 +85,12 @@ try {
                     foreach ($params as $key => $value){
                         $id = 0;
                         $nom = 'Test_';
-                     
+
                         $statement = $DB->prepare("INSERT INTO widget_params(widget_id,field_name,value) VALUES(:widget_id, :field_name, :value)");
                         $statement->bindParam('widget_id', $widgetId, PDO::PARAM_INT);
                         $statement->bindParam('field_name', $key);
                         $statement->bindParam('value', $value);
-                     
+
                         $res_exec = $statement->execute();
 
                         if ($res_exec == 0) {
