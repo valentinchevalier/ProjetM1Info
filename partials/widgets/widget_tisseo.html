@@ -1,3 +1,4 @@
+<div ng-init="widget.init(TisseoApiService)"></div>
 <div layout="row" layout-wrap>
     <md-autocomplete flex
        md-selected-item="widget.currentStop"
@@ -5,7 +6,7 @@
        md-items="item in TisseoApiService.searchPlace(widget.searchValue)"
        md-item-text="item.label"
        md-min-length="3"
-       md-selected-item-change="widget.selectStop(TisseoApiService)"
+       md-selected-item-change="widget.selectStop()"
        md-search-text-change="widget.changeStop()"
        md-select-on-match="true"
        md-autoselect="true"
@@ -20,7 +21,7 @@
 
     <md-button
         class="md-icon-button"
-        ng-click="widget.onReloadClick(TisseoApiService)"
+        ng-click="widget.onReloadClick()"
         alt="Actualiser"
         aria-label="Actualiser"
         ng-disabled="widget.hasPassages()">
@@ -31,7 +32,7 @@
 
 <div class="lines" ng-show="widget.isStopSelected()">
     <span class="line-title">Ligne : </span>
-    <div ng-repeat="line in widget.lines | orderBy: '' track by line.id" class="line-icon" style="background-color: {{line.bgXmlColor}}" ng-click="widget.selectLine(line, TisseoApiService)" ng-class="{select:line.shortName == widget.currentLine.shortName}">
+    <div ng-repeat="line in widget.lines | orderBy: '' track by line.id" class="line-icon" style="background-color: {{line.bgXmlColor}}" ng-click="widget.selectLine(line)" ng-class="{select:line.shortName == widget.currentLine.shortName}">
         {{line.shortName}}
     </div>
 </div>

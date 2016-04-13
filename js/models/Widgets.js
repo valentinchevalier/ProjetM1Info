@@ -15,7 +15,6 @@ function Widget (name, color, templateUrl, type_widget = "") {
     this.params = {
 
     };
-
 }
 
 Widget.prototype.reduce = function(){
@@ -31,6 +30,18 @@ Widget.prototype.switchWorkspaceClick = function(){
     this.deleteWidget(this.x,this.y)
 }
 
+Widget.prototype.init = function(){
+
+}
+
+
+Widget.prototype.setParams = function(paramsData){
+    var that = this;
+    angular.forEach(paramsData, function(value, key){
+        that.params[key] = value;
+    });
+}
+
 
 /**
  * Widget post it
@@ -41,3 +52,7 @@ function WidgetPostIt (){
 }
 
 WidgetPostIt.prototype = new Widget();
+
+WidgetPostIt.prototype.init = function(){
+    this.params.texte = this.params.texte + "test test test ";
+}

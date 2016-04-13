@@ -57,19 +57,54 @@ Workspace.prototype.addNewWidget = function(column, position, data){
     // Ajout du widget dans les widgets
 
     var widget;
-    if (data.type == "tisseo_prochains_passages"){
-        widget = new WidgetTisseo();
-    } else if (data.type == "post_it"){
-        widget = new WidgetPostIt();
-    } else if (data.type == "agenda_culturel"){
-        widget = new WidgetAgendaCulturel();
-    } else if(data.type == "velo_toulouse"){
-        widget = new WidgetVelib();
-    } else {
-        widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
+
+    switch (data.type) {
+        case 'tisseo_prochains_passages' :
+            widget = new WidgetTisseo();
+            break;
+        case 'post_it' :
+            widget = new WidgetPostIt();
+            break;
+        case 'agenda_culturel' :
+            widget = new WidgetAgendaCulturel();
+            break;
+        case 'weather_toulouse' :
+            widget = new WidgetWeather();
+            break;
+        case 'velo_toulouse' :
+            widget = new WidgetVelib();
+            break;
+        default:
+            widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
     }
     this.widgets[column].splice(position, 0, widget);
 };
+
+Workspace.prototype.initWidgets = function(widgetsData){
+    var that = this;
+    angular.forEach(widgetsData, function(widgetData){
+        console.log(widgetData);
+        var widget;
+        switch(widgetData.type_widget){
+            case 'tisseo_prochains_passages' :
+                widget = new WidgetTisseo();
+                break;
+            case 'post_it' :
+                widget = new WidgetPostIt();
+                break;
+            case 'agenda_culturel' :
+                widget = new WidgetAgendaCulturel();
+                break;
+            case 'velo_toulouse' :
+                widget = new WidgetVelib();
+                break;
+            default:
+                widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
+        }
+        widget.setParams(widgetData.params);
+        that.addWidget(widgetData.col, widgetData.position, widget);
+    });
+}
 
 Workspace.prototype.addWidget = function(column, position, widget){
     this.widgets[column].splice(position, 0, widget);

@@ -14,7 +14,16 @@ function WidgetTisseo () {
     this.currentStop = null;
 
     this.params.currentStopKey = null;
-    this.params.currentLineNumber = null;
+
+
+
+    var elem = angular.element(document.querySelector('[ng-app]'));
+    var injector = elem.injector();
+
+    this.TisseoApiService = injector.get('TisseoApiService');
+
+    console.log(this.params);
+
 
     this.controller = function($scope, TisseoApiService){
         $scope.test = "coucou";
@@ -31,7 +40,7 @@ WidgetTisseo.prototype.isLineSelected = function(){
     return ! (this.currentLine == null);
 }
 
-WidgetTisseo.prototype.selectStop = function(tisseoApi){
+WidgetTisseo.prototype.selectStop = function(){
     var that = this;
 
     if (that.currentStop && that.currentStop.id){
@@ -39,7 +48,7 @@ WidgetTisseo.prototype.selectStop = function(tisseoApi){
 
         that.params.currentStopKey = that.currentStop.key;
 
-        tisseoApi.getLinesForStop(that.currentStop.id).then(function(data){
+        this.TisseoApiService.getLinesForStop(that.currentStop.id).then(function(data){
             that.lines = data;
             that.currentLine = null;
             that.loading = false;
@@ -61,19 +70,16 @@ WidgetTisseo.prototype.changeStop = function(){
     }
 }
 
-WidgetTisseo.prototype.selectLine = function(line, tisseoApi){
+WidgetTisseo.prototype.selectLine = function(line){
     var that = this;
     if (that.currentLine == line){
         that.currentLine = null;
-        this.params.currentLineNumber = null;
     } else {
         that.currentLine = line;
-        console.log(line);
-        this.params.currentLineNumber = line.id;
     }
     if (that.isLineSelected() && that.isStopSelected()){
         that.loading = true;
-        tisseoApi.getStopsSchedules(that.currentStop.id, that.currentLine.id).then(function(data){
+        this.TisseoApiService.getStopsSchedules(that.currentStop.id, that.currentLine.id).then(function(data){
             that.passages = data;
             that.loading = false;
         }, function(msg){
@@ -82,17 +88,25 @@ WidgetTisseo.prototype.selectLine = function(line, tisseoApi){
     }
 }
 
-WidgetTisseo.prototype.onReloadClick = function(tisseoApi){
+WidgetTisseo.prototype.onReloadClick = function(){
     var that = this;
     if (that.isLineSelected() && that.isStopSelected()){
         that.loading = true;
-        tisseoApi.getStopsSchedules(that.currentStop.id, that.currentLine.id).then(function(data){
+        this.TisseoApiService.getStopsSchedules(that.currentStop.id, that.currentLine.id).then(function(data){
             that.passages = data;
             that.loading = false;
         }, function(msg){
             alert(msg);
         });
     }
+}
+
+
+WidgetTisseo.prototype.init = function(){
+    var that = this;
+    this.TisseoApiService.searchPlace(this.params.currentStopKey).then(function(data){
+        that.currentStop = data[0];
+    });
 }
 
 
