@@ -733,3 +733,26 @@ ng-widget {
     text-transform: capitalize;
 }
 
+
+.container_bike {
+    background-color: #27B882;
+    display: inline-block;
+    vertical-align: middle;
+}
+.container_bike.unavailable {
+    background-color: red;
+}
+.container_bike.unavailable .icon {
+    color: rgba(255,255,255,0.7);
+}
+.container_bike .icon, .container_bike .number {
+    display: inline-block;
+    vertical-align: middle;
+}
+.container_bike .icon {
+    margin: 20px 10px;
+}
+.container_bike .number {
+    font-size: 30px;
+    margin: 0 30px;
+}

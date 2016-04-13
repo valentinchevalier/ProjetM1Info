@@ -27,6 +27,15 @@
 </div>
 
 <div class="info-message" ng-show="widget.isStationSelected()" >
-     <p align="left"> -> Velos disponibles : {{widget.currentStation.available_bikes}} </p>
-     <p align="left"> -> Emplacements libres : {{widget.currentStation.available_bike_stands}} </p>
+    <p align="center">
+        <div class="container_bike available">
+            <i class="fa fa-bicycle fa-4x icon" aria-hidden="true"></i>
+            <span class="number">{{widget.currentStation.available_bikes}}</span>
+        </div>
+
+        <div class="container_bike unavailable">
+            <span class="number">{{widget.currentStation.available_bike_stands}}</span>
+            <i class="fa fa-bicycle fa-4x icon" aria-hidden="true"></i>
+        </div>
+    </p>
 </div>
