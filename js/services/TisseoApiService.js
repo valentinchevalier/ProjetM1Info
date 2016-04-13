@@ -78,27 +78,6 @@ app.service("TisseoApiService", function($http, $q, $filter){
         return deferred.promise;
     }
 
-    /*that.getAllLineInfo = function(){
-        var url = that.preffix + "lines.json";
-        var deferred = $q.defer();
-        $http.get(url, {
-            params: {
-                key: that.key,
-                network: "Tisséo",
-            }
-        }).success(function(data,status){
-            that.linesInfo = data.lines.line;
-            deferred.resolve();
-        }). error(function(data, status){
-            deferred.reject("Erreur");
-        });
-        return deferred.promise;
-    }
-
-    that.getAllLineInfo().then(function(){
-        that.areLinesInit = true;
-    })*/
-
     that.getLineColor = function(shortName){
         var ret;
         that.linesInfo.forEach(function(line){
