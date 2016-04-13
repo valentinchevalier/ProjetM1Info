@@ -15,7 +15,6 @@ function Widget (name, color, templateUrl, type_widget = "") {
     this.params = {
 
     };
-
 }
 
 Widget.prototype.reduce = function(){
@@ -29,6 +28,10 @@ Widget.prototype.restore = function(){
 
 Widget.prototype.switchWorkspaceClick = function(){
     this.deleteWidget(this.x,this.y)
+}
+
+Widget.prototype.init = function(){
+
 }
 
 
@@ -49,3 +52,7 @@ function WidgetPostIt (){
 }
 
 WidgetPostIt.prototype = new Widget();
+
+WidgetPostIt.prototype.init = function(){
+    this.params.texte = this.params.texte + "test test test ";
+}

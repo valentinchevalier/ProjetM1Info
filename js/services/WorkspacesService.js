@@ -111,6 +111,7 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
     }
 
     that.reloadData = function(workspaces){
+        var that = this;
         that.workspaces = [];
         angular.forEach(workspaces, function(workspaceData) {
             console.log(workspaceData);
@@ -121,6 +122,7 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
             that.workspaces[workspaceData.position] = workspace;
 
         });
+        that.currentWorkspace = that.workspaces[0];
     }
 
 });

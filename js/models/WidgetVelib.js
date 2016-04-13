@@ -9,7 +9,13 @@ function WidgetVelib () {
 
     this.currentStation = null;
 
-    this.params.stationName = null;
+    this.params.searchValue = null;
+
+
+    var elem = angular.element(document.querySelector('[ng-app]'));
+    var injector = elem.injector();
+    
+    this.VelibApiService = injector.get('VelibApiService');
 }
 
 WidgetVelib.prototype = new Widget();
@@ -18,13 +24,15 @@ WidgetVelib.prototype.isStationSelected = function(){
     return ! (this.currentStation == null);
 }
 
-WidgetVelib.prototype.changeStation = function(){
-    console.log()
-    if (this.currentStation && this.currentStation.name){
-        this.params.stationName = this.currentStation.name;
-    } else {
-        this.params.stationName = null;
-    }
+
+WidgetVelib.prototype.init = function(){
+    var that = this;
+    that.VelibApiService.searchPlace(that.params.searchValue).then(function(data){
+        if (data.length == 1){
+            that.currentStation = data[0];
+        }
+        console.log(that.currentStation);
+    });
 }
 
 

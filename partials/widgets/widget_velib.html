@@ -1,12 +1,10 @@
 <div layout="row" layout-wrap>
     <md-autocomplete flex
        md-selected-item="widget.currentStation"
-       md-search-text="widget.searchValue"
-       md-items="item in VelibApiService.searchPlace(widget.searchValue)"
+       md-search-text="widget.params.searchValue"
+       md-items="item in VelibApiService.searchPlace(widget.params.searchValue)"
        md-item-text="item.name"
        md-min-length="3"
-       md-selected-item-change="widget.changeStation()"
-       md-search-text-change="widget.changeStation()"
        md-select-on-match="true"
        md-autoselect="true"
        placeholder="Saisissez la station que vous souhaitez consulter..." >

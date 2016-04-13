@@ -12,9 +12,12 @@ function WidgetAgendaCulturel () {
 
     this.nb_elements = 10;
 
-    this.controller = function($scope, AgendaCulturelApiService){
-        $scope.test = "coucou";
-    }
+
+    var elem = angular.element(document.querySelector('[ng-app]'));
+    var injector = elem.injector();
+    
+    this.AgendaCulturelApiService = injector.get('AgendaCulturelApiService');
+
 }
 WidgetAgendaCulturel.prototype = new Widget();
 
@@ -39,11 +42,11 @@ WidgetAgendaCulturel.prototype.isRechercheEnCours = function(){
     return ! (this.params.searchValue == "");
 }
 
-WidgetAgendaCulturel.prototype.onChange = function(agendaCulturelApi){
+WidgetAgendaCulturel.prototype.onChange = function(){
     var that = this;
     if (that.params.searchValue != ""){
         that.loading = true;
-        agendaCulturelApi.getEvenements(that.params.searchValue).then(function(data){
+        this.AgendaCulturelApiService.getEvenements(that.params.searchValue).then(function(data){
             console.log(data);
             that.evenements = data.records;
             that.loading = false;
@@ -53,5 +56,10 @@ WidgetAgendaCulturel.prototype.onChange = function(agendaCulturelApi){
     } else {
         that.evenements = [];
     }
+}
 
+
+WidgetAgendaCulturel.prototype.init = function(){
+    this.onChange();
+    
 }
