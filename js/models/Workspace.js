@@ -105,6 +105,7 @@ Workspace.prototype.initWidgets = function(widgetsData){
                 widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
         }
         widget.setParams(widgetData.params);
+        widget.init();
         that.addWidget(widgetData.col, widgetData.position, widget);
     });
 }

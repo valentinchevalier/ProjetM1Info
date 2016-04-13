@@ -19,9 +19,9 @@ function WidgetTisseo () {
 
     var elem = angular.element(document.querySelector('[ng-app]'));
     var injector = elem.injector();
-
+    
     this.TisseoApiService = injector.get('TisseoApiService');
-
+    
     console.log(this.params);
 
 
@@ -103,6 +103,7 @@ WidgetTisseo.prototype.onReloadClick = function(){
 
 
 WidgetTisseo.prototype.init = function(){
+    console.log("initialisation");
     var that = this;
     this.TisseoApiService.searchPlace(this.params.currentStopKey).then(function(data){
         that.currentStop = data[0];

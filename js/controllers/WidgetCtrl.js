@@ -64,10 +64,4 @@ app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, Tis
             $scope.hide();
         };
     }
-
-    function init(){
-        $scope.widget.init();
-    }
-    init();
-
 });
