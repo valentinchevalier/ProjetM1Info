@@ -1,5 +1,5 @@
 // Controleur principal
-app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, TisseoApiService, AgendaCulturelApiService, VelibApiService, WeatherApiService) {
+app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, TisseoApiService, AgendaCulturelApiService, VelibApiService, WeatherApiService, TelechargementService) {
 
 
     $scope.AgendaCulturelApiService = AgendaCulturelApiService;
@@ -7,6 +7,7 @@ app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, Tis
     $scope.WorkspacesService = WorkspacesService;
     $scope.VelibApiService = VelibApiService;
     $scope.WeatherApiService = WeatherApiService;
+    $scope.TelechargementService = TelechargementService;
 
     $scope.showSwitchClick = function(ev,column,position){
         var currentWorkspace = WorkspacesService.currentWorkspace;
