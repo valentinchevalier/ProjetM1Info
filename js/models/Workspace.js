@@ -98,6 +98,9 @@ Workspace.prototype.initWidgets = function(widgetsData){
             case 'velo_toulouse' :
                 widget = new WidgetVelib();
                 break;
+            case 'weather_toulouse' :
+                widget = new WidgetWeather();
+                break;
             default:
                 widget = new Widget(data.name, data.color, "./partials/widgets/widget_base.html");
         }
