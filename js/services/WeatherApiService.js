@@ -20,11 +20,11 @@ app.service("WeatherApiService", function($http, $q, $filter){
     });
 
     that.findImage = function(){
-        var lienImage = "../../img/";
+        var lienImage = "<img src=\"../../img/";
         lienImage = lienImage+that.info.weather[0].icon;
         console.log("C'est");
         console.log(that.info.weather[0].icon);
-        lienImage = lienImage+".png";
+        lienImage = lienImage+".png\" height=\"100\" width=\"100\" />";
 
         return lienImage;
     }

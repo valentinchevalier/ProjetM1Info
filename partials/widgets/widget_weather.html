@@ -1,16 +1,15 @@
 <div layout="row">
     <div>
         <p>
-            <img src="../../img/logo_temperature.png" heignt="15px" width="15px"/> : {{(WeatherApiService.info.main.temp-273.15).toFixed(1)}}°C
+            <img src="../../img/logo_temperature.png" heignt="20px" width="20px"/> : {{(WeatherApiService.info.main.temp-273.15).toFixed(1)}}°C
         </p>
     </div>
     <div flex>
-        <p align="center">
-            <img src="WeatherApiService.findImage()" />
+        <p align="center" ng-bind-html="WeatherApiService.findImage()">
         </p>
     </div>
     <div>
-        <p>{{(WeatherApiService.info.main.temp_min-273.15).toFixed(1)}}°C : Température minimal</p>
-        <p>{{(WeatherApiService.info.main.temp_max-273.15).toFixed(1)}}°C : Température maximal</p>
+        <p>{{(WeatherApiService.info.main.temp_min-273.15).toFixed(1)}}°C : <img src="../../img/logo_temperature.png" height="20px" width="20" /><img src="../../img/logo_basse.png" height="20px" width="20" /></p>
+        <p>{{(WeatherApiService.info.main.temp_max-273.15).toFixed(1)}}°C : <img src="../../img/logo_temperature.png" height="20px" width="20" /><img src="../../img/logo_hausse.png" height="20px" width="20" /></p>
     </div>
 </div>
