@@ -12,6 +12,12 @@ function Widget (name, color, templateUrl, type_widget = "") {
     this.type_widget = type_widget;
     this.isReduced = false;
 
+
+    var elem = angular.element(document.querySelector('[ng-app]'));
+    var injector = elem.injector();
+
+    this.TelechargementService = injector.get('TelechargementService');
+
     this.params = {
 
     };
@@ -35,6 +41,10 @@ Widget.prototype.init = function(){
 }
 
 
+Widget.prototype.saveToPc = function(){
+}
+
+
 Widget.prototype.setParams = function(paramsData){
     var that = this;
     angular.forEach(paramsData, function(value, key){
@@ -55,4 +65,9 @@ WidgetPostIt.prototype = new Widget();
 
 WidgetPostIt.prototype.init = function(){
     this.params.texte = this.params.texte;
+}
+
+
+WidgetPostIt.prototype.saveToPc = function(){
+    this.TelechargementService.saveToPc(this.params.texte, "post_it.json");
 }
