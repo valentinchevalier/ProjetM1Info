@@ -230,11 +230,14 @@ ng-widget {
     padding-left: 0px;
 }
 .tab .edit md-icon {
+    display: block;
     width:0px;
+    min-width:0px;
     transition: all .2s ease-out;
 }
 .tab .edit svg {
     fill: #999;
+    width: 100%;
 }
 .tab .edit.visible{
     padding-left: 15px;
