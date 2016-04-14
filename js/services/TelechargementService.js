@@ -2,6 +2,8 @@ app.service("TelechargementService", function($http, $q, $filter){
 
     this.saveToPc = function (data, filename) {
 
+        console.log("coucou");
+
       if (!data) {
         console.error('No data');
         return;
