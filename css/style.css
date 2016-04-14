@@ -288,6 +288,7 @@ ng-widget {
 .widget-header .widget-title,
 .widget-header .add,
 .widget-header .restore,
+.widget-header .download,
 .widget-header .reduce,
 .widget-header .delete {
     display: table-cell;
