@@ -1,24 +1,53 @@
-app.service('SettingsService', function ($mdSidenav) {
-    var that = this;
+app.service('SettingsService', function ($mdSidenav, $mdDialog, WorkspacesService, UserService) {
 
-    that.templateUrl = "./partials/settings.html";
-    that.sidenavTemplateUrl = "./partials/sidenav_settings.html";
+    this.sidenavTemplateUrl = "./partials/sidenav_settings.html";
 
-    that.settingsData = {
-        isEnable : false,
-        isMenuVisible : false,
-    };
+    this.isMenuVisible = false;
 
-    that.enable = function(){
-        that.settingsData.isEnable = true;
-    }
-    that.disable = function(){
-        that.settingsData.isEnable = false;
-        that.settingsData.isMenuVisible = false;
+    this.isEnable = function(){
+        return UserService.loginData.isLogged;
     }
 
-    that.settingsBtnClick = function () {
-        that.settingsData.isMenuVisible = !that.settingsData.isMenuVisible;
+    this.settingsBtnClick = function () {
+        this.isMenuVisible = !this.isMenuVisible;
         $mdSidenav('left-menu').toggle();
     };
+
+    this.saveCurrentStateClick = function(ev){
+        var confirm = $mdDialog.confirm()
+            .title('Êtes-vous sûr de vouloir sauvegarder l\'état courant ?')
+            .textContent("Toute sauvegarde déjà éffectuée sera supprimée.")
+            .ariaLabel('Confirmation de sauvegarde')
+            .targetEvent(ev)
+            .openFrom($(ev.currentTarget))
+            .ok('Sauvegarder')
+            .cancel('Annuler');
+
+        $mdDialog.show(confirm).then(function () {
+            $mdSidenav('left-menu').close();
+            WorkspacesService.save();
+        }, function () {
+
+        });
+
+    }
+
+    this.loadPreviousStateClick = function(ev){
+        var confirm = $mdDialog.confirm()
+            .title('Êtes-vous sûr de vouloir charger un état précedent ?')
+            .textContent("Toute modifications non sauvegardées seront perdues.")
+            .ariaLabel('Confirmation de chargement')
+            .targetEvent(ev)
+            .openFrom($(ev.currentTarget))
+            .ok('Charger')
+            .cancel('Annuler');
+
+        $mdDialog.show(confirm).then(function () {
+            $mdSidenav('left-menu').close();
+            WorkspacesService.reload();
+        }, function () {
+
+        });
+    }
+
 });

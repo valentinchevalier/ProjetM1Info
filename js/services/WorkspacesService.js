@@ -2,6 +2,8 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
 
     var that = this;
 
+    that.saveOrLoadLoading = false;
+
     // Tableau contenant les workspaces
     that.workspaces = [
         new Workspace("Onglet 1", 2),
@@ -72,7 +74,9 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
     that.save = function(){
         console.log("Sauvegarde");
         var user = UserService.loginData.loggedUser;
-        that.isMessageVisible = true;
+
+        that.loading = true;
+        that.failed = false;
         that.message =  "Sauvegarde en cours ... ";
 
         var deferred = $q.defer();
@@ -80,20 +84,27 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
             userId : user.id,
             workspaces : that.workspaces
         }).then(function(response) {
-            that.isMessageVisible = true;
-            that.message =  "Sauvegarde réussie"
+            that.message =  "Sauvegarde réussie";
+            that.loading = false;
+            that.failed = false;
         }, function(response) {
-            that.isMessageVisible = true;
+            that.failed = true;
+            that.loading = false;
             that.message =  "Impossible de se connecter au serveur"
         });
     }
 
+    that.unFail = function(){
+        that.loading = false;
+        that.failed = false;
+    }
+
     that.reload = function(){
-        console.log("Chargement");
 
         var user = UserService.loginData.loggedUser;
 
         that.isMessageVisible = true;
+        that.saveOrLoadLoading = true;
         that.message =  "Chargement en cours ... "
 
         var deferred = $q.defer();
@@ -102,10 +113,12 @@ app.service('WorkspacesService', function ($mdDialog, $q, $http, UserService) {
         }).then(function(response) {
             console.log(response);
             that.reloadData(response.data);
-            that.isMessageVisible = true;
-            that.message =  "Chargement réussie"
+            that.message =  "Chargement réussi";
+            that.loading = false;
+            that.failed = false;
         }, function(response) {
-            that.isMessageVisible = true;
+            that.failed = true;
+            that.loading = false;
             that.message =  "Impossible de se connecter au serveur"
         });
     }

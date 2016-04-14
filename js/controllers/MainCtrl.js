@@ -2,7 +2,7 @@
 app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService, WorkspacesService, TisseoApiService) {
 
     // Variables d'état
-    $scope.isMenuVisible = true;
+    $scope.isMenuVisible = false;
     $scope.isDragging = false;
     $scope.buttonIcon = "add";
 

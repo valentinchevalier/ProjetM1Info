@@ -1,4 +1,4 @@
-app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
+app.service('UserService', function ($http, $mdDialog, $q) {
     var that = this;
 
     that.templateUrl = "./partials/user_account.html";
@@ -20,7 +20,6 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
     that.login = function (user) {
         that.loginData.loggedUser = user;
         that.loginData.isLogged = true;
-        SettingsService.enable();
     };
 
     that.login({
@@ -32,7 +31,6 @@ app.service('UserService', function (SettingsService, $http, $mdDialog, $q) {
     that.logout = function () {
         console.log("deconnexion");
         that.loginData.isLogged = false;
-        SettingsService.disable();
     };
 
     that.onDeconnexionClick = function () {

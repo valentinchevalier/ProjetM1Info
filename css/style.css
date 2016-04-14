@@ -760,3 +760,7 @@ ng-widget {
     font-size: 30px;
     margin: 0 30px;
 }
+
+.fullscreen-loading {
+    background-color: rgba(0,0,0,0.2);
+}

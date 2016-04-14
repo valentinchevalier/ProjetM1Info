@@ -4,15 +4,12 @@
     </md-toolbar>
     <md-content layout-padding>
         <md-list flex>
-            <md-list-item ng-show="WorkspacesService.isMessageVisible">
-                {{WorkspacesService.message}}
-            </md-list-item>
-            <md-list-item ng-click="WorkspacesService.save()">
+            <md-list-item ng-click="SettingsService.saveCurrentStateClick($event)">
                 <md-icon>save</md-icon>
                 <p>Sauvegarder l'état courant</p>
             </md-list-item>
 
-            <md-list-item ng-click="WorkspacesService.reload()">
+            <md-list-item ng-click="SettingsService.loadPreviousStateClick($event)">
                 <md-icon>autorenew</md-icon>
                 <p>Charger l'état précédent</p>
             </md-list-item>

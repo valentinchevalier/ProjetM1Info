@@ -1,14 +1,7 @@
-
-<!-- Header -> Settings et User -->
-<!--<div class="header">
-    <div class="half" ng-include="SettingsService.templateUrl"></div>
-    <div class="half" ng-include="UserService.templateUrl"></div>
-</div>-->
-
 <md-toolbar>
     <div class="md-toolbar-tools">
         <md-button class="md-icon-button" aria-label="Paramètres"
-            ng-show="SettingsService.settingsData.isEnable"
+            ng-show="SettingsService.isEnable()"
             ng-click="SettingsService.settingsBtnClick()">
             <md-icon>settings</md-icon>
         </md-button>
@@ -90,11 +83,24 @@
 
     </div><!-- End Global container -->
 </md-content>
-<div >
 
+<div class="md-dialog-container fullscreen-loading" ng-show="WorkspacesService.loading || WorkspacesService.failed">
+    <md-dialog class="_md-transition-in">
+        <md-dialog-content class="md-dialog-content">
+           <div class="loading" ng-show="WorkspacesService.loading">
+                <md-progress-circular md-mode="indeterminate" class=""></md-progress-circular>
+            </div>
+            <p>{{WorkspacesService.message}}</p>
 
+        </md-dialog-content>
+        <md-dialog-actions layout="row" ng-show="WorkspacesService.failed">
+            <span flex></span>
+            <md-button ng-click="WorkspacesService.unFail()">
+                OK
+            </md-button>
+        </md-dialog-actions>
+    </md-dialog>
 </div>
-
 
 <!-- Menu contenant les widgets disponibles -->
 <div class="bottom-menu" ng-class="{'visible': isMenuVisible}">
