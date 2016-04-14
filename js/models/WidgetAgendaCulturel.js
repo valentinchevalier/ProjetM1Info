@@ -17,7 +17,7 @@ function WidgetAgendaCulturel () {
     var injector = elem.injector();
 
     this.AgendaCulturelApiService = injector.get('AgendaCulturelApiService');
-    that.TelechargementService = injector.get('TelechargementService');
+    this.TelechargementService = injector.get('TelechargementService');
 
 }
 WidgetAgendaCulturel.prototype = new Widget();
