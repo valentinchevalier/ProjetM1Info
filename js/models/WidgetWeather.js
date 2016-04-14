@@ -11,6 +11,8 @@ function WidgetWeather () {
 
     that.WeatherApiService = injector.get('WeatherApiService');
 
+    that.TelechargementService = injector.get('TelechargementService');
+
     that.WeatherApiService.getWeather().then(function(weather){
         that.info = weather;
     });

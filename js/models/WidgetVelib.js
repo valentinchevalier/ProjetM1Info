@@ -16,6 +16,7 @@ function WidgetVelib () {
     var injector = elem.injector();
 
     this.VelibApiService = injector.get('VelibApiService');
+    this.TelechargementService = injector.get('TelechargementService');
 }
 
 WidgetVelib.prototype = new Widget();
