@@ -117,7 +117,7 @@ WidgetTisseo.prototype.saveToPc = function(){
         stop : this.currentStop,
         line : this.currentLine,
         passages : this.passages
-    }, "post_it.json");
+    }, "tisseo.json");
 }
 
 

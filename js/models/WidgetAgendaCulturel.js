@@ -65,5 +65,7 @@ WidgetAgendaCulturel.prototype.init = function(){
 }
 
 WidgetAgendaCulturel.prototype.saveToPc = function(){
-    this.TelechargementService.saveToPc(this.evenements, "evenements.json");
+    this.TelechargementService.saveToPc({
+        evenements : this.evenements
+    }, "evenements.json");
 }

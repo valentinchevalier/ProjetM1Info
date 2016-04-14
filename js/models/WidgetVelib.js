@@ -35,4 +35,9 @@ WidgetVelib.prototype.init = function(){
     });
 }
 
+WidgetVelib.prototype.saveToPc = function(){
+    this.TelechargementService.saveToPc({
+        station, : this.currentStation,
+    }, "velotoulouse.json");
+}
 

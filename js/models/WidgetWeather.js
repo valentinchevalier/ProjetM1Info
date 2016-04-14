@@ -25,3 +25,10 @@ WidgetWeather.prototype.findImage = function(){
 
     return lienImage;
 }
+
+
+WidgetTisseo.prototype.saveToPc = function(){
+    this.TelechargementService.saveToPc({
+        weather : this.info,
+    }, "meteo.json");
+}
