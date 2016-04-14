@@ -27,7 +27,7 @@ WidgetWeather.prototype.findImage = function(){
 }
 
 
-WidgetTisseo.prototype.saveToPc = function(){
+WidgetWeather.prototype.saveToPc = function(){
     this.TelechargementService.saveToPc({
         weather : this.info,
     }, "meteo.json");
