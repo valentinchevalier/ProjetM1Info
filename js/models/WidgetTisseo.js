@@ -113,7 +113,11 @@ WidgetTisseo.prototype.init = function(){
 
 WidgetTisseo.prototype.saveToPc = function(){
     console.log("coucou");
-    this.TelechargementService.saveToPc(this.params.texte, "post_it.json");
+    this.TelechargementService.saveToPc({
+        stop : this.currentStop,
+        line : this.currentLine,
+        passages : this.passages
+    }, "post_it.json");
 }
 
 

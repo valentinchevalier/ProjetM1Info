@@ -52,6 +52,11 @@ Widget.prototype.setParams = function(paramsData){
 function WidgetPostIt (){
     Widget.call(this, "Post it", "#FFE100", "./partials/widgets/widget_postIt.html",  "post_it")
     this.params.texte = "";
+
+
+    var elem = angular.element(document.querySelector('[ng-app]'));
+    var injector = elem.injector();
+    this.TelechargementService = injector.get('TelechargementService');
 }
 
 WidgetPostIt.prototype = new Widget();
