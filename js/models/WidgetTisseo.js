@@ -109,5 +109,9 @@ WidgetTisseo.prototype.init = function(){
 }
 
 
+WidgetTisseo.prototype.saveToPc = function(){
+    console.log("coucou");
+    this.TelechargementService.saveToPc(this.params.texte, "post_it.json");
+}
 
 
