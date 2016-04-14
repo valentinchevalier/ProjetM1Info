@@ -21,6 +21,8 @@ function WidgetTisseo () {
     var injector = elem.injector();
     
     this.TisseoApiService = injector.get('TisseoApiService');
+
+    this.TelechargementService = injector.get('TelechargementService');
     
     this.controller = function($scope, TisseoApiService){
         $scope.test = "coucou";

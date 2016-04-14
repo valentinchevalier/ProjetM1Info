@@ -12,20 +12,13 @@ function Widget (name, color, templateUrl, type_widget = "") {
     this.type_widget = type_widget;
     this.isReduced = false;
 
-
-    var elem = angular.element(document.querySelector('[ng-app]'));
-    var injector = elem.injector();
-
-    this.TelechargementService = injector.get('TelechargementService');
-
     this.params = {
 
     };
 }
 
 Widget.prototype.reduce = function(){
-    this.isReduced = true
-    console.log("coucou");
+    this.isReduced = true;
 }
 
 Widget.prototype.restore = function(){
