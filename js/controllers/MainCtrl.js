@@ -2,7 +2,7 @@
 app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService, WorkspacesService, TisseoApiService) {
 
     // Variables d'état
-    $scope.isMenuVisible = false;
+    $scope.isMenuVisible = true;;
     $scope.isDragging = false;
     $scope.buttonIcon = "add";
 
@@ -56,8 +56,8 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
         {
             name: "Agenda Culturel",
             type: "agenda_culturel",
-            color: "#cc3366",
-            img_url: "img/toulouse_metropole_logo.png",
+            color: "#d07bb9",
+            img_url: "img/logo_so_toulouse.png",
             deletion: false,
         },
         {

@@ -3,7 +3,7 @@
  * Widget Agenda culturel
  */
 function WidgetAgendaCulturel () {
-    Widget.call(this, "Agenda culturel", "#cc3366", "./partials/widgets/widget_agenda_culturel.html","agenda_culturel")
+    Widget.call(this, "Agenda culturel", "#a9017b", "./partials/widgets/widget_agenda_culturel.html","agenda_culturel")
 
     this.params.searchValue = "";
     this.isDescriptionCourteVisible = true;

@@ -395,10 +395,34 @@ ng-widget {
     min-height:100%;
 }
 
+/* Weather */
+.temperature * {
+    display: inline-block;
+    vertical-align: top;
+}
+.temperature .wi-thermometer {
+    margin: 0 10px;
+}
+.temperature .value {
+    font-size: 25px;
+}
+.main-weather.wi {
+    font-size: 60px;
+}
+.wi {
+    font-size: 35px;
+}
 
 
+input {
+    border: none;
+    padding: 11px;
+    border-radius: 2px;
+}
 
-
+.unavailable {
+    font-size: 50px;
+}
 
 
 /*
@@ -737,17 +761,19 @@ ng-widget {
     text-transform: capitalize;
 }
 
-
-.container_bike {
-    background-color: #27B882;
-    display: inline-block;
+.bike-results {
+    display: table;
+    width: 75%;
+    margin: 20px auto;
+}
+.bike-results .container_bike {
+    display: table-cell;
+    width: 50%;
     vertical-align: middle;
+    background-color: #27B882;
 }
 .container_bike.unavailable {
     background-color: red;
-}
-.container_bike.unavailable .icon {
-    color: rgba(255,255,255,0.7);
 }
 .container_bike .icon, .container_bike .number {
     display: inline-block;

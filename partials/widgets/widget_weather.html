@@ -1,17 +1,27 @@
 <div layout="row" ng-if="widget.info != null">
     <div>
-        <p>
-            <img src="./img/logo_temperature.png" heignt="20px" width="20px"/> : {{(widget.info.main.temp-273.15).toFixed(1)}}°C
+        <p class="temperature">
+            <i class="wi wi-thermometer"></i> <span class="value">{{(widget.info.main.temp-273.15).toFixed(1)}}</span> <i class="wi wi-celsius"></i>
         </p>
     </div>
     <div flex>
         <p align="center">
-            <img src="{{widget.findImage()}}" height="100" width="100" />
+            <i class="main-weather {{widget.getIconCode()}}"></i>
         </p>
     </div>
     <div>
-        <p>{{(widget.info.main.temp_min-273.15).toFixed(1)}}°C : <img src="./img/logo_temperature.png" height="20px" width="20" /><img src="./img/logo_basse.png" height="20px" width="20" /></p>
-        <p>{{(widget.info.main.temp_max-273.15).toFixed(1)}}°C : <img src="./img/logo_temperature.png" height="20px" width="20" /><img src="./img/logo_hausse.png" height="20px" width="20" /></p>
+        <p class="temperature min">
+            <i class="wi wi-direction-down"></i>
+            <span class="value">{{(widget.info.main.temp_min-273.15).toFixed(1)}}</span>
+            <i class="wi wi-celsius"></i>
+            <i class="wi wi-thermometer"></i>
+        </p>
+        <p class="temperature max">
+            <i class="wi wi-direction-up"></i>
+            <span class="value">{{(widget.info.main.temp_max-273.15).toFixed(1)}}</span>
+            <i class="wi wi-celsius"></i>
+            <i class="wi wi-thermometer"></i>
+        </p>
     </div>
 </div>
 

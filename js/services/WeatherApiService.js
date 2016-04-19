@@ -17,8 +17,8 @@ app.service("WeatherApiService", function($http, $q, $filter){
                 'APPID' : that.key
             }
         }).success(function(data,status){
-            that.info = data;
-            deferred.resolve(that.info);
+            console.log(data);
+            deferred.resolve(data);
         }). error(function(data, status){
             deferred.reject("Une erreur est survenue.");
         });

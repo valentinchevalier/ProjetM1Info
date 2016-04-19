@@ -34,3 +34,21 @@ WidgetWeather.prototype.saveToPc = function(){
         weather : this.info,
     }, "meteo.json");
 }
+
+WidgetWeather.prototype.getIconCode = function(){
+    var prefix = 'wi wi-';
+    var code = this.info.weather[0].id;
+    var icon = weatherIcons[code].icon;
+
+    console.log(icon);
+
+    // If we are not in the ranges mentioned above, add a day/night prefix.
+    if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
+        icon = 'day-' + icon;
+    }
+
+    // Finally tack on the prefix.
+    icon = prefix + icon;
+
+    return icon;
+}
