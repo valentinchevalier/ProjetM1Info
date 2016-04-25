@@ -1,5 +1,5 @@
 // Controleur principal
-app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService, WorkspacesService, TisseoApiService) {
+app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsService, WorkspacesService) {
 
     // Variables d'état
     $scope.isMenuVisible = true;;
@@ -11,24 +11,8 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
     // Recopie des Services dans le $scope pour y accéder dans la vue
     $scope.UserService = UserService;
     $scope.SettingsService = SettingsService;
-    $scope.TisseoApiService = TisseoApiService;
     $scope.WorkspacesService = WorkspacesService;
 
-
-    $scope.searchArret = function(){
-        var term = $scope.stop.label;
-        console.log(term);
-        if (term.length < 3)
-            $scope.places = [];
-        else {
-            TisseoApiService.searchPlace(term).then(function(places){
-                console.log(places);
-                $scope.places = places;
-            }, function(msg){
-                alert(msg);
-            })
-        }
-    }
 
 
     // Widgets disponibles à l'ajout
@@ -40,12 +24,12 @@ app.controller("MainCtrl", function ($scope, $rootScope, UserService, SettingsSe
             img_url: "img/Tisseo_logo.png",
             deletion: false,
         },
-        {
+        /*{
             name: "Post It",
             type: "post_it",
             color: "#FFE100",
             deletion: false,
-        },
+        },*/
         {
             name: "Météo",
             type: "weather_toulouse",
