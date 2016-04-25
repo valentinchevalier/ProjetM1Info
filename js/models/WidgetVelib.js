@@ -25,6 +25,23 @@ WidgetVelib.prototype.isStationSelected = function(){
     return ! (this.currentStation == null);
 }
 
+WidgetVelib.prototype.getBikeAvailabilityClass = function(){
+    if (this.currentStation.available_bikes <= 2) {
+        return "empty";
+    }
+    if (this.currentStation.available_bikes <= 5) {
+        return "almost-empty";
+    }
+}
+WidgetVelib.prototype.getStandAvailabilityClass = function(){
+    if (this.currentStation.available_bikes <= 2) {
+        return "empty";
+    }
+    if (this.currentStation.available_bikes <= 5) {
+        return "almost-empty";
+    }
+}
+
 
 WidgetVelib.prototype.init = function(){
     var that = this;

@@ -9,15 +9,14 @@ app.service("WeatherApiService", function($http, $q, $filter){
     var url = that.preffix;
 
 
-    that.getWeather = function(){
+    that.getWeather = function(id){
         var deferred = $q.defer();
         $http.get(url, {
             params : {
-                'id' : 2972315,
+                'id' : id,
                 'APPID' : that.key
             }
         }).success(function(data,status){
-            console.log(data);
             deferred.resolve(data);
         }). error(function(data, status){
             deferred.reject("Une erreur est survenue.");

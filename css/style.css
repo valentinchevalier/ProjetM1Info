@@ -800,3 +800,27 @@ input {
 .fullscreen-loading {
     background-color: rgba(0,0,0,0.2);
 }
+
+
+.city-weather-inputs ._md-select-value > span:not(._md-select-icon) {
+    font-size: 30px;
+    color: white !important;
+    padding: 5px 0px 10px 5px;
+}
+
+.city-weather-inputs .md-icon-button {
+    margin: auto !important;
+}
+.city-weather-inputs md-input-container {
+    margin: 0 !important;
+    margin-bottom: 10px !important;
+}
+.weather-results >div {
+    margin:auto;
+}
+.temperature.min, .temperatur.max {
+    text-align:right;
+}
+
+
+
