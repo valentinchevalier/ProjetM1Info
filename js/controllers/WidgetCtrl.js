@@ -46,6 +46,7 @@ app.controller("WidgetCtrl", function ($scope, $mdDialog, WorkspacesService, Tis
         $scope.column = column;
         $scope.currentWorkspace = currentWorkspace;
         $scope.workspaces = workspaces;
+        $scope.WorkspacesService = WorkspacesService;
 
         $scope.hide = function() {
             $mdDialog.hide();

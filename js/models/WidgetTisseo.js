@@ -3,7 +3,7 @@
  * Widget Tisséo - Prochains passages
  */
 function WidgetTisseo () {
-    Widget.call(this, "Tisseo - Prochain passages", "#0C226B", "./partials/widgets/widget_tisseo.html", "tisseo_prochains_passages")
+    Widget.call(this, "Tisseo - Prochains passages", "#0C226B", "./partials/widgets/widget_tisseo.html", "tisseo_prochains_passages")
     this.searchPlaces = [];
 
     this.searchValue = "";

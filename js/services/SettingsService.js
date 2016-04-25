@@ -35,7 +35,7 @@ app.service('SettingsService', function ($mdSidenav, $mdDialog, WorkspacesServic
     this.loadPreviousStateClick = function(ev){
         var confirm = $mdDialog.confirm()
             .title('Êtes-vous sûr de vouloir charger un état précedent ?')
-            .textContent("Toute modifications non sauvegardées seront perdues.")
+            .textContent("Toutes modifications non sauvegardées seront perdues.")
             .ariaLabel('Confirmation de chargement')
             .targetEvent(ev)
             .openFrom($(ev.currentTarget))

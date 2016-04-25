@@ -2,7 +2,7 @@
  * Widget Velib
  */
 function WidgetVelib () {
-    Widget.call(this, "Vélib - Toulouse", "#B50F1B", "./partials/widgets/widget_velib.html", "velo_toulouse")
+    Widget.call(this, "VélÔToulouse - Vélos et places disponibles", "#B50F1B", "./partials/widgets/widget_velib.html", "velo_toulouse")
 
 
     this.searchValue = "";

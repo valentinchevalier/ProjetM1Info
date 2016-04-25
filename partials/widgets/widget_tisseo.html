@@ -30,7 +30,7 @@
 
 
 <div class="lines" ng-show="widget.isStopSelected()">
-    <span class="line-title">Ligne : </span>
+    <span class="line-title">Lignes : </span>
     <div ng-repeat="line in widget.lines | orderBy: '' track by line.id" class="line-icon" style="background-color: {{line.bgXmlColor}}" ng-click="widget.selectLine(line)" ng-class="{select:line.shortName == widget.currentLine.shortName}">
         {{line.shortName}}
     </div>

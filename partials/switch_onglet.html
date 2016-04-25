@@ -2,7 +2,7 @@
     <form name="switchOngletForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Déplacer le widget</h2>
+                <h2>Déplacer le widget vers un onglet</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()" aria-label="Fermer">
                     <md-icon md-svg-src="./img/ic_close_white_24px.svg"></md-icon>
@@ -20,7 +20,7 @@
                                 margin:6px 1%;
                             }
                         </style>
-                        <md-button class="md-raised column-editor" ng-repeat="workspace in workspaces" ng-click="moveAnotherWorkspace($event,$index)">
+                        <md-button class="md-raised column-editor" ng-repeat="workspace in workspaces" ng-click="moveAnotherWorkspace($event,$index)" ng-disabled="workspace == WorkspacesService.currentWorkspace">
                             <p>{{workspace.title}}</p>
                         </md-button>
                     </div>

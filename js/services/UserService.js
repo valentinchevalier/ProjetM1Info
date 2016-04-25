@@ -20,11 +20,11 @@ app.service('UserService', function ($http, $mdDialog, $q) {
         that.loginData.isLogged = true;
     };
 
-    /*that.login({
+    that.login({
         id: "37",
         login:"valche.vc",
         password:"test",
-    });*/
+    });
 
     that.logout = function () {
         console.log("deconnexion");
