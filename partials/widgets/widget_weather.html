@@ -1,6 +1,6 @@
 <div layout="row" class="city-weather-inputs">
     <md-input-container flex >
-        <label>Ville</label>
+        <label>Sélectionnez votre ville...</label>
         <md-select ng-model="widget.params.currentCityId" md-on-close="widget.getWeather()"class="md-raised">
             <md-option ng-repeat="city in widget.cities" value="{{city.id}}">
                 {{city.name}}
