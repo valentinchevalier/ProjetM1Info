@@ -10,9 +10,7 @@ app.service('UserService', function ($http, $mdDialog, $q) {
         mdp : "",
         confirm_mdp : "",
 
-        loggedUser: {
-            username: "Les 4 développeurs",
-        },
+        loggedUser: null,
     };
 
 
@@ -22,11 +20,11 @@ app.service('UserService', function ($http, $mdDialog, $q) {
         that.loginData.isLogged = true;
     };
 
-    that.login({
+    /*that.login({
         id: "37",
         login:"valche.vc",
         password:"test",
-    });
+    });*/
 
     that.logout = function () {
         console.log("deconnexion");
