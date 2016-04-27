@@ -9,11 +9,11 @@ app.service("VelibApiService", function($http, $q, $filter){
 
     that.searchPlace = function(s){
 
+        var deferred = $q.defer();
         if (that.stations == null){
 
             var url = that.preffix;
 
-            var deferred = $q.defer();
             $http.get(url).success(function(data,status){
                 that.stations = data;
                 console.log(that.stations);
