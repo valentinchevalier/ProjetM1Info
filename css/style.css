@@ -328,7 +328,6 @@ ng-widget {
 .widget-content {
     padding: 10px;
     overflow:auto;
-    min-height: 100px;
 }
 
 
@@ -760,7 +759,7 @@ input {
 
 .bike-results {
     display: table;
-    width: 75%;
+    width: 100%;
     margin: 20px auto;
 }
 .bike-results .container_bike, .bike-results .container_stand {
