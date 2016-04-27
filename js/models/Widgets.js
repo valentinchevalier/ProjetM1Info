@@ -22,11 +22,11 @@ Widget.prototype.reduce = function(){
 }
 
 Widget.prototype.restore = function(){
-    this.isReduced = false
+    this.isReduced = false;
 }
 
 Widget.prototype.switchWorkspaceClick = function(){
-    this.deleteWidget(this.x,this.y)
+    this.deleteWidget(this.x,this.y);
 }
 
 Widget.prototype.init = function(){

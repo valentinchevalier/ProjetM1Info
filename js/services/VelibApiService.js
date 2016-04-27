@@ -18,14 +18,15 @@ app.service("VelibApiService", function($http, $q, $filter){
                 that.stations = data;
                 console.log(that.stations);
                 var results = that.stations.filter( that.createFilterFor(s));
-                deferred.resolve(results)
+                deferred.resolve(results);
             }). error(function(data, status){
                 deferred.reject("Aucune station ne correspond à votre recherche.");
             });
             return deferred.promise;
         } else {
             var results = that.stations.filter( that.createFilterFor(s));
-            return results;
+            deferred.resolve(results)
+            return deferred.promise;
         }
     }
     /**
